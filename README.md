@@ -5,3 +5,4 @@ MyCampus Guide is a web application developped by students of University of Glas
 kubajj - Jakub Jelinek\
 jovanneste - Joachim Vanneste\
 janwieczorek-dev - Jan Wieczorek\
+ConnorMcfadden - Connor McFadden
