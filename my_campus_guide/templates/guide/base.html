@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      MyCampus Guide -
+      {% block title_block %}
+        Welcome!
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+			<div class="row">
+				<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+					<div class="sidebar-sticky">
+            <h1> MyCampus Guide</h1>
+					  <form class="form-inline">
+					 	  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				    	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					  </form>
+  	        <ul class="list-group">
+						  <li class="list-group-item"><button>Home</button></li>
+							<li class="list-group-item">Lecturers</li>
+						  <li class="list-group-item">Courses</li>
+						</ul>
+            <ul class="list-group bottom">
+						 	<li class="list-group-item">Login</li>
+							<li class="list-group-item">Register</li>
+    	      </ul>
+						<p>&copy; WAD LB14d 2021</p>
+					</div>
+				</nav>
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+					{% block body_block %}
+					{% endblock %}
+					<footer>		
+						<p class="float-right"><a href="#">Back to top</a></p>
+						<p>&copy; 2020 Tango With Django 2 &middot; <a href="#">Privacy</a> &middot;
+						<a href="#">Terms</a></p>
+					</footer>
+				</main>
+			</div>
+		</div>  
+	</body>
+</html>
+
