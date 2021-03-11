@@ -18,6 +18,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Course(models.Model):
 	NAME_MAX_LENGTH = 128
 	name = models.CharField(max_length = NAME_MAX_LENGTH, unique = True)
@@ -37,7 +38,6 @@ class Course(models.Model):
 		return self.name
 
 
-
 class Lecturer(models.Model):
 	NAME_MAX_LENGTH = 128
 	name = models.CharField(max_length = NAME_MAX_LENGTH, unique = True)
@@ -55,19 +55,31 @@ class Lecturer(models.Model):
 
 	def __str__(self):
 		return self.name
-        
- 
-
-        
+   
 
 class courseComment(models.Model):
-    date = models.DateField(("Date"), default=datetime.date.today)
+    date = models.DateField(_("Date"), default=datetime.date.today)
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     page = models.ForeignKey(Course, on_delete=models.CASCADE)
-    
-class LecturerComment(models.Model):
-    date = models.DateField(("Date"), default=datetime.date.today)
+   
+
+class lecturerComment(models.Model):
+    date = models.DateField(_("Date"), default=datetime.date.today)
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    page = models.ForeignKey(Lecturer, on_delete=models.CASCADE)    
+    page = models.ForeignKey(Lecturer, on_delete=models.CASCADE) 
+
+
+class courseRating(models.Model):
+    date = models.DateField(_("Date"), default=datetime.date.today)
+    rating = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    page = models.ForeignKey(Course, on_delete=models.CASCADE)   
+
+
+class lecturerRating(models.Model):
+    date = models.DateField(_("Date"), default=datetime.date.today)
+    rating = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    page = models.ForeignKey(Lecturer, on_delete=models.CASCADE)  
