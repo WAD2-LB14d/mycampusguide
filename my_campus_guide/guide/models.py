@@ -85,7 +85,7 @@ class CourseComment(models.Model):
     page = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name_plural = "CourseComments"
+        verbose_name_plural = "Course Comments"
 
     def __str__(self):
         return self.comment
@@ -98,7 +98,7 @@ class LecturerComment(models.Model):
     page = models.ForeignKey(Lecturer, on_delete=models.CASCADE) 
 
     class Meta:
-        verbose_name_plural = "LecturerComments"
+        verbose_name_plural = "Lecturer Comments"
 
     def __str__(self):
         return self.comment
@@ -111,7 +111,7 @@ class CourseRating(models.Model):
     page = models.ForeignKey(Course, on_delete=models.CASCADE)   
 
     class Meta:
-        verbose_name_plural = "CourseRatings"
+        verbose_name_plural = "Course Ratings"
 
     def __str__(self):
         return self.rating
@@ -124,7 +124,7 @@ class LecturerRating(models.Model):
     page = models.ForeignKey(Lecturer, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name_plural = "LecturerRatings"
+        verbose_name_plural = "Lecturer Ratings"
 
     def __str__(self):
         return self.rating
