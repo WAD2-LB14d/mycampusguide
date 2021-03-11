@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+import datetime
 
 
 class Course(models.Model):
@@ -56,3 +57,15 @@ class Category(models.Model):
     def __str__(self):
         return self.name
         
+
+class courseComment(models.Model):
+    date = models.DateField(_("Date"), default=datetime.date.today)
+    comment = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    page = models.ForeignKey(Course, on_delete=models.CASCADE)
+    
+class LecturerComment(models.Model):
+    date = models.DateField(_("Date"), default=datetime.date.today)
+    comment = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    page = models.ForeignKey(Lecturer, on_delete=models.CASCADE)    
