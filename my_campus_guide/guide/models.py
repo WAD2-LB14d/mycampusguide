@@ -4,12 +4,26 @@ from django.contrib.auth.models import User
 import datetime
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(unique=True)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
+    
+    class Meta:
+        verbose_name_plural = 'Categories'
+    
+    def __str__(self):
+        return self.name
+
 class Course(models.Model):
 	NAME_MAX_LENGTH = 128
 	name = models.CharField(max_length = NAME_MAX_LENGTH, unique = True)
 	views = models.IntegerField(default = 0)
 	slug = models.SlugField(unique = True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
 	def save(self, *args, **kwargs):
@@ -29,7 +43,7 @@ class Lecturer(models.Model):
 	name = models.CharField(max_length = NAME_MAX_LENGTH, unique = True)
 	views = models.IntegerField(default = 0)
 	slug = models.SlugField(unique = True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
 	def save(self, *args, **kwargs):
@@ -43,29 +57,17 @@ class Lecturer(models.Model):
 		return self.name
         
  
-class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    slug = models.SlugField(unique=True)
-    
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-    
-    class Meta:
-        verbose_name_plural = 'Categories'
-    
-    def __str__(self):
-        return self.name
+
         
 
 class courseComment(models.Model):
-    date = models.DateField(_("Date"), default=datetime.date.today)
+    date = models.DateField(("Date"), default=datetime.date.today)
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     page = models.ForeignKey(Course, on_delete=models.CASCADE)
     
 class LecturerComment(models.Model):
-    date = models.DateField(_("Date"), default=datetime.date.today)
+    date = models.DateField(("Date"), default=datetime.date.today)
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     page = models.ForeignKey(Lecturer, on_delete=models.CASCADE)    
