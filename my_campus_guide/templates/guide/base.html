@@ -33,17 +33,14 @@
 						 	<li class="list-group-item">Login</li>
 							<li class="list-group-item">Register</li>
     	      </ul>
-						<p>&copy; WAD LB14d 2021</p>
+						<footer>&copy; WAD LB14d 2021</footer>
 					</div>
 				</nav>
-				<main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-4">
-					{% block body_block %}
-					{% endblock %}
-					<footer>		
-						<p class="float-right"><a href="#">Back to top</a></p>
-						<p>&copy; 2020 Tango With Django 2 &middot; <a href="#">Privacy</a> &middot;
-						<a href="#">Terms</a></p>
-					</footer>
+				<main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-4" id="contentWrapper">
+					<div class="contentContainer">
+  	        {% block body_block %}
+						{% endblock %}
+          </div>
 				</main>
 			</div>
 		</div> 

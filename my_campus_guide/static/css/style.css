@@ -5,4 +5,41 @@
 	height: 100%;
 	background-color: #FE7F2D;
 }
-	
+
+#contentWrapper {
+  position: fixed;
+  right: 0;
+  width: calc(100% - 320px);
+  height: 100%;
+  background-color: #23231A;
+}
+
+.contentContainer {
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  left: 2%;
+  right: 2%;
+  background-color: #FBF5F3;
+  border-radius: 20px;
+}
+
+.pageTitle {
+	position: absolute;
+  text-align: center;
+	font-style: normal;
+	font-weight: 800;
+	font-size: 96px;
+	line-height: 98px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.1em;
+	color: #33658A;
+}
+
+footer {
+  position: absolute;
+  bottom: 5%;
+  text-align: center;
+}
+
