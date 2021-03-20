@@ -5,6 +5,7 @@ import datetime
 
 
 class Category(models.Model):
+    views = models.IntegerField(default=0)
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
     
