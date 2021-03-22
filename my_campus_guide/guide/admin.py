@@ -8,4 +8,4 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 class LecturerAdmin(admin.ModelAdmin):
     list_display = ('name', 'teaching', 'views')
-admin.site.register(Lecturer)
+admin.site.register(Lecturer, LecturerAdmin)
