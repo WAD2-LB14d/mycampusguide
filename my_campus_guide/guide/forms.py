@@ -1,11 +1,12 @@
 from django import forms 
-from rango.models import Course, Lecturer
+from guide.models import Course, Lecturer
 from django.contrib.auth.models import User
-from rango.models import UserProfile
+from guide.models import UserProfile
+import datetime
 
 
 class CourseForm(forms.ModelForm):
-	name = forms.CharField(max_length=Course.NAME_MAX_LENGTH,
+	name = forms.CharField(max_length=128,
 						   help_text="Please enter the course name.") 
 	school = forms.CharField(max_length=30,
 						   help_text="Please enter the course's school.") 
@@ -15,8 +16,6 @@ class CourseForm(forms.ModelForm):
 						   help_text="Please enter the course requirements.")
 	description = forms.CharField(max_length=200,
 						   help_text="Please enter a short description of the course.")
-
-
 	
 	views = forms.IntegerField(widget=forms.HiddenInput(), initial=0) 
 
@@ -33,12 +32,9 @@ class LecturerForm(forms.ModelForm):
 						   help_text="Please enter the lecturer's name.") 
 	teaching = forms.CharField(max_length=100,
 						   help_text="Please enter what the lecturer teaches.") 
-	credits = forms.IntegerField(widget=forms.HiddenInput(), initial=0, 
-							help_text='Please enter how many credits the course is worth') 
-	bio = forms.CharField(max_length=280,
+	description = forms.CharField(max_length=280,
 						   help_text="Please enter a short bio for the lecturer.")
 	picture = forms.ImageField()
-
 
 	#
 	views = forms.IntegerField(widget=forms.HiddenInput(), initial=0) 
@@ -47,4 +43,29 @@ class LecturerForm(forms.ModelForm):
 
 	class Meta:
 		model = Course
-		fields = ('name', 'teaching', 'bio', 'picture')
+		fields = ('name', 'teaching', 'description', 'picture')
+
+
+
+class UserForm(forms.ModelForm):
+	username = forms.CharField(max_length=30,
+						   help_text="Please enter your username.") 
+	email = forms.CharField(max_length=254,
+						   help_text="Please enter your email.") 
+	password = forms.CharField(widget=forms.PasswordInput())
+	major = forms.CharField(max_length=30,
+						   help_text="Please enter your major.")
+	picture = forms.ImageField()
+	degreeprogram = forms.CharField(max_length=14,
+						   help_text="Please enter your degree program.")
+	startedstudying = forms.DateField(widget=forms.HiddenInput(), initial=datetime.date.today, 
+							help_text='Please enter when you started studying.')
+	expectedgraduation = forms.DateField(widget=forms.HiddenInput(), initial=datetime.date.today, 
+							help_text='Please enter your expected graduation date.')
+
+	
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password', 'major', 'picture', 'degreeprogram', 'startedstudying', 'expectedgraduation')
+
+

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from guide.forms import LecturerForm
 
 # Create your views here.
 
