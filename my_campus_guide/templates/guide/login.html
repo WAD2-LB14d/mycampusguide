@@ -1,0 +1,23 @@
+{% extends 'guide/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Login
+{% endblock %}
+
+{% block body_block %}
+  <div class="jubmotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Login</h1>
+    </div>
+  </div>
+  <form id="login_form" method="post" action="{% url 'guide:login' %}">
+	{% csrf_token %}
+	Username: <input type="text" name="username" value="" size="50" />
+	<br />
+	Password: <input type="password" name="password" value="" size="50" />
+	<br />
+	<input type="submit" value="submit" />
+</form>
+{% endblock %}
+

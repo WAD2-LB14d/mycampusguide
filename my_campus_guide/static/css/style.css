@@ -38,27 +38,30 @@
 }
 
 footer {
+	position: absolute;
+	bottom: 10px;
+	left: 60px;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 18px;
 	color: rgba(0, 0, 0, 0.5);
-	margin: auto;
 	width: 320px;
 }
 
 #navcolumn ul a{
-	display: block;
+	display: inline-block;
+	text-align: center;
 	height: 100%;
 	width: 100%;
 	line-height: 65px;
 	font-size: 20px;
 	color: black;
-	padding-left: 40px;
+
 }
 
 #navcolumn ul a:hover{
-	padding-left: 50px;
+	padding-left: 60px;
 }
 
 .nav-link {
@@ -74,24 +77,29 @@ footer {
 }
 
 .search-form {
+	display: inline-block;
 	height: 40px;
-  background: #FF6705;
+  	background: #FF6705;
 }
 
 #search-text {
+	text-align: center;
+	float: left;
 	width: 276px;
 	height: 40px;
-  background: #FF6705;
+  	background: #FF6705;
 	color: rgba(0, 0, 0, 0.5);
 	border: 0;
-	padding-left: 10px;
 	font-style: normal;
 	font-weight: bold;
 }
 
 #search-icon {
+	float: left;
 	width: 40px;
 	height: 40px;
 	border: 0;
-  background: #FF6705;
+  	background: #FF6705;
 }
+
+.list-group bottom{}
