@@ -18,20 +18,21 @@
 			<div class="row">
 				<nav class="col-md-4 d-none d-md-block bg-light sidebar">
 					<div class="sidebar-sticky" id="navcolumn">
-            <img src="{% static 'images/logo.svg' %}" alt="MyCampus Guide" height="123" width="294" />
-					  <form class="form-inline">
-					 	  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				    	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					  </form>
+            <a href="{% url 'guide:index' %}"><img src="{% static 'images/logo.svg' %}" alt="MyCampus Guide" height="123" width="294" /></a>
+					  <form class="search-form">
+							<input type="search" id="search-text" placeholder="Search" aria-label="Search">
+				    	<button type="submit" id="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+							</svg></button>
+   				  </form>
   	        <ul class="list-group">
 						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:index' %}">Home</a></li>
 						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:lecturers' %}">Lecturers</a></li>
 						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:courses' %}">Courses</a></li>
 						</ul>
             <ul class="list-group bottom">
-            	
-						 	<li class="list-group-item">Login</li>
-							<li class="list-group-item">Register</li>
+						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:index' %}">Login</a></li>
+						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:lecturers' %}">Register</a></li>
     	      </ul>
 						<footer>&copy; WAD LB14d 2021</footer>
 					</div>
