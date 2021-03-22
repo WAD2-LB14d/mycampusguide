@@ -10,6 +10,7 @@ def populate():
         {
             'name': 'Web App Development 2',
             'school': 'Computing Science',
+            'credits': 20, 
             'year': 2021, 
             'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
             'currentlecturer': 'Alistair Morrison',
@@ -19,6 +20,7 @@ def populate():
         {
             'name': 'Algorithms and Data Structures 2',
             'school': 'Computing Science',
+            'credits': 20, 
             'year': 2021, 
             'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
             'currentlecturer': 'Michele Sevegnani',
@@ -62,7 +64,7 @@ def populate():
     for cat, cat_data in coursecats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
-            add_coursepage(c, p["name"], p["school"], p["year"], p["requirements"], p["currentlecturer"], p["description"], p["views"])
+            add_coursepage(c, p["name"], p["school"], p["credits"], p["year"], p["requirements"], p["currentlecturer"], p["description"], p["views"])
 
     for cat, cat_data in lecturercats.items():
         c = add_cat(cat, cat_data["views"])
@@ -76,9 +78,10 @@ def populate():
             print(f'- {c}: {p}')
 
 
-def add_coursepage(cat, name, school, year, requirements, currentlecturer, description, views):
+def add_coursepage(cat, name, school, credits, year, requirements, currentlecturer, description, views):
     p = Course.objects.get_or_create(category=cat, name=name)[0]
     p.school = school
+    p.credits = credits
     p.year = year
     p.requirements = requirements
     p.currentlecturer = currentlecturer
