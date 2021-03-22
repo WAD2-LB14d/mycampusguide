@@ -67,15 +67,17 @@ def populate():
     for cat, cat_data in lecturercats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
-            add_coursepage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"])
+            add_lecturerpage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"])
 
     for c in Category.objects.all():
-        for p in Page.objects.filter(category=c):
+        for p in Course.objects.filter(category=c):
+            print(f'- {c}: {p}')
+        for p in Lecturer.objects.filter(category=c):
             print(f'- {c}: {p}')
 
 
-def add_coursepage(cat, name, school, year, requirements, currentlecturer, desciption, views):
-    p = Page.objects.get_or_create(category=cat, name=name)[0]
+def add_coursepage(cat, name, school, year, requirements, currentlecturer, description, views):
+    p = Course.objects.get_or_create(category=cat, name=name)[0]
     p.school = school
     p.year = year
     p.requirements = requirements
@@ -87,7 +89,7 @@ def add_coursepage(cat, name, school, year, requirements, currentlecturer, desci
 
 
 def add_lecturerpage(cat, name, teaching, description, picture, views):
-    p = Page.objects.get_or_create(category=cat, title=title)[0]
+    p = Lecturer.objects.get_or_create(category=cat, name=name)[0]
     p.teaching = teaching
     p.description = description
     p.picture = picture

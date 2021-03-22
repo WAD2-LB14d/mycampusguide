@@ -28,7 +28,7 @@ class Course(models.Model):
     currentlecturer = models.CharField(max_length = 30)
     description = models.CharField(max_length = 200)
     views = models.IntegerField(default = 0)
-    pageowner = models.ForeignKey(User, on_delete=models.CASCADE)
+    pageowner = models.CharField(max_length = 30)
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
@@ -47,9 +47,9 @@ class Lecturer(models.Model):
     name = models.CharField(max_length = 50, unique = True)
     teaching = models.CharField(max_length = 100)
     description = models.CharField(max_length = 280)
-    picture = models.ImageField(upload_to='lecturer_images', blank=True)
+    picture = models.ImageField(upload_to='lecturer_images', blank=True, default = None)
     views = models.IntegerField(default = 0)
-    pageowner = models.ForeignKey(User, on_delete=models.CASCADE)
+    pageowner = models.CharField(max_length = 30)
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
