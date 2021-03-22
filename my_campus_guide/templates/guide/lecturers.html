@@ -6,10 +6,30 @@
 {% endblock %}
 
 {% block body_block %}
-  <div class="jubmotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Lecturers</h1>
-    </div>
+<div class="jubmotron jumbotron-fluid">
+  <div class="container">
+  <h1 class="display-4">Lecturers</h1>
+  {% if lecturers %}
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Courses</th>
+        <th>Average Rating</th>
+        <th>Number of comments</th>
+      </tr>
+      {% for lecturer in lecturers %}
+        <tr>
+          <td>{{ lecturer.name }}</td>
+          <td>{{ lecturer.teaching }}</td>
+          <td>TODO</td>
+          <td>TODO</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <h1> No lecturers in the database. </h1>
+  {% endif %}
   </div>
+</div>
 {% endblock %}
 
