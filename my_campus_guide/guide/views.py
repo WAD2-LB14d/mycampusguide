@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from guide.forms import LecturerForm, UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
