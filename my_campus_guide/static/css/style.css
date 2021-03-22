@@ -1,14 +1,21 @@
-#navcolumn {
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+.sidebar-sticky {
 	position: fixed;
 	left: 0;
 	width: 320px;
 	height: 100%;
 	background-color: #FE7F2D;
+
 }
 
 #contentWrapper {
   position: fixed;
-  right: 0;
+  right: 0px;
   width: calc(100% - 320px);
   height: 100%;
   background-color: #23231A;
@@ -25,8 +32,8 @@
 }
 
 .pageTitle {
-	position: absolute;
-  text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 	font-style: normal;
 	font-weight: 800;
 	font-size: 96px;
@@ -38,7 +45,8 @@
 }
 
 footer {
-	position: absolute;
+
+	position: fixed;
 	bottom: 10px;
 	left: 60px;
 	font-style: normal;
@@ -50,19 +58,20 @@ footer {
 }
 
 #navcolumn ul a{
-	display: inline-block;
-	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	height: 100%;
 	width: 100%;
 	line-height: 65px;
 	font-size: 20px;
 	color: black;
-
 }
 
 #navcolumn ul a:hover{
-	padding-left: 60px;
+	color: #33658A;
 }
+
 
 .nav-link {
 	font-style: normal;
@@ -75,6 +84,12 @@ footer {
 	align-items: flex-end;
 	text-align: center;
 }
+
+.bottom {
+	margin-top: 80px;
+
+}
+
 
 .search-form {
 	display: inline-block;
@@ -102,4 +117,16 @@ footer {
   	background: #FF6705;
 }
 
-.list-group bottom{}
+
+.button{
+	background-color: #FF6705;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+}
+
