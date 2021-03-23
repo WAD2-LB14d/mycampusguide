@@ -36,7 +36,6 @@ class LecturerForm(forms.ModelForm):
 						   help_text="Please enter a short bio for the lecturer.")
 	picture = forms.ImageField()
 
-	#
 	views = forms.IntegerField(widget=forms.HiddenInput(), initial=0) 
 
 
