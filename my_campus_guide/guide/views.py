@@ -21,13 +21,6 @@ def lecturers(request):
   return render(request, 'guide/lecturers.html')
 
 def add_course(request):
-  return render(request, 'guide/add_course.html')
-
-def add_lecturer(request):
-  return render(request, 'guide/add_lecturer.html')
-
-
-def add_course(request):
   form = CourseForm()
   if request.method == 'POST':
       form = PageForm(request.POST)
