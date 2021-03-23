@@ -1,0 +1,39 @@
+{% extends 'guide/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Add Lecturer
+{% endblock %}
+
+{% block body_block %}
+  <div class="jubmotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Add Lecturer</h1>
+    </div>
+  </div>
+  <div class="container">
+		<div class="row">
+			
+			<form role="form" id="add_lecturer" method="post" action="{% url 'guide:add_lecturer' %}"> 
+
+			{% csrf_token %}
+			{% for hidden in form.hidden_fields %} 
+				{{ hidden }}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				{{ field.errors }}
+				{{ field.help_text }}<br /> 
+				{{ field }}<br />
+				<div class="p-2"></div>
+			{% endfor %} 
+				<br />
+				<button class="btn btn-primary" type="submit" name="submit"> 
+					Add Page
+				</button>
+				<div class="p-5"></div> 
+			</form>
+		</div>
+	</div>
+{% endblock %}
+

@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from guide.models import Lecturer
-from guide.forms import LecturerForm, UserForm, UserProfileForm
+from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 
-# Create your views here.
+
 
 def index(request):
   return render(request, 'guide/index.html')
@@ -17,7 +18,44 @@ def lecturers(request):
   lecturers = Lecturer.objects.order_by('name')
   context_dict = {}
   context_dict['lecturers'] = lecturers
-  return render(request, 'guide/lecturers.html', context=context_dict)
+  return render(request, 'guide/lecturers.html')
+
+def add_course(request):
+  return render(request, 'guide/add_course.html')
+
+def add_lecturer(request):
+  return render(request, 'guide/add_lecturer.html')
+
+
+def add_course(request):
+  form = CourseForm()
+  if request.method == 'POST':
+      form = PageForm(request.POST)
+
+      if form.is_valid():
+        page.category = category
+        page.save()
+
+        return redirect(reverse('guide:courses'))
+      else:
+        print(form.errors)
+  return render(request, 'guide/add_course.html', {'form':form})
+
+def add_lecturer(request):
+  form = LecturerForm()
+  if request.method == 'POST':
+      form = PageForm(request.POST)
+
+      if form.is_valid():
+        page.category = category
+        page.save()
+
+        return redirect(reverse('guide:lecturers'))
+      else:
+        print(form.errors)
+  return render(request, 'guide/add_lecturer.html', {'form':form})
+
+
 
 def register(request):
 	registered = False
