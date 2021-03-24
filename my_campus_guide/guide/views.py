@@ -23,7 +23,7 @@ def lecturers(request):
 def add_course(request):
   form = CourseForm()
   if request.method == 'POST':
-      form = PageForm(request.POST)
+      form = CourseForm(request.POST)
 
       if form.is_valid():
         page.category = category
@@ -37,7 +37,7 @@ def add_course(request):
 def add_lecturer(request):
   form = LecturerForm()
   if request.method == 'POST':
-      form = PageForm(request.POST)
+      form = LecturerForm(request.POST)
 
       if form.is_valid():
         page.category = category
