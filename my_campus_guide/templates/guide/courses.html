@@ -6,11 +6,30 @@
 {% endblock %}
 
 {% block body_block %}
-  <div class="jubmotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Courses</h1>
-      <a href="{% url 'guide:add_course' %}">Add Course</a>
-    </div>
+<div class="jubmotron jumbotron-fluid">
+  <div class="container">
+  <h1 class="display-4">Lecturers</h1>
+  <a href="{% url 'guide:add_course' %}">Add Course</a>
+  {% if lecturers %}
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Average Rating</th>
+        <th>Number of comments</th>
+      </tr>
+      {% for course in courses %}
+        <tr>
+          <td>{{ course.name }}</td>
+          <td>{{ course.school }}</td>
+          <td>{{ course.requirements }}</td>
+          <td>{{ course.description }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <h1> No courses in the database.</h1>
+  {% endif %}
   </div>
+</div>
 {% endblock %}
 

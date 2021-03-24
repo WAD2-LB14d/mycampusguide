@@ -22,13 +22,13 @@
         <tr>
           <td>{{ lecturer.name }}</td>
           <td>{{ lecturer.teaching }}</td>
-          <td>TODO</td>
-          <td>TODO</td>
+          <td>{{ lecturer.description }}</td>
+          <td>TODO -- add lecturer.picture </td>
         </tr>
       {% endfor %}
     </table>
   {% else %}
-    <h1> No lecturers in the database. </h1>
+    <h1> No lecturers in the database.</h1>
   {% endif %}
   </div>
 </div>
