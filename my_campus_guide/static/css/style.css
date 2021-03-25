@@ -22,7 +22,8 @@
   width: calc(100% - 320px);
   height: 100%;
   background-color: #23231A;
-  overflow: scroll;
+  overflow-x: hidden;
+
 }
 
 .contentContainer {
@@ -33,6 +34,7 @@
   right: 2%;
   background-color: #FBF5F3;
   border-radius: 20px;
+  overflow-x: hidden;
 }
 
 .pageTitle {
@@ -58,7 +60,9 @@ footer {
 	font-size: 18px;
 	line-height: 18px;
 	color: rgba(0, 0, 0, 0.5);
+	background-color:#FE7F2D;
 	width: 320px;
+	
 }
 
 #navcolumn ul a{
