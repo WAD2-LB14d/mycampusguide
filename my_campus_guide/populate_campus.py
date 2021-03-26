@@ -55,11 +55,11 @@ def populate():
             'user': "John Doe",
             'page': "Web App Development 2"
         },
+        {
             'date': datetime.datetime(2021, 5, 17),
             'comment': "I hated it",
             'user': "Foo Bar",
             'page': "Web App Development 2"
-        {
         },
         {
             'date': datetime.datetime(2000, 5, 31),
