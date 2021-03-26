@@ -18,7 +18,7 @@ def lecturers(request):
   lecturers = Lecturer.objects.order_by('name')
   context_dict = {}
   context_dict['lecturers'] = lecturers
-  return render(request, 'guide/lecturers.html')
+  return render(request, 'guide/lecturers.html', context=context_dict)
 
 def add_course(request):
   form = CourseForm()
