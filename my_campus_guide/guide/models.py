@@ -36,6 +36,9 @@ class Course(models.Model):
         self.slug = slugify(self.name)
         super(Course, self).save(*args, **kwargs)
 
+    def getComments():
+        CourseComment.objects.filter(LecturerComment.page==name)
+
     class Meta:
         verbose_name_plural = "Courses"
 
@@ -55,6 +58,9 @@ class Lecturer(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Lecturer, self).save(*args, **kwargs)
+
+    def getComments():
+        LecturerComment.objects.filter(LecturerComment.page==name)
 
     class Meta:
         verbose_name_plural = "Lecturers"
