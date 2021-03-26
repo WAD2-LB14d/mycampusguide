@@ -3,6 +3,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_campus_guide.settings')
 
 import django
 django.setup()
+
+import datetime
 from guide.models import Category, Course, Lecturer, CourseComment, LecturerComment, CourseRating, LecturerRating
 
 def populate():
@@ -45,7 +47,27 @@ def populate():
             'views': 10
         }
     ]
-
+    
+    course_comments = [
+        {
+            'date': datetime.datetime(2020, 5, 17),
+            'comment': "I love it",
+            'user': "John Doe",
+            'page': "Web App Development 2"
+        },
+            'date': datetime.datetime(2021, 5, 17),
+            'comment': "I hated it",
+            'user': "Foo Bar",
+            'page': "Web App Development 2"
+        {
+        },
+        {
+            'date': datetime.datetime(2000, 5, 31),
+            'comment': "Best course at UofG",
+            'user': "Jim Brown",
+            'page': "Algorithms and Data Structures 2"
+        },
+    ]
 
     coursecats = {
         "Course Pages": {
