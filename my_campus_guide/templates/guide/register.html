@@ -13,7 +13,7 @@
     {% if registered %}
     	<strong> Thank You For Registering!</strong>
     {% else %}
-    	<form id="user_form"method="post"action="{ %url 'guide:register' %}" enctype="multipart/form-data">
+    	<form id="user_form"method="post"action="{% url 'guide:register' %}" enctype="multipart/form-data">
     		{% csrf_token %}
     		{{ user_form.as_p }} 
     		{{ profile_form.as_p }}
