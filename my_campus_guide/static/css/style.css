@@ -13,6 +13,7 @@
 	width: 320px;
 	height: 100%;
 	background-color: #FE7F2D;
+	
 
 }
 
@@ -52,9 +53,11 @@
 
 footer {
 
-	position: fixed;
+	position: absolute;
+	text-align: center;
 	bottom: 10px;
-	left: 60px;
+	margin-left: auto;
+	margin-right: auto;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 18px;
@@ -62,6 +65,8 @@ footer {
 	color: rgba(0, 0, 0, 0.5);
 	background-color:#FE7F2D;
 	width: 320px;
+	z-index: 999999;
+	
 	
 }
 
