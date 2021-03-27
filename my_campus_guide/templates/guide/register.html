@@ -9,17 +9,36 @@
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
       <h1 class="pageTitle">Register</h1>
+    </br >
     </div>
+  </div> 
+  <div class="container">
+    <div class="row">
+
     {% if registered %}
-    	<strong> Thank You For Registering!</strong>
+      <strong> Thank You For Registering!</strong>
     {% else %}
-    	<form id="user_form"method="post"action="{% url 'guide:register' %}" enctype="multipart/form-data">
-    		{% csrf_token %}
-    		{{ user_form.as_p }} 
-    		{{ profile_form.as_p }}
-    	<input type="submit" name="submit" value="Register" />
-    </form>
-{% endif %}
+      <form role="userform" id="user_form"method="post"action="{% url 'guide:register' %}" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      {% for hidden in userform.hidden_fields %} 
+        {{ hidden }}
+      {% endfor %}
+
+      {% for field in user_form %}
+        {{ field.errors }}
+        {{ field.help_text }}<br /> 
+        {{ field }}<br />
+        <div class="p-2"></div>
+      {% endfor %} 
+        <br />
+        <button class="btn btn-primary" type="submit" name="Register"> 
+          Register
+        </button>
+        <div class="p-5"></div> 
+      </form>
+      {% endif %}
+    </div>
   </div>
 {% endblock %}
 
