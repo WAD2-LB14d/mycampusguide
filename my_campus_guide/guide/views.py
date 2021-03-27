@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
-from guide.models import Lecturer
+from guide.models import Lecturer, Course
 from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
@@ -12,7 +12,10 @@ def index(request):
   return render(request, 'guide/index.html')
 
 def courses(request):
-  return render(request, 'guide/courses.html')
+  courses = Course.objects.order_by('name')
+  context_dict = {}
+  context_dict['courses'] = courses
+  return render(request, 'guide/courses.html', context=context_dict)
 
 def lecturers(request):
   lecturers = Lecturer.objects.order_by('name')

@@ -8,8 +8,8 @@
 {% block body_block %}
 <div class="jubmotron jumbotron-fluid">
   <div class="container mb-3 mt-3">
-  <h1 class="display-4">Lecturers</h1>
-  <a href="{% url 'guide:add_lecturer' %}">Add Lecturer</a>
+  <h1 class="pageTitle">Lecturers</h1>
+  <a href="{% url 'guide:add_lecturer' %}"><img src="{% static 'images/add.png' %}" alt="Add lecturer" class="add"/></a>
   {% if lecturers %}
   <table class = "table table-striped table-bordered" style="width:80%;" id="table">
     <thead>
