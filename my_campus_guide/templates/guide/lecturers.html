@@ -16,17 +16,18 @@
       <tr>
         <th>Name</th>
         <th>Courses</th>
-        <th>Average Rating</th>
-        <th>Number of comments</th>
+        <th>Description</th>
+        <th>Views</th>
       </tr>
     </thead>
     <tbody>
       {% for lecturer in lecturers %}
+
         <tr>
           <td>{{ lecturer.name }}</td>
           <td>{{ lecturer.teaching }}</td>
           <td>{{ lecturer.description }}</td>
-          <td>TODO -- add lecturer.picture </td>
+          <td>{{ lecturer.views }}</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -35,6 +36,7 @@
     <h1> No lecturers in the database.</h1>
   {% endif %}
   </div>
+<a href="{% url 'guide:add_lecturer' %}">Add Lecturer</a>
 </div>
 {% endblock %}
 
