@@ -29,8 +29,8 @@
 
 .contentContainer {
   position: absolute;
-  top: 5%;
-  bottom: 5%;
+  top: 2%;
+  bottom: 2%;
   left: 2%;
   right: 2%;
   background-color: #FBF5F3;
@@ -39,8 +39,9 @@
 }
 
 .pageTitle {
-	margin-left: auto;
-	margin-right: auto;
+	text-align: center;
+	margin: 10px;
+	padding:10px;
 	font-style: normal;
 	font-weight: 800;
 	font-size: 96px;
@@ -64,6 +65,7 @@ footer {
 	line-height: 18px;
 	color: rgba(0, 0, 0, 0.5);
 	background-color:#FE7F2D;
+	height: 30px;
 	width: 320px;
 	z-index: 999999;
 	
@@ -143,3 +145,16 @@ footer {
 	margin: 4px 2px;
 }
 
+#user_form{
+	position: absolute;
+	margin: 10px;
+	padding: 15px;
+
+
+}
+#login_form{
+	position: absolute;
+	margin: 10px;
+	padding: 15px;
+
+}
