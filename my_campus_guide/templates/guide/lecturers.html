@@ -9,24 +9,25 @@
 <div class="jubmotron jumbotron-fluid">
   <div class="container mb-3 mt-3">
   <h1 class="display-4">Lecturers</h1>
-  <a href="{% url 'guide:add_lecturer' %}">Add Lecturer</a>
+  
   {% if lecturers %}
   <table class = "table table-striped table-bordered" style="width:80%;" id="table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Courses</th>
-        <th>Average Rating</th>
-        <th>Number of comments</th>
+        <th>Description</th>
+        <th>Views</th>
       </tr>
     </thead>
     <tbody>
       {% for lecturer in lecturers %}
+
         <tr>
           <td>{{ lecturer.name }}</td>
           <td>{{ lecturer.teaching }}</td>
           <td>{{ lecturer.description }}</td>
-          <td>TODO -- add lecturer.picture </td>
+          <td>{{ lecturer.views }}</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -35,6 +36,7 @@
     <h1> No lecturers in the database.</h1>
   {% endif %}
   </div>
+<a href="{% url 'guide:add_lecturer' %}">Add Lecturer</a>
 </div>
 {% endblock %}
 
