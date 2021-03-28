@@ -6,6 +6,7 @@ django.setup()
 
 import datetime
 from guide.models import Category, Course, Lecturer, CourseComment, LecturerComment, CourseRating, LecturerRating
+from django.contrib.auth.models import User
 
 def populate():
     course_pages = [
@@ -74,19 +75,19 @@ def populate():
             'date': datetime.datetime(2020, 4, 17),
             'comment': "I absolutely hated him",
             'user': "John Doe",
-            'page': "Michele Sevegnani"
+            'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
             'date': datetime.datetime(2021, 5, 15),
             'comment': "I loved the style of teahing",
             'user': "Foo Bar",
-            'page': "Michele Sevegnani"
+            'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
             'date': datetime.datetime(2000, 5, 11),
             'comment': "Best lecturer at UofG",
             'user': "Jim Brown",
-            'page': "Alistair Morrison"
+            'page': Lecturer.objects.get(name='Alistair Morrison')
         },
     ]
 
@@ -134,6 +135,12 @@ def populate():
         }
     }
 
+
+    for cat, cat_data in usercats.items():
+        c = add_usercat(cat)
+        for p in cat_data["pages"]:
+            add_userprofile(c, p["username"])
+
     for cat, cat_data in coursecats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
@@ -154,11 +161,6 @@ def populate():
         for p in cat_data["pages"]:
             add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
 
-    for cat, cat_data in usercats.items():
-        c = add_cat(cat, cat_data["views"])
-        for p in cat_data["pages"]:
-            add_userprofile(c, p["username"])
-
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
             print(f'- {c}: {p}')
@@ -178,7 +180,6 @@ def add_coursepage(cat, name, school, credits, year, requirements, currentlectur
     p.save()
     return p
 
-
 def add_lecturerpage(cat, name, teaching, description, picture, views):
     p = Lecturer.objects.get_or_create(category=cat, name=name)[0]
     p.teaching = teaching
@@ -193,6 +194,11 @@ def add_cat(name, views):
     c.save()
     return c
 
+def add_usercat(name):
+    c = Category.objects.get_or_create(name=name)[0]
+    c.save()
+    return c
+
 def add_lecturercomment(cat, date, comment, user, name):
     c = LecturerComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(name=user), page=Lecturer.objects.get(name=name))[0]
     return c
@@ -203,7 +209,7 @@ def add_coursecomment(cat, date, comment, user, course_name):
     return c
 
 def add_userprofile(cat, username):
-    c = UserProfile.objects.get_or_create(username=username)[0]
+    c = User.objects.get_or_create(username=username)[0]
     return c
 
 if __name__ == '__main__':
