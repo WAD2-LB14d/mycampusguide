@@ -54,19 +54,19 @@ def populate():
             'date': datetime.datetime(2020, 5, 17),
             'comment': "I love it",
             'user': "johndoe33",
-            'page': "Web App Development 2"
+            'page': Course.objects.get(name='Web App Development 2')
         },
         {
             'date': datetime.datetime(2021, 5, 17),
             'comment': "I hated it",
             'user': "foobar",
-            'page': "Web App Development 2"
+            'page': Course.objects.get(name='Web App Development 2')
         },
         {
             'date': datetime.datetime(2000, 5, 31),
             'comment': "Best course at UofG",
             'user': "foobar",
-            'page': "Algorithms and Data Structures 2"
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
         },
     ]
 
