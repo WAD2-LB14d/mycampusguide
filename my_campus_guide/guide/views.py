@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from guide.models import Lecturer, Course
 from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.shortcuts import redirect
+from django.urls import reverse
 
 
 
@@ -68,34 +69,34 @@ def show_lecturer(request, lecturer_name_slug):
 
 
 def register(request):
-	registered = False
+  registered = False
 
-	if request.method == 'POST':
-		user_form = UserForm(request.POST)
-		profile_form = UserProfileForm(request.POST)
+  if request.method == 'POST':
+    user_form = UserForm(request.POST)
+    profile_form = UserProfileForm(request.POST)
 
-		if user_form.is_valid() and profile_form.is_valid():
-			user = user_form.save()
-			user.set_password(user.password)
-			user.save()
+    if user_form.is_valid() and profile_form.is_valid():
+      user = user_form.save()
+      user.set_password(user.password)
+      user.save()
 
-			profile = profile_form.save(commit=False)
-			profile.user = user
+      profile = profile_form.save(commit=False)
+      profile.user = user
 
-			if 'picture' in request.FILES:
-				profile.picture = request.FILES['picture']
+      if 'picture' in request.FILES:
+        profile.picture = request.FILES['picture']
 
-			profile.save()
+      profile.save()
 
-			registered = True
-		else:
-			print(user_form.errors, profile_form.errors)
-	else:
-		user_form = UserForm()
-		profile_form = UserProfileForm()
+      registered = True
+    else:
+      print(user_form.errors, profile_form.errors)
+  else:
+    user_form = UserForm()
+    profile_form = UserProfileForm()
 
         
-	return render(request, 'guide/register.html',context = {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})  
+  return render(request, 'guide/register.html',context = {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})  
 
 def login(request):
     
@@ -108,8 +109,8 @@ def login(request):
         if user:          
 
             if user.is_active:                
-                login(request, user)
-                return redirect(reverse('rango:index'))
+                auth_login(request, user)
+                return redirect(reverse('guide:index'))
             else:             
                 return HttpResponse("Your Rango account is disabled.")
 

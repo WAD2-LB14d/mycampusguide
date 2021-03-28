@@ -73,13 +73,13 @@ class Lecturer(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email = models.CharField(max_length = 254, null=True, blank=True)
-    username = models.CharField(max_length = 30, null=True, blank=True)
-    major = models.CharField(max_length = 30, null=True, blank=True)
+    email = models.CharField(max_length = 254)
+    username = models.CharField(max_length = 30)
+    major = models.CharField(max_length = 30)
     picture = models.ImageField(upload_to='profile_images', blank=True, default = None, null=True)
-    degreeprogram = models.CharField(max_length = 14, null=True, blank=True)
-    startedstudying = models.DateField(("Date"), default=datetime.date.today, null=True, blank=True)
-    expectedgraduation = models.DateField(("Date"), default=datetime.date.today, null=True, blank=True)
+    degreeprogram = models.CharField(max_length = 14)
+    startedstudying = models.DateField(("Date"), default=datetime.date.today)
+    expectedgraduation = models.DateField(("Date"), default=datetime.date.today)
 
     def __str__(self):
         return self.username

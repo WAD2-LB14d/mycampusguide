@@ -55,7 +55,7 @@ class UserForm(forms.ModelForm):
 						   help_text ="Please enter your password.")
 	major = forms.CharField(max_length=30,
 						   help_text="Please enter your major.")
-	picture = forms.ImageField(help_text="Please enter a picture")
+	picture = forms.ImageField(help_text="Please enter a picture", required=False)
 	degreeprogram = forms.CharField(max_length=14,
 						   help_text="Please enter your degree program.")
 	startedstudying = forms.DateField(initial=datetime.date.today, 
