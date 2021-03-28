@@ -69,7 +69,6 @@ def populate():
         },
     ]
 
-
     lecturer_comments = [
         {
             'date': datetime.datetime(2020, 4, 17),
@@ -133,12 +132,12 @@ def populate():
     for cat, cat_data in lecturercommentcats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
-            add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
+            add_lecturercomment(c, p["date"], p["comment"], p["user"])
 
     for cat, cat_data in coursecommentcats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
-            add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
+            add_lecturercomment(c, p["date"], p["comment"], p["user"])
 
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
@@ -174,16 +173,16 @@ def add_cat(name, views):
     c.save()
     return c
 
-def add_lecturercomment(cat, date, comment, user, page):
-    c = LecturerComment.objects.get_or_create(page=page)[0]
+def add_lecturercomment(cat, date, comment, user):
+    c = LecturerComment.objects.get_or_create(comment=comment)[0]
     c.date = date
     c.user = user
     c.comment = comment
     return c
 
 
-def add_coursecomment(cat, date, comment, user, page):
-    c = LecturerComment.objects.get_or_create(page=page)[0]
+def add_coursecomment(cat, date, comment, user):
+    c = LecturerComment.objects.get_or_create(comment=comment)[0]
     c.date = date
     c.user = user
     c.comment = comment
