@@ -52,6 +52,16 @@ def add_lecturer(request):
   return render(request, 'guide/add_lecturer.html', {'form':form})
 
 
+def show_lecturer(request, lecturer_name_slug):
+  context_dict = {}
+  try:
+    lecturer = Lecturer.objects.get(slug=lecturer_name_slug)
+    context_dict['lecturer'] = lecturer
+  except Lecturer.DoesNotExist:
+    context_dict['lecturer'] = None
+  return render(request, 'guide/chosen_lecturer.html', context = context_dict)
+
+
 
 def register(request):
 	registered = False

@@ -27,15 +27,14 @@
     </thead>
     <tbody>
       {% for lecturer in lecturers %}
-        {% if l == current_lecturer %}
-        <a class="nav-link active" href="{% url 'guide:show_lecturer' l.slug %}">
-          {% endif %}
+
         <tr>
-          <td>{{ lecturer.name }}</td>
+          <td><a class="nav-link" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></li></td>
           <td>{{ lecturer.teaching }}</td>
           <td>TODO - average rating</td>
           <td>TODO - number of comments</td>
         </tr>
+
       {% endfor %}
     </tbody>
     </table>
