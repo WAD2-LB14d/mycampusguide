@@ -48,7 +48,63 @@ def populate():
             'views': 10
         }
     ]
-    
+
+    coursecats = {
+        "Course Pages": {
+            "views": 20,
+            "pages": course_pages
+        }
+    }
+
+    lecturercats = {
+        "Lecturer Pages": {
+            "views": 25,
+            "pages": lecturer_pages
+        }
+    }
+
+    for cat, cat_data in coursecats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_coursepage(c, p["name"], p["school"], p["credits"], p["year"], p["requirements"], p["currentlecturer"], p["description"], p["views"])
+
+    for cat, cat_data in lecturercats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_lecturerpage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"])
+
+
+    user_profiles = [
+        {
+            'email' : "johndoe33@gmail.com",
+            'username' : "johndoe33",
+            'major' : "Computing Science",
+            'degreeprogram' : "BSc",
+            'startedstudying' : datetime.date.today,
+            'expectedgraduation' : datetime.date.today,
+        },
+         {           
+            'email' : "foobar@gmail.com",
+            'username' : "foobar",
+            'major' : "Computing Science",
+            'degreeprogram' : "MSci",
+            'startedstudying' : datetime.date.today,
+            'expectedgraduation' :datetime.date.today,
+        }
+    ]
+
+    usercats = {
+        "User Profiles" : {
+            "pages" : user_profiles
+        }
+    }
+
+    for cat, cat_data in usercats.items():
+        c = add_usercat(cat)
+        for p in cat_data["pages"]:
+            add_userprofile(c, p["username"])
+
+
     course_comments = [
         {
             'date': datetime.datetime(2020, 5, 17),
@@ -91,29 +147,6 @@ def populate():
         },
     ]
 
-    user_profiles = [
-        {
-            'username' : "johndoe33"
-        },
-         {
-            'username' : "foobar"
-        }
-    ]
-
-    coursecats = {
-        "Course Pages": {
-            "views": 20,
-            "pages": course_pages
-        }
-    }
-
-    lecturercats = {
-        "Lecturer Pages": {
-            "views": 25,
-            "pages": lecturer_pages
-        }
-    }
-
 
     lecturercommentcats = {
         "Lecturer Comments": {
@@ -128,28 +161,6 @@ def populate():
             "pages": course_comments
         }
     }
-
-    usercats = {
-        "User Profiles" : {
-            "pages" : user_profiles
-        }
-    }
-
-
-    for cat, cat_data in usercats.items():
-        c = add_usercat(cat)
-        for p in cat_data["pages"]:
-            add_userprofile(c, p["username"])
-
-    for cat, cat_data in coursecats.items():
-        c = add_cat(cat, cat_data["views"])
-        for p in cat_data["pages"]:
-            add_coursepage(c, p["name"], p["school"], p["credits"], p["year"], p["requirements"], p["currentlecturer"], p["description"], p["views"])
-
-    for cat, cat_data in lecturercats.items():
-        c = add_cat(cat, cat_data["views"])
-        for p in cat_data["pages"]:
-            add_lecturerpage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"])
 
     for cat, cat_data in lecturercommentcats.items():
         c = add_cat(cat, cat_data["views"])
