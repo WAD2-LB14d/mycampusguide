@@ -53,19 +53,19 @@ def populate():
         {
             'date': datetime.datetime(2020, 5, 17),
             'comment': "I love it",
-            'user': "John Doe",
+            'user': "johndoe33",
             'page': "Web App Development 2"
         },
         {
             'date': datetime.datetime(2021, 5, 17),
             'comment': "I hated it",
-            'user': "Foo Bar",
+            'user': "foobar",
             'page': "Web App Development 2"
         },
         {
             'date': datetime.datetime(2000, 5, 31),
             'comment': "Best course at UofG",
-            'user': "Jim Brown",
+            'user': "foobar",
             'page': "Algorithms and Data Structures 2"
         },
     ]
@@ -74,19 +74,19 @@ def populate():
         {
             'date': datetime.datetime(2020, 4, 17),
             'comment': "I absolutely hated him",
-            'user': "John Doe",
+            'user': "foobar",
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
             'date': datetime.datetime(2021, 5, 15),
             'comment': "I loved the style of teahing",
-            'user': "Foo Bar",
+            'user': "johndoe33",
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
             'date': datetime.datetime(2000, 5, 11),
             'comment': "Best lecturer at UofG",
-            'user': "Jim Brown",
+            'user': "johndoe33",
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
     ]
@@ -157,9 +157,9 @@ def populate():
             add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
 
     for cat, cat_data in coursecommentcats.items():
-        c = add_cat(cat, None)
+        c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
-            add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
+            add_coursecomment(c, p["date"], p["comment"], p["user"], p["page"])
 
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
@@ -200,12 +200,11 @@ def add_usercat(name):
     return c
 
 def add_lecturercomment(cat, date, comment, user, name):
-    c = LecturerComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(name=user), page=Lecturer.objects.get(name=name))[0]
+    c = LecturerComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(username=user), page=Lecturer.objects.get(name=name))[0]
     return c
 
-
 def add_coursecomment(cat, date, comment, user, course_name):
-    c = CourseComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(name=user), page=Course.objects.get(name=course_name))[0]
+    c = CourseComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(username=user), page=Course.objects.get(name=course_name))[0]
     return c
 
 def add_userprofile(cat, username):
