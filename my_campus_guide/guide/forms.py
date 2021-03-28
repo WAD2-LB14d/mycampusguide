@@ -34,7 +34,7 @@ class LecturerForm(forms.ModelForm):
 						   help_text="Please enter what the lecturer teaches.") 
 	description = forms.CharField(max_length=280,
 						   help_text="Please enter a short bio for the lecturer.")
-	picture = forms.ImageField()
+	picture = forms.ImageField(help_text="Please enter an image for the lecturer.")
 
 	views = forms.IntegerField(widget=forms.HiddenInput(), initial=0) 
 
@@ -51,15 +51,16 @@ class UserForm(forms.ModelForm):
 						   help_text="Please enter your username.") 
 	email = forms.CharField(max_length=254,
 						   help_text="Please enter your email.") 
-	password = forms.CharField(widget=forms.PasswordInput())
+	password = forms.CharField(widget=forms.PasswordInput(),
+						   help_text ="Please enter your password.")
 	major = forms.CharField(max_length=30,
 						   help_text="Please enter your major.")
-	picture = forms.ImageField()
+	picture = forms.ImageField(help_text="Please enter a picture")
 	degreeprogram = forms.CharField(max_length=14,
 						   help_text="Please enter your degree program.")
-	startedstudying = forms.DateField(widget=forms.HiddenInput(), initial=datetime.date.today, 
+	startedstudying = forms.DateField(initial=datetime.date.today, 
 							help_text='Please enter when you started studying.')
-	expectedgraduation = forms.DateField(widget=forms.HiddenInput(), initial=datetime.date.today, 
+	expectedgraduation = forms.DateField(initial=datetime.date.today, 
 							help_text='Please enter your expected graduation date.')
 
 	

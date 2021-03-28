@@ -69,6 +69,27 @@ def populate():
         },
     ]
 
+    lecturer_comments = [
+        {
+            'date': datetime.datetime(2020, 4, 17),
+            'comment': "I absolutely hated him",
+            'user': "John Doe",
+            'page': "Michele Sevegnani"
+        },
+        {
+            'date': datetime.datetime(2021, 5, 15),
+            'comment': "I loved the style of teahing",
+            'user': "Foo Bar",
+            'page': "Michele Sevegnani"
+        },
+        {
+            'date': datetime.datetime(2000, 5, 11),
+            'comment': "Best lecturer at UofG",
+            'user': "Jim Brown",
+            'page': "Alistair Morrison"
+        },
+    ]
+
     coursecats = {
         "Course Pages": {
             "views": 20,
@@ -83,6 +104,21 @@ def populate():
         }
     }
 
+
+    lecturercommentcats = {
+        "Lecturer Comments": {
+            "views": 15,
+            "pages": lecturer_comments
+        }
+    }
+
+    coursecommentcats = {
+        "Course Comments": {
+            "views": 15,
+            "pages": course_comments
+        }
+    }
+
     for cat, cat_data in coursecats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
@@ -92,6 +128,16 @@ def populate():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
             add_lecturerpage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"])
+
+    for cat, cat_data in lecturercommentcats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_lecturercomment(c, p["date"], p["comment"], p["user"])
+
+    for cat, cat_data in coursecommentcats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_lecturercomment(c, p["date"], p["comment"], p["user"])
 
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
@@ -127,6 +173,20 @@ def add_cat(name, views):
     c.save()
     return c
 
+def add_lecturercomment(cat, date, comment, user):
+    c = LecturerComment.objects.get_or_create(comment=comment)[0]
+    c.date = date
+    c.user = user
+    c.comment = comment
+    return c
+
+
+def add_coursecomment(cat, date, comment, user):
+    c = LecturerComment.objects.get_or_create(comment=comment)[0]
+    c.date = date
+    c.user = user
+    c.comment = comment
+    return c
 
 if __name__ == '__main__':
     print("Starting Campus population script...")
