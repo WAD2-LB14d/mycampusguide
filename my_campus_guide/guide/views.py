@@ -13,12 +13,16 @@ def index(request):
 
 def courses(request):
   courses = Course.objects.order_by('name')
+  for course in courses:
+    course.storeNumberOfComments()
   context_dict = {}
   context_dict['courses'] = courses
   return render(request, 'guide/courses.html', context=context_dict)
 
 def lecturers(request):
   lecturers = Lecturer.objects.order_by('name')
+  for lecturer in lecturers:
+    lecturer.storeNumberOfComments()
   context_dict = {}
   context_dict['lecturers'] = lecturers
   return render(request, 'guide/lecturers.html', context=context_dict)
