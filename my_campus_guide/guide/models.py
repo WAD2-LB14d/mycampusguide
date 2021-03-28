@@ -31,13 +31,14 @@ class Course(models.Model):
     views = models.IntegerField(default = 0)
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    no_comments = models.IntegerField(null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Course, self).save(*args, **kwargs)
 
-    def getComments():
-        CourseComment.objects.filter(LecturerComment.page==name)
+    def storeNumberOfComments(self):
+        self.no_comments = self.coursecomment_set.count()
 
     class Meta:
         verbose_name_plural = "Courses"
@@ -54,13 +55,14 @@ class Lecturer(models.Model):
     views = models.IntegerField(default = 0)
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    no_comments = models.IntegerField(null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Lecturer, self).save(*args, **kwargs)
 
-    def getComments():
-        LecturerComment.objects.filter(LecturerComment.page==name)
+    def storeNumberOfComments(self):
+        self.no_comments = self.lecturercomment_set.count()
 
     class Meta:
         verbose_name_plural = "Lecturers"
