@@ -90,6 +90,15 @@ def populate():
         },
     ]
 
+    user_profiles = [
+        {
+            'username' : "johndoe33"
+        },
+         {
+            'username' : "foobar"
+        }
+    ]
+
     coursecats = {
         "Course Pages": {
             "views": 20,
@@ -119,6 +128,12 @@ def populate():
         }
     }
 
+    usercats = {
+        "User Profiles" : {
+            "pages" : user_profiles
+        }
+    }
+
     for cat, cat_data in coursecats.items():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
@@ -135,9 +150,14 @@ def populate():
             add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
 
     for cat, cat_data in coursecommentcats.items():
-        c = add_cat(cat, cat_data["views"])
+        c = add_cat(cat, None)
         for p in cat_data["pages"]:
             add_lecturercomment(c, p["date"], p["comment"], p["user"], p["page"])
+
+    for cat, cat_data in usercats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_userprofile(c, p["username"])
 
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
@@ -180,6 +200,10 @@ def add_lecturercomment(cat, date, comment, user, name):
 
 def add_coursecomment(cat, date, comment, user, course_name):
     c = CourseComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(name=user), page=Course.objects.get(name=course_name))[0]
+    return c
+
+def add_userprofile(cat, username):
+    c = UserProfile.objects.get_or_create(username=username)[0]
     return c
 
 if __name__ == '__main__':
