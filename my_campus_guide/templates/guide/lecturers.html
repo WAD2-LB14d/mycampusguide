@@ -16,8 +16,8 @@
       <tr>
         <th>Name</th>
         <th>Courses</th>
-        <th>Description</th>
-        <th>Views</th>
+        <th>Average rating</th>
+        <th>Number of comments</th>
       </tr>
     </thead>
     <tbody>
@@ -26,8 +26,8 @@
         <tr>
           <td>{{ lecturer.name }}</td>
           <td>{{ lecturer.teaching }}</td>
-          <td>{{ lecturer.description }}</td>
-          <td>{{ lecturer.views }}</td>
+          <td>TODO - average rating</td>
+          <td>TODO - number of comments</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -36,7 +36,6 @@
     <h1> No lecturers in the database.</h1>
   {% endif %}
   </div>
-<a href="{% url 'guide:add_lecturer' %}">Add Lecturer</a>
 </div>
 {% endblock %}
 
