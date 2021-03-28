@@ -109,19 +109,19 @@ def populate():
         {
             'date': datetime.datetime(2020, 5, 17),
             'comment': "I love it",
-            'user': "johndoe33",
+            'user': User.objects.get(username='johndoe33'),
             'page': Course.objects.get(name='Web App Development 2')
         },
         {
             'date': datetime.datetime(2021, 5, 17),
             'comment': "I hated it",
-            'user': "foobar",
+            'user': User.objects.get(username='foobar'),
             'page': Course.objects.get(name='Web App Development 2')
         },
         {
             'date': datetime.datetime(2000, 5, 31),
             'comment': "Best course at UofG",
-            'user': "foobar",
+            'user': User.objects.get(username='foobar'),
             'page': Course.objects.get(name='Algorithms and Data Structures 2')
         },
     ]
@@ -130,19 +130,19 @@ def populate():
         {
             'date': datetime.datetime(2020, 4, 17),
             'comment': "I absolutely hated him",
-            'user': "foobar",
+            'user': User.objects.get(username='foobar'),
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
             'date': datetime.datetime(2021, 5, 15),
             'comment': "I loved the style of teahing",
-            'user': "johndoe33",
+            'user': User.objects.get(username='johndoe33'),
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
             'date': datetime.datetime(2000, 5, 11),
             'comment': "Best lecturer at UofG",
-            'user': "johndoe33",
+            'user': User.objects.get(username='johndoe33'),
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
     ]
