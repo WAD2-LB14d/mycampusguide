@@ -11,6 +11,11 @@
   <h1 class="pageTitle">Lecturers</h1>
   <a href="{% url 'guide:add_lecturer' %}"><img src="{% static 'images/add.png' %}" alt="Add lecturer" class="add"/></a>
   {% if lecturers %}
+    {% for l in lecturers %}
+      {% if l == current_lecturer %}
+    <a class="nav-link active" href="{% url 'guide:show_lecturer' l.slug %}">
+      {% endif %}
+      {% endfor %} 
   <table class = "table table-striped table-bordered" style="width:80%;" id="table">
     <thead>
       <tr>
@@ -22,7 +27,9 @@
     </thead>
     <tbody>
       {% for lecturer in lecturers %}
-
+        {% if l == current_lecturer %}
+        <a class="nav-link active" href="{% url 'guide:show_lecturer' l.slug %}">
+          {% endif %}
         <tr>
           <td>{{ lecturer.name }}</td>
           <td>{{ lecturer.teaching }}</td>
@@ -38,4 +45,3 @@
   </div>
 </div>
 {% endblock %}
-
