@@ -124,4 +124,4 @@ def login(request):
 @login_required
 def logout(request):
   auth_logout(request)
-  return redirect(reverse('guide:index'))
+  return render(request, 'guide/logout.html')
