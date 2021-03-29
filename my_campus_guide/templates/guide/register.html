@@ -10,8 +10,9 @@
     <div class="container">
       <h1 class="pageTitle">Register</h1>
     </div>
-    {% if registered %}
-    	<strong> Thank You For Registering!</strong>
+    {% if user.is_authenticated %}
+    	<strong> You are already logged in as {{request.user.username}}. </strong>
+      <p><a href="{% url 'guide:logout' %}">Sign Out</a></p>
     {% else %}
     	<form id="user_form"method="post"action="{% url 'guide:register' %}" enctype="multipart/form-data" >
     		{% csrf_token %}

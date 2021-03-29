@@ -9,9 +9,12 @@
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
       <h1 class="pageTitle">Login</h1>
-      <br />
     </div>
   </div>
+  {% if user.is_authenticated %}
+      <strong> You are already logged in as {{request.user.username}}. </strong>
+      <p><a href="{% url 'guide:logout' %}">Sign Out</a></p>
+  {% else %}
   <form id="login_form" method="post" action="{% url 'guide:login' %}">
 	{% csrf_token %}
 	Username: <input type="text" name="username" value="" size="50" />
@@ -20,5 +23,6 @@
 	<br />
 	<input type="submit" value="submit" />
 </form>
+{% endif %}
 {% endblock %}
 

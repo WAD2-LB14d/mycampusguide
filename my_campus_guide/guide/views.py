@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from guide.models import Lecturer, Course
 from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -112,7 +112,7 @@ def login(request):
                 auth_login(request, user)
                 return redirect(reverse('guide:index'))
             else:             
-                return HttpResponse("Your Rango account is disabled.")
+                return HttpResponse("Your Guide account is disabled.")
 
         else:          
             print(f"Invalid login details: {username}, {password}")
@@ -120,3 +120,8 @@ def login(request):
             
     else:
         return render(request, 'guide/login.html')
+
+@login_required
+def logout(request):
+  auth_logout(request)
+  return redirect(reverse('guide:index'))
