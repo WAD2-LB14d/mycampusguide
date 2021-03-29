@@ -1,0 +1,22 @@
+{% extends 'guide/base.html' %} 
+{% load staticfiles %}
+
+{% block title_block %} 
+{% if course %}
+        {{ course.name }}
+    {% else %}
+        Unknown Course
+    {% endif %}
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="jumbotron p-4"> 
+            <div class="container">
+                {% if course %}
+                <h1 class="pageTitle">{{ course.name }}</h1>
+                {% endif %}
+            </div>
+    </div>
+
+{% endblock %}

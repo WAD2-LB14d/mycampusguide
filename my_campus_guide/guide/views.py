@@ -67,6 +67,16 @@ def show_lecturer(request, lecturer_name_slug):
   return render(request, 'guide/chosen_lecturer.html', context = context_dict)
 
 
+def show_course(request, course_name_slug):
+  context_dict = {}
+  try:
+    course = Course.objects.get(slug=course_name_slug)
+    context_dict['course'] = course
+  except Lecturer.DoesNotExist:
+    context_dict['course'] = None
+  return render(request, 'guide/chosen_course.html', context = context_dict)
+
+
 
 def register(request):
   registered = False
