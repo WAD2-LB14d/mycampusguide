@@ -14,4 +14,5 @@ urlpatterns = [
   path('lecturers/<slug:lecturer_name_slug>/', views.show_lecturer, name = "show_lecturer"),
   path('courses/<slug:course_name_slug>/', views.show_course, name = "show_course"),
   path('logout/', views.logout, name = 'logout'),
+  path('profile/', views.profile, name = 'profile'),
 ]

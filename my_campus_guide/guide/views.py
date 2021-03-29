@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import login_required
 def index(request):
   return render(request, 'guide/index.html')
 
+def profile(request):
+  return render(request, 'guide/profile.html')
+
 def courses(request):
   courses = Course.objects.order_by('name')
   for course in courses:
