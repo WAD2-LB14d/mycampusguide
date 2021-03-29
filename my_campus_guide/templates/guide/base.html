@@ -33,7 +33,7 @@
             <ul class="list-group bottom">
             	{% if user.is_authenticated %}
 						<li class="nav-item "><a class="nav-link" href="{% url 'guide:logout' %}">Logout</a></li> 
-						<li class="nav-item "><a class="nav-link" href="{% url 'guide:profile' %}">My Profile</a></li>  
+						<li class="nav-item "><a class="nav-link" href="{% url 'guide:myprofile' %}">My Profile</a></li>  
 				{% else %}
 					<li class="nav-item "><a class="nav-link" href="{% url 'guide:login' %}">Login</a></li>
 						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:register' %}">Register</a></li>
