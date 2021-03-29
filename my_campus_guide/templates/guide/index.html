@@ -7,7 +7,11 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-      <h1 class="pageTitle">Welcome</h1>
+    	{% if user.is_authenticated %}
+     		<h1 class="pageTitle">Welcome  {{ user.username }} </h1>
+ 		{% else %}
+ 			<h1 class="pageTitle">Welcome</h1>
+ 		{% endif %}
     </div>
   </div>
 {% endblock %}
