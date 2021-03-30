@@ -171,6 +171,73 @@ def populate():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
             add_coursecomment(c, p["date"], p["comment"], p["user"], p["page"])
+    
+    lecturer_ratings = [
+        {
+            'date': datetime.datetime(2020, 4, 17),
+            'rating': 4,
+            'user': User.objects.get(username='foobar'),
+            'page': Lecturer.objects.get(name='Alistair Morrison')
+        },
+        {
+            'date': datetime.datetime(2021, 5, 15),
+            'rating': 3,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Lecturer.objects.get(name='Alistair Morrison')
+        },
+        {
+            'date': datetime.datetime(2000, 5, 11),
+            'rating': 2,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Lecturer.objects.get(name='Alistair Morrison')
+        },
+    ]
+
+    course_ratings = [
+        {
+            'date': datetime.datetime(2020, 4, 17),
+            'rating': 5,
+            'user': User.objects.get(username='foobar'),
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
+        },
+        {
+            'date': datetime.datetime(2021, 5, 15),
+            'rating': 4,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
+        },
+        {
+            'date': datetime.datetime(2000, 5, 11),
+            'rating': 5,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
+        },
+    ]
+
+    lecturerratingcats = {
+        "Lecturer Comments": {
+            "views": 15,
+            "pages": lecturer_ratings
+        }
+    }
+
+    courseratingcats = {
+        "Course Comments": {
+            "views": 15,
+            "pages": course_ratings
+        }
+    }
+    
+    for cat, cat_data in lecturerratingcats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_lecturerrating(c, p["date"], p["rating"], p["user"], p["page"])
+
+    for cat, cat_data in courseratingcats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_courserating(c, p["date"], p["rating"], p["user"], p["page"])
+    
 
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
@@ -216,6 +283,14 @@ def add_lecturercomment(cat, date, comment, user, name):
 
 def add_coursecomment(cat, date, comment, user, course_name):
     c = CourseComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(username=user), page=Course.objects.get(name=course_name))[0]
+    return c
+
+def add_lecturerrating(cat, date, rating, user, name):
+    c = LecturerRating.objects.get_or_create(date=date, rating=rating, user=User.objects.get(username=user), page=Lecturer.objects.get(name=name))[0]
+    return c
+
+def add_courserating(cat, date, rating, user, course_name):
+    c = CourseRating.objects.get_or_create(date=date, rating=rating, user=User.objects.get(username=user), page=Course.objects.get(name=course_name))[0]
     return c
 
 def add_userprofile(cat, username):
