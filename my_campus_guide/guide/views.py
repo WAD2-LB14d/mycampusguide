@@ -1,13 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from guide.models import Lecturer, Course
+from guide.models import Lecturer, Course, UserProfile
 from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def visitor_cookie_handler(request, response): 
@@ -26,8 +27,11 @@ def index(request):
   return response
 
 
+@login_required
 def myprofile(request):
-  return render(request, 'guide/myprofile.html')
+    user = User.objects.get(username=request.user.username)
+    profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'guide/myprofile.html', context={'user': user, 'profile': profile})
 
 def courses(request):
   courses = Course.objects.order_by('name')

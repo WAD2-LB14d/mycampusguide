@@ -6,12 +6,25 @@
 {% endblock %}
 
 {% block body_block %}
-
-    <div class="jumbotron p-4"> 
-            <div class="container">
-                <h1 class="pageTitle">Profile</h1>
-            </div>
-            <h2>{{ user.username }}</h2>
+  <div class="jubmotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="pageTitle">My Profile</h1>
     </div>
-
+	<form id="update_user_form"method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
+	{% csrf_token %}
+		Username: {{ user.username }} </br >
+		Email: {{ user.email }} </br >
+		Major: {{ profile.major }} </br >
+		Degree Program: {{ profile.degreeprogram }} </br > 
+		Started Studying: {{ profile.startedstudying }} </br > 
+		Expected Graduation: {{ profile.expectedgraduation }} </br >
+		Picture: 
+		{% if profile.picture %}
+			{{ profile.picture }} 
+		{% else %}
+			No profile picture uploaded
+		{% endif %}
+	</br >
+    </form>
+  </div>
 {% endblock %}
