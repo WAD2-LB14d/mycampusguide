@@ -6,11 +6,25 @@ from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
 
+def visitor_cookie_handler(request, response): 
+  visits = int(request.COOKIES.get('visits', '1'))
+  last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now())) 
+  last_visit_time = datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
+  if (datetime.now() - last_visit_time).days > 0:
+    visits = visits + 1
+  else:
+    response.set_cookie('visits', visits)
+
+
 def index(request):
-  return render(request, 'guide/index.html')
+  response =  render(request, 'guide/index.html')
+  visitor_cookie_handler(request, response)
+  return response
+
 
 def myprofile(request):
   return render(request, 'guide/myprofile.html')
@@ -39,7 +53,7 @@ def add_course(request):
       form = CourseForm(request.POST)
 
       if form.is_valid():
-        page.category = category
+        page.name = name
         page.save()
 
         return redirect(reverse('guide:courses'))
