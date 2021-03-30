@@ -32,7 +32,7 @@ class Course(models.Model):
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
-    avg_rating = models.DecimalField(null=True, max_digits=3, decimal_places=2)
+    avg_rating = models.FloatField(null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -47,7 +47,7 @@ class Course(models.Model):
       if (count != 0):
         for rating in self.courserating_set.all():
           sum += rating.rating
-        self.avg_rating = sum/count
+        self.avg_rating = round(sum/count, 1)
       else:
         self.avg_rating = 2.5
 
@@ -67,7 +67,7 @@ class Lecturer(models.Model):
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
-    avg_rating = models.DecimalField(null=True, max_digits=3, decimal_places=2)
+    avg_rating = models.FloatField(null=True)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -82,7 +82,7 @@ class Lecturer(models.Model):
       if (count != 0):
         for rating in self.lecturerrating_set.all():
           sum += rating.rating
-        self.avg_rating = sum/count
+        self.avg_rating = round(sum/count, 1)
       else:
         self.avg_rating = 2.5
 
