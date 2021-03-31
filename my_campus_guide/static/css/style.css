@@ -161,3 +161,12 @@ footer {
 	padding: 15px;
 
 }
+
+.table > tbody > tr:nth-child(2n) > td, .table > tbody > tr:nth-child(2n) > th {
+	background-color: rgba(254, 127, 45, 0.5);	
+ }
+
+ .table>thead{
+	 background-color: rgba(254,127,45,0.7);
+	 border: 3px solid black;
+ }
