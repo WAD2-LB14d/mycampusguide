@@ -32,6 +32,7 @@ class Course(models.Model):
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
+    avg_rating = models.FloatField(null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -39,6 +40,16 @@ class Course(models.Model):
 
     def storeNumberOfComments(self):
         self.no_comments = self.coursecomment_set.count()
+
+    def calculateAverageRating(self):
+      sum = 0
+      count = self.courserating_set.count()
+      if (count != 0):
+        for rating in self.courserating_set.all():
+          sum += rating.rating
+        self.avg_rating = round(sum/count, 1)
+      else:
+        self.avg_rating = 2.5
 
     class Meta:
         verbose_name_plural = "Courses"
@@ -56,13 +67,24 @@ class Lecturer(models.Model):
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
-
+    avg_rating = models.FloatField(null=True)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Lecturer, self).save(*args, **kwargs)
 
     def storeNumberOfComments(self):
         self.no_comments = self.lecturercomment_set.count()
+    
+    def calculateAverageRating(self):
+      sum = 0
+      count = self.lecturerrating_set.count()
+      if (count != 0):
+        for rating in self.lecturerrating_set.all():
+          sum += rating.rating
+        self.avg_rating = round(sum/count, 1)
+      else:
+        self.avg_rating = 2.5
 
     class Meta:
         verbose_name_plural = "Lecturers"

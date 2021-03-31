@@ -27,7 +27,7 @@
         <tr>
           <td><a class="nav-link" href="{% url 'guide:show_course' course.slug %}">{{ course.name }}</a></li></td>
           <td>{{ course.currentlecturer }}</td>
-          <td>TODO - average rating</td>
+          <td>{{ course.avg_rating }}/5</td>
           <td>{{ course.no_comments }}</td>
         </tr>
 

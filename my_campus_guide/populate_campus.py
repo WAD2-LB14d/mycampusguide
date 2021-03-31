@@ -13,7 +13,7 @@ def populate():
         {
             'name': 'Web App Development 2',
             'school': 'Computing Science',
-            'credits': 20, 
+            'credits': 10, 
             'year': 2021, 
             'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
             'currentlecturer': 'Alistair Morrison',
@@ -23,12 +23,62 @@ def populate():
         {
             'name': 'Algorithms and Data Structures 2',
             'school': 'Computing Science',
-            'credits': 20, 
+            'credits': 10, 
             'year': 2021, 
             'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
             'currentlecturer': 'Michele Sevegnani',
             'description': 'To familiarise students with fundamental data types and data structures used in programming, with the design and analysis of algorithms for the manipulation of such structures, and to provide practice in the implementation and use of these structures and algorithms in a Java context.',
             'views' : 15
+        },
+        {
+            'name': 'Java Programming 2',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Mary Ellen Foster',
+            'description': 'This course extends students experience in programming using a strongly typed language (Java) and strengthens their problem solving skills.',
+            'views' : 12
+        },
+        {
+            'name': 'Networks and Oprating Systems Essentials 2',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Angelos Marnerides',
+            'description': 'The course will introduce students to essential topics in computer networks and operating systems.',
+            'views' : 5
+        },
+        {
+            'name': 'Algorithmic Foundations',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Gethin Norman',
+            'description': 'To introduce the foundational mathematics needed for Computing Science; To make students proficient in their use; To show how they can be applied to advantage in understanding computational phenomena.',
+            'views' : 25
+        },
+        {
+            'name': 'Science Skills',
+            'school': 'Science and Engineering',
+            'credits': 20, 
+            'year': 2021, 
+            'requirements': 'None.',
+            'currentlecturer': 'Eric Yao',
+            'description': 'This level 1 course is intended for science students. It is cross-curricular in nature, using topics within Astronomy, Chemistry, Geography & Earth Sciences, and Physics to develop students scientific problem solving skills and graduate attributes.',
+            'views' : 1
+        },
+        {
+            'name': 'Electronic Engineering 1X',
+            'school': 'Science and Engineering',
+            'credits': 20, 
+            'year': 2021, 
+            'requirements': 'None.',
+            'currentlecturer': 'Martin Lavery',
+            'description': 'You will study methods for calculating the behaviour of analogue and digital electronic circuits.',
+            'views' : 2
         }
     ]
 
@@ -46,7 +96,42 @@ def populate():
             'description': 'Teaches Algorithms and Data Structures 2 and Programming Languages at Glasgow University.', 
             'picture': None,
             'views': 10
-        }
+        },
+        {
+            'name': 'Mary Ellen Foster',
+            'teaching': 'Java Programming 2',
+            'description': 'Teaches Java Programming 2 at Glasgow University.', 
+            'picture': None,
+            'views': 8
+        },
+        {
+            'name': 'Angelos Marnerides',
+            'teaching': 'Networks and Oprating Systems Essentials 2',
+            'description': 'Teaches Networks and Operating Systems Essentials at Glasgow University.', 
+            'picture': None,
+            'views': 4
+        },
+        {
+            'name': 'Gethin Norman',
+            'teaching': 'Algorithmic Foundations',
+            'description': 'Teaches Algorithmic Foundations at Glasgow University.', 
+            'picture': None,
+            'views': 15
+        },
+        {
+            'name': 'Eric Yao',
+            'teaching': 'Science Skills',
+            'description': 'Teaches Science Skills at Glasgow University.', 
+            'picture': None,
+            'views': 5
+        },
+        {
+            'name': 'Martin Lavery',
+            'teaching': 'Electronic Engineering 1X',
+            'description': 'Teaches Electronic Engineering 1X at Glasgow University.', 
+            'picture': None,
+            'views': 2
+        },
     ]
 
     coursecats = {
@@ -89,8 +174,24 @@ def populate():
             'major' : "Computing Science",
             'degreeprogram' : "MSci",
             'startedstudying' : datetime.date.today,
-            'expectedgraduation' :datetime.date.today,
-        }
+            'expectedgraduation' : datetime.date.today,
+        },
+        {           
+            'email' : "abc@gmail.com",
+            'username' : "abc",
+            'major' : "Computing Science",
+            'degreeprogram' : "MSci",
+            'startedstudying' : datetime.date.today,
+            'expectedgraduation' : datetime.date.today,
+        },
+        {           
+            'email' : "JohnSmith@gmail.com",
+            'username' : "JohnSmith",
+            'major' : "Phsics",
+            'degreeprogram' : "BSc",
+            'startedstudying' : datetime.date.today,
+            'expectedgraduation' : datetime.date.today,
+        },
     ]
 
     usercats = {
@@ -119,11 +220,35 @@ def populate():
             'page': Course.objects.get(name='Web App Development 2')
         },
         {
-            'date': datetime.datetime(2000, 5, 31),
+            'date': datetime.datetime(2020, 5, 31),
             'comment': "Best course at UofG",
             'user': User.objects.get(username='foobar'),
             'page': Course.objects.get(name='Algorithms and Data Structures 2')
         },
+        {
+            'date': datetime.datetime(2021, 3, 20),
+            'comment': "Very good",
+            'user': User.objects.get(username='abc'),
+            'page': Course.objects.get(name='Java Programming 2')
+        },
+        {
+            'date': datetime.datetime(2021, 4, 3),
+            'comment': "Could be better",
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+        },
+        {
+            'date': datetime.datetime(2021, 1, 2),
+            'comment': "Great course",
+            'user': User.objects.get(username='foobar'),
+            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+        },
+        {
+            'date': datetime.datetime(2021, 2, 1),
+            'comment': "Alright, could be better",
+            'user': User.objects.get(username='abc'),
+            'page': Course.objects.get(name='Algorithmic Foundations')
+        }
     ]
 
     lecturer_comments = [
@@ -140,11 +265,35 @@ def populate():
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
         {
-            'date': datetime.datetime(2000, 5, 11),
+            'date': datetime.datetime(2020, 5, 11),
             'comment': "Best lecturer at UofG",
             'user': User.objects.get(username='johndoe33'),
             'page': Lecturer.objects.get(name='Alistair Morrison')
         },
+        {
+            'date': datetime.datetime(2021, 1, 8),
+            'comment': "Good lecturer",
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Lecturer.objects.get(name='Michele Sevegnani')
+        },
+        {
+            'date': datetime.datetime(2021, 2, 7),
+            'comment': "Passionate lecturer",
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Lecturer.objects.get(name='Mary Ellen Foster')
+        },
+        {
+            'date': datetime.datetime(2021, 4, 6),
+            'comment': "Great lecturer",
+            'user': User.objects.get(username='abc'),
+            'page': Lecturer.objects.get(name='Gethin Norman')
+        },
+        {
+            'date': datetime.datetime(2021, 3, 12),
+            'comment': "Bad",
+            'user': User.objects.get(username='abc'),
+            'page': Lecturer.objects.get(name='Gethin Norman')
+        }
     ]
 
 
@@ -171,6 +320,121 @@ def populate():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
             add_coursecomment(c, p["date"], p["comment"], p["user"], p["page"])
+    
+    lecturer_ratings = [
+        {
+            'date': datetime.datetime(2020, 4, 17),
+            'rating': 4,
+            'user': User.objects.get(username='foobar'),
+            'page': Lecturer.objects.get(name='Alistair Morrison')
+        },
+        {
+            'date': datetime.datetime(2021, 5, 15),
+            'rating': 3,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Lecturer.objects.get(name='Alistair Morrison')
+        },
+        {
+            'date': datetime.datetime(2021, 5, 11),
+            'rating': 2,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Lecturer.objects.get(name='Alistair Morrison')
+        },
+        {
+            'date': datetime.datetime(2021, 4, 1),
+            'rating': 4,
+            'user': User.objects.get(username='abc'),
+            'page': Lecturer.objects.get(name='Gethin Norman')
+        },
+        {
+            'date': datetime.datetime(2021, 1, 1),
+            'rating': 5,
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Lecturer.objects.get(name='Gethin Norman')
+        },
+        {
+            'date': datetime.datetime(2021, 2, 4),
+            'rating': 3,
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Lecturer.objects.get(name='Mary Ellen Foster')
+        },
+        {
+            'date': datetime.datetime(2021, 3, 8),
+            'rating': 2,
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Lecturer.objects.get(name='Michele Sevegnani')
+        },
+    ]
+
+    course_ratings = [
+        {
+            'date': datetime.datetime(2020, 4, 17),
+            'rating': 5,
+            'user': User.objects.get(username='foobar'),
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
+        },
+        {
+            'date': datetime.datetime(2021, 5, 15),
+            'rating': 4,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
+        },
+        {
+            'date': datetime.datetime(2021, 5, 11),
+            'rating': 5,
+            'user': User.objects.get(username='johndoe33'),
+            'page': Course.objects.get(name='Web App Development 2')
+        },
+        {
+            'date': datetime.datetime(2021, 1, 11),
+            'rating': 2,
+            'user': User.objects.get(username='abc'),
+            'page': Course.objects.get(name='Algorithms and Data Structures 2')
+        },
+        {
+            'date': datetime.datetime(2021, 1, 2),
+            'rating': 2,
+            'user': User.objects.get(username='abc'),
+            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+        },
+        {
+            'date': datetime.datetime(2021, 4, 12),
+            'rating': 4,
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+        },
+        {
+            'date': datetime.datetime(2021, 2, 26),
+            'rating': 2,
+            'user': User.objects.get(username='JohnSmith'),
+            'page': Course.objects.get(name='Algorithmic Foundations')
+        },
+    ]
+
+    lecturerratingcats = {
+        "Lecturer Comments": {
+            "views": 15,
+            "pages": lecturer_ratings
+        }
+    }
+
+    courseratingcats = {
+        "Course Comments": {
+            "views": 15,
+            "pages": course_ratings
+        }
+    }
+    
+    for cat, cat_data in lecturerratingcats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_lecturerrating(c, p["date"], p["rating"], p["user"], p["page"])
+
+    for cat, cat_data in courseratingcats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_courserating(c, p["date"], p["rating"], p["user"], p["page"])
+    
 
     for c in Category.objects.all():
         for p in Course.objects.filter(category=c):
@@ -216,6 +480,14 @@ def add_lecturercomment(cat, date, comment, user, name):
 
 def add_coursecomment(cat, date, comment, user, course_name):
     c = CourseComment.objects.get_or_create(date=date, comment=comment, user=User.objects.get(username=user), page=Course.objects.get(name=course_name))[0]
+    return c
+
+def add_lecturerrating(cat, date, rating, user, name):
+    c = LecturerRating.objects.get_or_create(date=date, rating=rating, user=User.objects.get(username=user), page=Lecturer.objects.get(name=name))[0]
+    return c
+
+def add_courserating(cat, date, rating, user, course_name):
+    c = CourseRating.objects.get_or_create(date=date, rating=rating, user=User.objects.get(username=user), page=Course.objects.get(name=course_name))[0]
     return c
 
 def add_userprofile(cat, username):
