@@ -154,13 +154,7 @@ footer {
 
 
 }
-#login_form{
-	position: absolute;
-	left: 30%;
-	margin: 10px;
-	padding: 15px;
 
-}
 
 .table > tbody > tr:nth-child(2n) > td, .table > tbody > tr:nth-child(2n) > th {
 	background-color: rgba(254, 127, 45, 0.5);	
@@ -170,3 +164,66 @@ footer {
 	 background-color: rgba(254,127,45,0.7);
 	 border: 3px solid black;
  }
+
+
+
+ .button{
+	background-color: rgba(254,127,45,0.7);
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+ }
+
+ .button:hover{
+	background-color: #FF6705 !important;
+
+ }
+
+ #user_form>:last-child{
+	background-color: rgba(254,127,45,0.7);
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+
+ }
+
+ #user_form>:last-child:hover{
+	background-color: #FF6705;
+}
+
+ #login_form>:last-child{
+	background-color: rgba(254,127,45,0.7);
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+
+ }
+
+#login_form>:last-child:hover{
+	background-color: #FF6705;
+}
+
+#login_content{
+	text-align: center;
+	position: absolute;
+	margin: 10px;
+	padding: 10px;
+	left: 30%;
+
+
+}

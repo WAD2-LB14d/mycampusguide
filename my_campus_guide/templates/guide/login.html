@@ -11,6 +11,8 @@
       <h1 class="pageTitle">Login</h1>
     </div>
   </div>
+
+  <div id="login_content">
   {% if user.is_authenticated %}
       <strong> You are already logged in as {{request.user.username}}. </strong>
       <p><a href="{% url 'guide:logout' %}">Sign Out</a></p>
@@ -23,6 +25,18 @@
 	<br /> 
 	<input type="submit" value="Submit" />
 </form>
+<br />
+<br />
+<br />
+<p>
+<strong>New user?</strong>
+<br />
+<br />
+</p>
+<p>
+<a class="button" href="{% url 'guide:register' %}">Register</a>
+</p>
+</div>
 {% endif %}
 {% endblock %}
 

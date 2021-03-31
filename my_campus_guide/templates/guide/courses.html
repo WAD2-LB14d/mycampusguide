@@ -39,6 +39,16 @@
   {% endif %}
   </div>
 </div>
-<script> $("table_courses").DataTable();</script>
+
+<script> scr="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"</script>
+<script>scr="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css"</script>
+<script>src="https://code.jquery.com/jquery-3.5.1.js2"</script>
+<script>scr="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"</script>
+<script>scr="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"</script>
+<script>$(Courses).ready(function() {
+           $('#table_courses').DataTable();
+         } );
+         
+</script>
 {% endblock %}
 
