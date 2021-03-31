@@ -122,6 +122,10 @@ def register(request):
       profile.save()
 
       registered = True
+
+      auth_login(request, user)
+      return redirect(reverse('guide:index'))
+      
     else:
       print(user_form.errors, profile_form.errors)
   else:
