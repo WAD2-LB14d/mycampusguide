@@ -22,6 +22,12 @@
                 {% else %}
                     <p>No picture uploaded</p>
                 {% endif %}
+                <p>Average Rating: {{ lecturer.avg_rating }}/5
+                    {% if rating %}
+                    <p>{{ rating.rating }}/5</p>
+                    {% else %}
+                    <p>Submit a rating (Add form)/5</p>
+                    {% endif %} 
                 {% endif %}
             </div>
     </div>

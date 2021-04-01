@@ -84,7 +84,15 @@ def show_lecturer(request, lecturer_name_slug):
   context_dict = {}
   try:
     lecturer = Lecturer.objects.get(slug=lecturer_name_slug)
+    lecturer.calculateAverageRating()
     context_dict['lecturer'] = lecturer
+
+    try:
+      user = User.objects.get(username=request.user.username)  
+      context_dict['rating'] = LecturerRating.objects.get(user=username, page=course)
+    except:
+      context_dict['rating'] = None
+
   except Lecturer.DoesNotExist:
     context_dict['lecturer'] = None
   return render(request, 'guide/chosen_lecturer.html', context = context_dict)
@@ -94,9 +102,18 @@ def show_course(request, course_name_slug):
   context_dict = {}
   try:
     course = Course.objects.get(slug=course_name_slug)
+    course.calculateAverageRating()
     context_dict['course'] = course
-  except Lecturer.DoesNotExist:
+
+    try:
+      user = User.objects.get(username=request.user.username)  
+      context_dict['rating'] = CourseRating.objects.get(user=username, page=course)
+    except:
+      context_dict['rating'] = None
+
+  except Course.DoesNotExist:
     context_dict['course'] = None
+    context_dict['rating'] = None
   return render(request, 'guide/chosen_course.html', context = context_dict)
 
 
