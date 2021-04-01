@@ -14,7 +14,12 @@
     <div class="jumbotron p-4"> 
             <div class="container">
                 {% if course %}
-                <h1 class="pageTitle">{{ course.name }}</h1>
+                <h1>{{ course.name }}</h1>
+                <p>{{ course.school }} - {{ course.year }}</p>
+                <p>{{ course.description }}</p>
+                <p>Credits: {{ course.credits }}</p>
+                <p>Course Requirements: {{ course.requirements }}</p>
+                <p>Current Lecturer: {{ course.currentlecturer }}</p>
                 {% endif %}
             </div>
     </div>
