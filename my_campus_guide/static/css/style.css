@@ -262,9 +262,15 @@ footer {
 /*chosen course*/
 
 
+#course_description_right{
+	text-align: right;
+}
+
+
 .course_description_block{
 	float: right;
 	width: 50%;
+	padding: 10px;
 }
 
 .course_or_lecturer_title{
