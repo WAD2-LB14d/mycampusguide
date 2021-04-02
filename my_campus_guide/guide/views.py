@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from guide.models import Lecturer, Course, UserProfile
+from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category
 from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
@@ -57,13 +57,18 @@ def lecturers(request):
   context_dict['lecturers'] = lecturers
   return render(request, 'guide/lecturers.html', context=context_dict)
 
+@login_required
 def add_course(request):
+  category = Category.objects.get(name="Course Pages")
+
   form = CourseForm()
   if request.method == 'POST':
       form = CourseForm(request.POST)
 
       if form.is_valid():
-        page.name = name
+        page = form.save(commit=False)
+        page.category = category
+        page.views = 0
         page.save()
 
         return redirect(reverse('guide:courses'))
@@ -71,13 +76,18 @@ def add_course(request):
         print(form.errors)
   return render(request, 'guide/add_course.html', {'form':form})
 
+@login_required
 def add_lecturer(request):
+  category = Category.objects.get(name="Lecturer Pages")
+
   form = LecturerForm()
   if request.method == 'POST':
       form = LecturerForm(request.POST)
 
       if form.is_valid():
+        page = form.save(commit=False)
         page.category = category
+        page.views = 0
         page.save()
 
         return redirect(reverse('guide:lecturers'))
@@ -96,12 +106,20 @@ def show_lecturer(request, lecturer_name_slug):
     
     try:
       user = User.objects.get(username=request.user.username)  
-      context_dict['rating'] = LecturerRating.objects.get(user=username, page=course)
+      context_dict['rating'] = LecturerRating.objects.get(user=username, page=lecturer)
     except:
       context_dict['rating'] = None
 
   except Lecturer.DoesNotExist:
     context_dict['lecturer'] = None
+
+  if request.method == 'POST':
+    rating_form = LecturerRating(request.POST)
+    if rating_form.is_valid():
+      userrating = form_data.save()
+      rating = LecturerRating.objects.get_or_create(user=user, page=lecturer)
+      rating.rating = userrating
+      rating.save()
   return render(request, 'guide/chosen_lecturer.html', context = context_dict)
 
 
