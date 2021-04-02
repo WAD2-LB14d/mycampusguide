@@ -184,6 +184,8 @@ footer {
 
  }
 
+ /*login and register*/
+
  #user_form>:last-child{
 	background-color: rgba(254,127,45,0.7);
 	border-radius: 10px;
@@ -226,4 +228,19 @@ footer {
 	left: 30%;
 
 
+}
+/*chosen lectuter*/
+
+.comment_section .row p{
+
+	border-style: solid;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	margin: 0px;
+
+}
+
+#lecturer_picture{
+	float: right !important;
 }

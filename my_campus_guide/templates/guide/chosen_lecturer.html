@@ -31,6 +31,7 @@
 										<input type="text" id="rate" name="rate"  style="display:none;" />
                     {% endif %} 
 								{% if comments %}
+                                <div class="comment_section">
 									<div class="col">
 									  <div class="row">
 											<h2>Comments</h2>
@@ -40,12 +41,17 @@
 												</a>
 											{% endif %}
 										</div>
+
 										{% for comment in comments %}
 											<div class="row">
 												<p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
 											</div>
 										{% endfor %}
 									</div>
+                                </div>
+                                {%else%}
+                                    <strong>No comments yet</strong>
+        
 								{% endif %}	
                 {% endif %}
             </div>
