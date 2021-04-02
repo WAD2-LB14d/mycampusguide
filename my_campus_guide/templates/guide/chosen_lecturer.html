@@ -10,11 +10,11 @@
 {% endblock %}
 
 {% block body_block %}
-
+		<script type="text/javascript" src="{% static 'js/forms.js' %}"></script>		
     <div class="jumbotron p-4"> 
             <div class="container">
                 {% if lecturer %}
-                <h1>{{ lecturer.name }}</h1>
+                <h1 class="pageTitle">{{ lecturer.name }}</h1>
                 <p>{{ lecturer.description }}</p>
                 <p>Currently Teaching: {{ lecturer.teaching }}</p>
                 {% if lecturer.picture %}
@@ -27,7 +27,26 @@
                     <p>{{ rating.rating }}/5</p>
                     {% else %}
                     <p>Submit a rating (Add form)/5</p>
+										<button onClick="showRatingForm()" name="showbutton">Submit a rating</button>
+										<input type="text" id="rate" name="rate"  style="display:none;" />
                     {% endif %} 
+								{% if comments %}
+									<div class="col">
+									  <div class="row">
+											<h2>Comments</h2>
+											{% if user.is_authenticated %}
+												<a href="{% url 'guide:add_lecturer' %}">
+													<img src="{% static 'images/add.png' %}" alt="Add lecturer" class="add"/>
+												</a>
+											{% endif %}
+										</div>
+										{% for comment in comments %}
+											<div class="row">
+												<p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
+											</div>
+										{% endfor %}
+									</div>
+								{% endif %}	
                 {% endif %}
             </div>
     </div>

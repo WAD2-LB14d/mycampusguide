@@ -86,7 +86,8 @@ def show_lecturer(request, lecturer_name_slug):
     lecturer = Lecturer.objects.get(slug=lecturer_name_slug)
     lecturer.calculateAverageRating()
     context_dict['lecturer'] = lecturer
-
+    context_dict['comments'] = lecturer.lecturercomment_set.all()
+    
     try:
       user = User.objects.get(username=request.user.username)  
       context_dict['rating'] = LecturerRating.objects.get(user=username, page=course)
