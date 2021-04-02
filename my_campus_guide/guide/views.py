@@ -38,6 +38,9 @@ def courses(request):
   for course in courses:
     course.storeNumberOfComments()
     course.calculateAverageRating()
+    course.save()
+  order_by = request.GET.get('order_by', 'name')
+  courses = Course.objects.order_by(order_by)  
   context_dict = {}
   context_dict['courses'] = courses
   return render(request, 'guide/courses.html', context=context_dict)
@@ -47,6 +50,9 @@ def lecturers(request):
   for lecturer in lecturers:
     lecturer.storeNumberOfComments()
     lecturer.calculateAverageRating()
+    lecturer.save()
+  order_by = request.GET.get('order_by', 'name')
+  lecturers = Lecturer.objects.order_by(order_by)  
   context_dict = {}
   context_dict['lecturers'] = lecturers
   return render(request, 'guide/lecturers.html', context=context_dict)

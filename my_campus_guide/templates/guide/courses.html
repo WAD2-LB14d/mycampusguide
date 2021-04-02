@@ -16,10 +16,10 @@
     <table class = "table table-bordered" style="width:100%;" id="table_courses">
     <thead>
       <tr>
-        <th>Name</th>
-				<th>Taught by</th>
-        <th>Average rating</th>
-        <th>Number of comments</th>
+        <th><a href="?order_by=name"><img src="{% static 'images/DownArrow.png' %}" alt="Descend" height="25" width="25" /></a><a href="?order_by=-name"><img src="{% static 'images/UpArrow.png' %}" alt="Ascend" height="25" width="25" /></a>   Name</th>
+        <th><a href="?order_by=currentlecturer"><img src="{% static 'images/DownArrow.png' %}" alt="Sort Table" height="25" width="25" /></a><a href="?order_by=-currentlecturer"><img src="{% static 'images/UpArrow.png' %}" alt="Ascend" height="25" width="25" /></a>   Taught By</th>
+        <th><a href="?order_by=-avg_rating"><img src="{% static 'images/DownArrow.png' %}" alt="Sort Table" height="25" width="25" /></a><a href="?order_by=avg_rating"><img src="{% static 'images/UpArrow.png' %}" alt="Ascend" height="25" width="25" /></a>   Average Rating</th>
+        <th><a href="?order_by=-no_comments"><img src="{% static 'images/DownArrow.png' %}" alt="Sort Table" height="25" width="25" /></a><a href="?order_by=no_comments"><img src="{% static 'images/UpArrow.png' %}" alt="Ascend" height="25" width="25" /></a>   Number of Comments</th>
       </tr>
     </thead>  
     <tbody>
@@ -51,4 +51,3 @@
          
 </script>
 {% endblock %}
-
