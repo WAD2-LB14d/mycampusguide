@@ -14,24 +14,35 @@
     <div class="jumbotron p-4"> 
             <div class="container">
                 {% if lecturer %}
-                <h1 class="pageTitle">{{ lecturer.name }}</h1>
-                <p>{{ lecturer.description }}</p>
-                <p>Currently Teaching: {{ lecturer.teaching }}</p>
-                {% if lecturer.picture %}
-                    <p>{{ lecturer.picture }}</p>
-                {% else %}
-                    <p>No picture uploaded</p>
-                {% endif %}
-                <p>Average Rating: {{ lecturer.avg_rating }}/5
-                    {% if rating %}
-                    <p>{{ rating.rating }}/5</p>
+                <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
+                <div class="lecturer_description_block" id="lecturer_description_right">
+                <p>{% if lecturer.picture %}
+                        {{ lecturer.picture }}
                     {% else %}
-                    <p>Submit a rating (Add form)/5</p>
-										<button onClick="showRatingForm()" name="showbutton">Submit a rating</button>
+                        No picture uploaded
+                </p>
+                <p>Currently Teaching: {{ lecturer.teaching }}</p>
+                
+                {% endif %}
+
+
+                <p >Average Rating: {{ lecturer.avg_rating }}/5
+                    {% if rating %}
+                    <p >{{ rating.rating }}/5</p>
+                    {% else %}
+                    <p >Submit a rating (Add form)/5</p>
+										<button  onClick="showRatingForm()" name="showbutton">Submit a rating</button>
 										<input type="text" id="rate" name="rate"  style="display:none;" />
                     {% endif %} 
+                </div>
+                <div class="lecturer_description_block">
+                <p>{{ lecturer.description }}</p>
+                </div>
+
+
+                <div class="comment_section">
 								{% if comments %}
-                                <div class="comment_section">
+                                
 									<div class="col">
 									  <div class="row">
 											<h2>Comments</h2>

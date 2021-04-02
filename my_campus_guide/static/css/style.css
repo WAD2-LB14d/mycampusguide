@@ -238,9 +238,43 @@ footer {
 	border-right: none;
 	border-bottom: none;
 	margin: 0px;
+	
 
 }
 
-#lecturer_picture{
-	float: right !important;
+.lecturer_description_block{
+	float: right;
+	width: 50%;
+
+
+}
+#lecturer_description_right{
+	text-align: right;
+}
+
+.comment_section{
+	margin-top: 30%;
+}
+
+
+
+
+/*chosen course*/
+
+
+.course_description_block{
+	float: right;
+	width: 50%;
+}
+
+.course_or_lecturer_title{
+	text-align: center !important;
+	margin:10px;
+	padding: 10px;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 40px;
+	color: #33658A;
+	margin-bottom: 50px;
+
 }

@@ -14,19 +14,26 @@
     <div class="jumbotron p-4"> 
             <div class="container">
                 {% if course %}
-                <h1>{{ course.name }}</h1>
+                
+                <h1 class="course_or_lecturer_title">{{ course.name }}</h1>
+                <div class="course_description_block">
                 <p>{{ course.school }} - {{ course.year }}</p>
-                <p>{{ course.description }}</p>
                 <p>Credits: {{ course.credits }}</p>
-                <p>Course Requirements: {{ course.requirements }}</p>
+                <p >Course Requirements: {{ course.requirements }}</p>
                 <p>Current Lecturer: {{ course.currentlecturer }}</p>
-                <p>Average Rating: {{ course.avg_rating }}/5
+                <p >Average Rating: {{ course.avg_rating }}/5
                     {% if rating %}
-                    <p>{{ rating.rating }}/5</p>
+                    <p >{{ rating.rating }}/5</p>
                     {% else %}
-                    <p>Submit a rating (Add form)/5</p>
+                    <p >Submit a rating (Add form)/5</p>
                     {% endif %} 
                 {% endif %}
+                </div>
+                
+                <div class="course_description_block">
+                <p>{{ course.description }}</p>
+                </div>
+            
             </div>
     </div>
 
