@@ -49,26 +49,26 @@
 
                 <div class="comment_section">
                     <div class="row">
-                                            <h2>Comments</h2>
-                                            {% if user.is_authenticated %}
-                                                <a href="{% url 'guide:add_lecturer' %}">
-                                                    <img src="{% static 'images/add.png' %}" alt="Add lecturer" class="add"/>
-                                                </a>
-                                            {% endif %}
-                                        </div>
-								{% if comments %}                             
-									<div class="col">
-										{% for comment in comments %}
-											<div class="row">
-												<p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
-											</div>
-										{% endfor %}
-									</div>
-                                </div>
-                                {%else%}
-                                    <strong>No comments yet</strong>
+                            <h2>Comments</h2>
+                                {% if user.is_authenticated %}
+                                        <a href="{% url 'guide:add_lecturer' %}">
+                                        <img src="{% static 'images/add.png' %}" alt="Add lecturer" class="add"/>
+                                        </a>
+                                {% endif %}
+                    </div>
+						{% if comments %}                             
+							<div class="col">
+							{% for comment in comments %}
+								<div class="row">
+								<p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
+								</div>
+							{% endfor %}
+							</div>
+                    </div>
+                        {%else%}
+                            <strong>No comments yet</strong>
         
-								{% endif %}	
+						{% endif %}	
                 {% endif %}
             </div>
     </div>

@@ -143,17 +143,8 @@ footer {
 	margin: 4px 2px;
 }
 
-#user_form{
-
-	position: absolute;
-	left: 35%;
-	text-align: center;
-	
-	margin: 10px;
-	padding: 15px;
 
 
-}
 
 
 .table > tbody > tr:nth-child(2n) > td, .table > tbody > tr:nth-child(2n) > th {
@@ -177,6 +168,7 @@ footer {
 	text-decoration: none;
 	font-size: 16px;
 	margin: 4px 2px;
+	transition: 0.3s
  }
 
  .button:hover{
@@ -185,6 +177,20 @@ footer {
  }
 
  /*login and register*/
+
+
+
+ #user_form{
+
+	position: absolute;
+	left: 22%;
+	text-align: center;
+	
+	margin: 10px;
+	padding: 15px;
+
+
+}
 
  #user_form>:last-child{
 	background-color: rgba(254,127,45,0.7);
@@ -196,6 +202,7 @@ footer {
 	text-decoration: none;
 	font-size: 16px;
 	margin: 4px 2px;
+	transition: 0.3s
 
  }
 
@@ -213,6 +220,7 @@ footer {
 	text-decoration: none;
 	font-size: 16px;
 	margin: 4px 2px;
+	transition: 0.3s
 
  }
 
@@ -289,4 +297,65 @@ footer {
 	max-height: 420px;
 	max-width: 650px;
 	object-fit: cover;
+}
+
+/*logout*/
+
+#logout_message{
+	text-align: center !important;
+	margin-top: 20%;
+}
+
+/*add course or lecturer*/
+
+.add_course_or_lecturer_title{
+	text-align: center !important;
+	margin:10px;
+	padding: 10px;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 40px;
+	color: #33658A;
+	margin-bottom: 50px;
+
+}
+
+.add_lecturer_or_course_form{
+
+	text-align: center;
+}
+
+
+#add_course_button{
+	background-color: rgba(254,127,45,0.7);
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition: 0.3s
+}
+
+#add_course_button:hover{
+	background-color: #FF6705;
+}
+
+#add_lecturer_button{
+	background-color: rgba(254,127,45,0.7);
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition: 0.3s
+}
+
+#add_lecturer_button:hover{
+	background-color: #FF6705;
 }
