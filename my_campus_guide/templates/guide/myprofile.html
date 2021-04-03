@@ -5,26 +5,61 @@
     My Profile
 {% endblock %}
 
+
+
 {% block body_block %}
+
+<style>
+
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h4.pad {
+  padding-left: 10%;
+}
+</style>
+
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
       <h1 class="pageTitle">My Profile</h1>
     </div>
 	<form id="update_user_form"method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
 	{% csrf_token %}
-		Username: {{ user.username }} </br >
-		Email: {{ user.email }} </br >
-		Major: {{ profile.major }} </br >
-		Degree Program: {{ profile.degreeprogram }} </br > 
-		Started Studying: {{ profile.startedstudying }} </br > 
-		Expected Graduation: {{ profile.expectedgraduation }} </br >
-		Picture: 
+		<div class="row">
+  			<div class="column">
+  				<h4 class="pad">
+    			Username: {{ user.username }} </br >
+    			Email: {{ user.email }} </br >
+    			Major: {{ profile.major }} </br >
+    			Degree Program: {{ profile.degreeprogram }} </br > 
+    		</h4>
+  			</div>
+  			<div class="column">
+  				<h4>
+  				Started Studying: {{ profile.startedstudying }} </br >
+  				Expected Graduation: {{ profile.expectedgraduation }} </br >
+  				Picture: 
 		{% if profile.picture %}
 			{{ profile.picture }} 
 		{% else %}
 			No profile picture uploaded
 		{% endif %}
+			</h4>
+  			</div>
+		</div>
 	</br >
     </form>
   </div>
+
 {% endblock %}

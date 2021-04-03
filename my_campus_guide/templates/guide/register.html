@@ -6,6 +6,22 @@
 {% endblock %}
 
 {% block body_block %}
+
+<style>
+  .column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
       <h1 class="pageTitle">Register</h1>
@@ -16,15 +32,32 @@
     {% else %}
     	<form id="user_form"method="post"action="{% url 'guide:register' %}" enctype="multipart/form-data" >
     		{% csrf_token %}
-        {% for field in user_form %}
-          {{ field.errors }}
-          {{ field.help_text }}<br /> 
-          {{ field }}<br />
-          <div class="p-2"></div>
-        {% endfor %} 
+        <div class="row">
+          <div class="column">
+            <p>
+              {% for field in user_form.visible_fields|slice:"0:5"  %}
+                {{ field.errors }}
+                {{ field.help_text }}<br /> 
+                {{ field }}<br />
+              {% endfor %} 
+         
+            </p>
+          </div>
+          <div class="column">
+            <p>
+              {% for field in user_form.visible_fields|slice:"5:8"  %}
+                {{ field.errors }}
+                <br />{{ field.help_text }}<br />
+                {{ field }}<br />
+              {% endfor %} 
+            </p>
+          </div>
+        </div>
     	<input type="submit" name="submit" value="Register" />
     </form>
 {% endif %}
   </div>
+
+
 {% endblock %}
 
