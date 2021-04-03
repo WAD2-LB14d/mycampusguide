@@ -23,10 +23,19 @@
                 <p>Current Lecturer: {{ course.currentlecturer }}</p>
                 <p >Average Rating: {{ course.avg_rating }}/5
                     {% if rating %}
-                    <p >{{ rating.rating }}/5</p>
+                    <p >Your Rating: {{ rating.rating }}/5</p>
                     {% else %}
-                    <p >Submit a rating (Add form)/5</p>
-                    {% endif %} 
+                    </br ></br >
+                    <form role="form" id="show_course" method="post" action="{% url 'guide:show_course' course.slug %}"> 
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+                                <b>{{ field.errors }}</b>
+                                <p>{{ field }} /5</p>
+                                <div class="p-2"></div>
+                            {% endfor %} 
+                            <input type="submit" name="submit" value="Submit Rating"/>
+                    </form>
+                    {% endif %}  
                 {% endif %}
                 </div>
                 

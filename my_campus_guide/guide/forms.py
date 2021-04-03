@@ -1,6 +1,7 @@
 from django import forms 
-from guide.models import Course, Lecturer, LecturerRating
+from guide.models import Course, Lecturer, LecturerRating, CourseRating
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator 
 from guide.models import UserProfile
 import datetime
 
@@ -78,6 +79,14 @@ class UserProfileForm(forms.ModelForm):
 
 
 class LecturerRatingForm(forms.ModelForm):
+	rating = forms.IntegerField( validators=[MinValueValidator(1), MaxValueValidator(5)])
 	class Meta:
 		model = LecturerRating
+		fields = ('rating',)
+
+
+class CourseRatingForm(forms.ModelForm):
+	rating = forms.IntegerField( validators=[MinValueValidator(1), MaxValueValidator(5)])
+	class Meta:
+		model = CourseRating
 		fields = ('rating',)

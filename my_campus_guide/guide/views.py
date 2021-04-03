@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category
-from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm
+from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category, CourseRating
+from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -105,21 +105,28 @@ def show_lecturer(request, lecturer_name_slug):
     context_dict['comments'] = lecturer.lecturercomment_set.all()
     
     try:
-      user = User.objects.get(username=request.user.username)  
-      context_dict['rating'] = LecturerRating.objects.get(user=username, page=lecturer)
+      user = User.objects.get(username=request.user.username) 
+      context_dict['rating'] = LecturerRating.objects.get(user=user, page=lecturer)
     except:
       context_dict['rating'] = None
 
   except Lecturer.DoesNotExist:
     context_dict['lecturer'] = None
+    context_dict['rating'] = None
 
+  form = LecturerRatingForm()
   if request.method == 'POST':
-    rating_form = LecturerRating(request.POST)
-    if rating_form.is_valid():
-      userrating = form_data.save()
-      rating = LecturerRating.objects.get_or_create(user=user, page=lecturer)
-      rating.rating = userrating
-      rating.save()
+      form = LecturerRatingForm(request.POST)
+
+      if form.is_valid():
+        rating = form.save(commit=False)
+        rating.user = request.user
+        rating.page = lecturer
+        rating.save()
+
+        return render(request, 'guide/chosen_lecturer.html', context = context_dict)
+  
+  context_dict['form'] = form
   return render(request, 'guide/chosen_lecturer.html', context = context_dict)
 
 
@@ -132,13 +139,27 @@ def show_course(request, course_name_slug):
 
     try:
       user = User.objects.get(username=request.user.username)  
-      context_dict['rating'] = CourseRating.objects.get(user=username, page=course)
+      context_dict['rating'] = CourseRating.objects.get(user=user, page=course)
     except:
       context_dict['rating'] = None
 
   except Course.DoesNotExist:
     context_dict['course'] = None
     context_dict['rating'] = None
+
+  form = CourseRatingForm()
+  if request.method == 'POST':
+      form = CourseRatingForm(request.POST)
+
+      if form.is_valid():
+        rating = form.save(commit=False)
+        rating.user = request.user
+        rating.page = course
+        rating.save()
+
+        return render(request, 'guide/chosen_course.html', context = context_dict)
+  
+  context_dict['form'] = form
   return render(request, 'guide/chosen_course.html', context = context_dict)
 
 
