@@ -41,7 +41,7 @@ def populate():
             'views' : 12
         },
         {
-            'name': 'Networks and Oprating Systems Essentials 2',
+            'name': 'Networks and Operating Systems Essentials 2',
             'school': 'Computing Science',
             'credits': 10, 
             'year': 2021, 
@@ -106,7 +106,7 @@ def populate():
         },
         {
             'name': 'Angelos Marnerides',
-            'teaching': 'Networks and Oprating Systems Essentials 2',
+            'teaching': 'Networks and Operating Systems Essentials 2',
             'description': 'Teaches Networks and Operating Systems Essentials at Glasgow University.', 
             'picture': None,
             'views': 4
@@ -187,7 +187,7 @@ def populate():
         {           
             'email' : "JohnSmith@gmail.com",
             'username' : "JohnSmith",
-            'major' : "Phsics",
+            'major' : "Physics",
             'degreeprogram' : "BSc",
             'startedstudying' : datetime.date.today,
             'expectedgraduation' : datetime.date.today,
@@ -235,13 +235,13 @@ def populate():
             'date': datetime.datetime(2021, 4, 3),
             'comment': "Could be better",
             'user': User.objects.get(username='JohnSmith'),
-            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+            'page': Course.objects.get(name='Networks and Operating Systems Essentials 2')
         },
         {
             'date': datetime.datetime(2021, 1, 2),
             'comment': "Great course",
             'user': User.objects.get(username='foobar'),
-            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+            'page': Course.objects.get(name='Networks and Operating Systems Essentials 2')
         },
         {
             'date': datetime.datetime(2021, 2, 1),
@@ -395,13 +395,13 @@ def populate():
             'date': datetime.datetime(2021, 1, 2),
             'rating': 2,
             'user': User.objects.get(username='abc'),
-            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+            'page': Course.objects.get(name='Networks and Operating Systems Essentials 2')
         },
         {
             'date': datetime.datetime(2021, 4, 12),
             'rating': 4,
             'user': User.objects.get(username='JohnSmith'),
-            'page': Course.objects.get(name='Networks and Oprating Systems Essentials 2')
+            'page': Course.objects.get(name='Networks and Operating Systems Essentials 2')
         },
         {
             'date': datetime.datetime(2021, 2, 26),
