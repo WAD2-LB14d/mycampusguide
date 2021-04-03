@@ -1,5 +1,5 @@
 from django.contrib import admin
-from guide.models import Lecturer, Course, Category, CourseComment, LecturerComment 
+from guide.models import Lecturer, Course, Category, CourseComment, LecturerComment, CourseRating, LecturerRating 
 # Register your models here.
 
 admin.site.register(Category)
@@ -17,3 +17,11 @@ admin.site.register(CourseComment, CourseCommentAdmin)
 class LecturerCommentAdmin(admin.ModelAdmin):
     list_display = ('date', 'user', 'page')
 admin.site.register(LecturerComment, LecturerCommentAdmin)
+
+class LecturerRatingAdmin(admin.ModelAdmin):
+    list_display = ('date', 'user', 'page')
+admin.site.register(LecturerRating, LecturerRatingAdmin)
+
+class CourseRatingAdmin(admin.ModelAdmin):
+    list_display = ('date', 'user', 'page')
+admin.site.register(CourseRating, CourseRatingAdmin)
