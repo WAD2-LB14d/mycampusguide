@@ -1,4 +1,5 @@
 {% extends 'guide/base.html' %}
+{% load staticfiles %}
 
 {% block title_block %}
   Homepage
@@ -7,11 +8,34 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-    	{% if user.is_authenticated %}
-     		<h1 class="pageTitle">Welcome  {{ user.username }} </h1>
- 		{% else %}
- 			<h1 class="pageTitle">Welcome</h1>
- 		{% endif %}
+    {% if user.is_authenticated %}
+      <h1 class="pageTitle">Welcome  {{ user.username }} </h1>
+    {% else %}
+     <h1 class="pageTitle">Welcome</h1>
+    {% endif %}
+    {% if lecturer or course %}
+      <h1>Trending</h1>
+      <div class="row">
+        {% if lecturer %}
+          <div class="col">
+            <a href="{% url 'guide:show_lecturer' lecturer.slug %}">
+              <h2>{{ lecturer.name }}</h2>
+              {% if lecturer.picture %}
+                <img src="{{ lecturer.picture.url }}" class="trending">
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
+        {% if course %}
+          <div class="col">
+            <a href="{% url 'guide:show_course' course.slug %}">
+              <h2>{{ course.name }}</h2>
+              <img src="{% static 'images/' %}{{ course_image }}" class="trending">
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
     </div>
   </div>
 {% endblock %}

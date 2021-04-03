@@ -9,7 +9,7 @@ from django.urls import reverse
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+import random
 
 def visitor_cookie_handler(request, response): 
   visits = int(request.COOKIES.get('visits', '1'))
@@ -23,8 +23,14 @@ def visitor_cookie_handler(request, response):
 
 def index(request):
   response =  render(request, 'guide/index.html')
+  trending_lecturer = Lecturer.objects.order_by('-views')[0]
+  trending_course = Course.objects.order_by('-views')[0]
+  context_dict = {}
+  context_dict['lecturer'] = trending_lecturer
+  context_dict['course'] = trending_course
+  context_dict['course_image'] = "course_"+str(random.randint(1,3))+".jpg"
   visitor_cookie_handler(request, response)
-  return response
+  return render(request, 'guide/index.html', context=context_dict)
 
 
 @login_required

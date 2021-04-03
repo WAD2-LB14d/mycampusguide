@@ -285,4 +285,8 @@ footer {
 
 }
 
-
+.trending {
+	max-height: 420px;
+	max-width: 650px;
+	object-fit: cover;
+}
