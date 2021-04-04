@@ -267,8 +267,18 @@ footer {
 }
 
 .comment_section{
-	margin-top: 400px;
+	margin-top: 550px;
 
+}
+
+.lecturer_image{
+
+	padding: 0px !important;
+	border-style: solid;
+	border-color: #33658A;
+	height: 350px;
+	border-width: 5px;
+	
 }
 
 
@@ -328,7 +338,7 @@ footer {
 	text-align: center;
 }
 
-
+/*delete account and profile pages*/
 
 #delete_account_button{
 	position: absolute;	
