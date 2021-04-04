@@ -15,4 +15,5 @@ urlpatterns = [
   path('courses/<slug:course_name_slug>/', views.show_course, name = "show_course"),
   path('logout/', views.logout, name = 'logout'),
   path('myprofile/', views.myprofile, name = 'myprofile'),
+  path('deleteuser/', views.deleteuser, name = 'delete_account')
 ]

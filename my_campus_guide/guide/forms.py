@@ -6,6 +6,14 @@ from guide.models import UserProfile
 import datetime
 
 
+
+
+class UserDeleteForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = []  
+
+
 class CourseForm(forms.ModelForm):
 	name = forms.CharField(max_length=128,
 						   help_text="Please enter the course name.") 

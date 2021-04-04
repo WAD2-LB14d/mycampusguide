@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category, CourseRating
-from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm
+from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm, UserDeleteForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import random
 from verify_email.email_handler import send_verification_email
+from django.contrib import messages
 
 def visitor_cookie_handler(request, response): 
   visits = int(request.COOKIES.get('visits', '1'))
@@ -212,11 +213,27 @@ def register(request):
   if request.method == 'POST':
     user_form = UserForm(request.POST)
     profile_form = UserProfileForm(request.POST)
-    print("he")
+
     if user_form.is_valid() and profile_form.is_valid():
-      print("hello")
-      inactive_user = send_verification_email(request, user_form)
-  
+      user = user_form.save()
+      user.set_password(user.password)
+      user.save()
+
+      #inactive_user = send_verification_email(request, user_form)
+
+      profile = profile_form.save(commit=False)
+      profile.user = user
+
+      if 'picture' in request.FILES:
+        profile.picture = request.FILES['picture']
+
+      profile.save()
+
+      registered = True
+
+      auth_login(request, user)
+      return redirect(reverse('guide:index'))
+      
     else:
       print(user_form.errors, profile_form.errors)
   else:
@@ -253,3 +270,22 @@ def login(request):
 def logout(request):
   auth_logout(request)
   return render(request, 'guide/logout.html')
+
+
+
+@login_required
+def deleteuser(request):
+    if request.method == 'POST':
+        delete_form = UserDeleteForm(request.POST, instance=request.user)
+        user = request.user
+        user.delete()
+        messages.info(request, 'Your account has been deleted.')
+        return redirect(reverse('guide:index'))
+    else:
+        delete_form = UserDeleteForm(instance=request.user)
+
+    context = {
+        'delete_form': delete_form
+    }
+
+    return render(request, 'guide/delete_account.html', context)
