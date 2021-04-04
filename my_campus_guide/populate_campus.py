@@ -87,49 +87,49 @@ def populate():
             'name': 'Alistair Morrison',
             'teaching': 'Web App Development 2',
             'description': 'Teaches Web App Development and Interactive Systems at Glasgow University.', 
-            'picture': None,
+            'picture': 'lecturer_images/AlistairMorrison.png',
             'views': 5
         },
         {
             'name': 'Michele Sevegnani',
             'teaching': 'Algorithms and Data Structures 2',
             'description': 'Teaches Algorithms and Data Structures 2 and Programming Languages at Glasgow University.', 
-            'picture': None,
+            'picture': 'lecturer_images/MicheleSevegnani.jpg',
             'views': 10
         },
         {
             'name': 'Mary Ellen Foster',
             'teaching': 'Java Programming 2',
             'description': 'Teaches Java Programming 2 at Glasgow University.', 
-            'picture': None,
-            'views': 8
+            'picture': 'lecturer_images/MaryEllenFoster.jpg',
+            'views': 15
         },
         {
             'name': 'Angelos Marnerides',
             'teaching': 'Networks and Operating Systems Essentials 2',
             'description': 'Teaches Networks and Operating Systems Essentials at Glasgow University.', 
-            'picture': None,
+            'picture': 'lecturer_images/AngelosMarnerides.jpg',
             'views': 4
         },
         {
             'name': 'Gethin Norman',
             'teaching': 'Algorithmic Foundations',
             'description': 'Teaches Algorithmic Foundations at Glasgow University.', 
-            'picture': None,
-            'views': 15
+            'picture': 'lecturer_images/GethinNorman.jpg',
+            'views': 10
         },
         {
             'name': 'Eric Yao',
             'teaching': 'Science Skills',
             'description': 'Teaches Science Skills at Glasgow University.', 
-            'picture': None,
+            'picture': 'lecturer_images/EricYao.jpg',
             'views': 5
         },
         {
             'name': 'Martin Lavery',
             'teaching': 'Electronic Engineering 1X',
             'description': 'Teaches Electronic Engineering 1X at Glasgow University.', 
-            'picture': None,
+            'picture': 'lecturer_images/MartinLavery.jpg',
             'views': 2
         },
     ]

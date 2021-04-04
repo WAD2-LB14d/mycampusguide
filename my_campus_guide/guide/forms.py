@@ -15,7 +15,7 @@ class UserDeleteForm(forms.ModelForm):
 
 
 class CourseForm(forms.ModelForm):
-	name = forms.CharField(max_length=128,
+	name = forms.CharField( max_length=128,
 						   help_text="Please enter the course name.") 
 	school = forms.CharField(max_length=30,
 						   help_text="Please enter the course's school.") 
@@ -58,7 +58,7 @@ class LecturerForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-	username = forms.CharField(max_length=30,
+	username = forms.CharField(label = "Username", max_length=30,
 						   help_text="Please enter your username.") 
 	email = forms.CharField(max_length=254,
 						   help_text="Please enter your email.") 
