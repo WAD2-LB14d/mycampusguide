@@ -17,7 +17,7 @@
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
                 <div class="lecturer_description_block" id="lecturer_description_right">
                 <p>{% if lecturer.picture %}
-                        {{ lecturer.picture }}
+                				<img src="{{ lecturer.picture.url }}" class="trending">
                     {% else %}
                         No picture uploaded
                 </p>
