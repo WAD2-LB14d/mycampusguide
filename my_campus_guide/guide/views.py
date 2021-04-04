@@ -10,7 +10,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import random
-from verify_email.email_handler import send_verification_email
+#from verify_email.email_handler import send_verification_email
 from django.contrib import messages
 
 def visitor_cookie_handler(request, response): 
@@ -90,7 +90,7 @@ def add_lecturer(request):
 
   form = LecturerForm()
   if request.method == 'POST':
-      form = LecturerForm(request.POST)
+      form = LecturerForm(request.POST, request.FILES)
 
       if form.is_valid():
         page = form.save(commit=False)

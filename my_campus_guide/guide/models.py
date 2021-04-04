@@ -94,7 +94,7 @@ class Lecturer(models.Model):
    
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     email = models.CharField(max_length = 254)
     username = models.CharField(max_length = 30)
     major = models.CharField(max_length = 30)

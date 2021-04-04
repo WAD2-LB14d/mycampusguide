@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from guide import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('guide/', include('guide.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('verification/', include('verify_email.urls')),
-]
+    #path('verification/', include('verify_email.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,7 +14,7 @@
   <div class="container">
 		<div class="row">
 			
-			<form role="form" class="add_lecturer_or_course_form" method="post" action="{% url 'guide:add_lecturer' %}"> 
+			<form role="form" class="add_lecturer_or_course_form" method="post" action="{% url 'guide:add_lecturer' %}" enctype="multipart/form-data"> 
 
 			{% csrf_token %}
 			{% for hidden in form.hidden_fields %} 
