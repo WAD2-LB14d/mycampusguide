@@ -1,5 +1,5 @@
 from django import forms 
-from guide.models import Course, Lecturer, LecturerRating, CourseRating
+from guide.models import Course, Lecturer, LecturerRating, CourseRating, CourseComment, LecturerComment
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from guide.models import UserProfile
@@ -90,3 +90,15 @@ class CourseRatingForm(forms.ModelForm):
 	class Meta:
 		model = CourseRating
 		fields = ('rating',)
+
+class LecturerCommentForm(forms.ModelForm):
+	comment = forms.CharField(max_length=200)
+	class Meta:
+		model = LecturerComment
+		fields = ('comment',)
+
+class CourseCommentForm(forms.ModelForm):
+	comment = forms.CharField(max_length=200)
+	class Meta:
+		model = CourseComment
+		fields = ('comment',)
