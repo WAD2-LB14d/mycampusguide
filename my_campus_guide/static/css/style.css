@@ -144,6 +144,7 @@ footer {
 }
 
 
+/*lecturer and course tables*/
 
 
 
@@ -359,4 +360,11 @@ footer {
 }
 #delete_account_button:hover{
 	background-color:#FF6705
+}
+
+
+/*home/index page*/
+
+#trending_h1{
+	text-align: center !important;
 }
