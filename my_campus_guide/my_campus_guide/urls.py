@@ -23,4 +23,5 @@ urlpatterns = [
     path('guide/', include('guide.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
+    path('verification/', include('verify_email.urls')),
 ]

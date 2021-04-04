@@ -10,6 +10,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import random
+from verify_email.email_handler import send_verification_email
 
 def visitor_cookie_handler(request, response): 
   visits = int(request.COOKIES.get('visits', '1'))
@@ -176,25 +177,11 @@ def register(request):
   if request.method == 'POST':
     user_form = UserForm(request.POST)
     profile_form = UserProfileForm(request.POST)
-
+    print("he")
     if user_form.is_valid() and profile_form.is_valid():
-      user = user_form.save()
-      user.set_password(user.password)
-      user.save()
-
-      profile = profile_form.save(commit=False)
-      profile.user = user
-
-      if 'picture' in request.FILES:
-        profile.picture = request.FILES['picture']
-
-      profile.save()
-
-      registered = True
-
-      auth_login(request, user)
-      return redirect(reverse('guide:index'))
-      
+      print("hello")
+      inactive_user = send_verification_email(request, user_form)
+  
     else:
       print(user_form.errors, profile_form.errors)
   else:
