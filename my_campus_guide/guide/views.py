@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category, CourseRating
-from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm
+from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -122,18 +122,35 @@ def show_lecturer(request, lecturer_name_slug):
     context_dict['rating'] = None
 
   form = LecturerRatingForm()
+  cform = LecturerCommentForm()
   if request.method == 'POST':
+    if 'submitrating' in request.POST:
       form = LecturerRatingForm(request.POST)
 
       if form.is_valid():
         rating = form.save(commit=False)
-        rating.user = request.user
+        rating.user = user
         rating.page = lecturer
         rating.save()
-
-        return render(request, 'guide/chosen_lecturer.html', context = context_dict)
+        context_dict['form'] = form
+        context_dict['rating'] = LecturerRating.objects.get(user=user, page=lecturer)
+        #Refreshes the page, removing information stored
+        return HttpResponseRedirect(request.path_info)
   
+    if 'submitcomment' in request.POST:
+      cform = LecturerCommentForm(request.POST)
+      if cform.is_valid():
+        comment = cform.save(commit=False)
+        comment.user = request.user
+        comment.page = lecturer
+        comment.save()
+        context_dict['cform'] = cform 
+        #Refreshes the page, removing information stored and empties the form  
+        return HttpResponseRedirect(request.path_info)
+  
+  context_dict['cform'] = cform
   context_dict['form'] = form
+
   return render(request, 'guide/chosen_lecturer.html', context = context_dict)
 
 
@@ -143,6 +160,7 @@ def show_course(request, course_name_slug):
     course = Course.objects.get(slug=course_name_slug)
     course.calculateAverageRating()
     context_dict['course'] = course
+    context_dict['comments'] = course.coursecomment_set.all()
 
     try:
       user = User.objects.get(username=request.user.username)  
@@ -155,18 +173,35 @@ def show_course(request, course_name_slug):
     context_dict['rating'] = None
 
   form = CourseRatingForm()
+  cform = CourseCommentForm()
   if request.method == 'POST':
+    if 'submitrating' in request.POST:
       form = CourseRatingForm(request.POST)
 
       if form.is_valid():
         rating = form.save(commit=False)
-        rating.user = request.user
+        rating.user = user
         rating.page = course
         rating.save()
-
-        return render(request, 'guide/chosen_course.html', context = context_dict)
+        context_dict['form'] = form
+        context_dict['rating'] = CourseRating.objects.get(user=user, page=course)
+        #Refreshes the page, removing information stored
+        return HttpResponseRedirect(request.path_info)
   
+    if 'submitcomment' in request.POST:
+      cform = CourseCommentForm(request.POST)
+      if cform.is_valid():
+        comment = cform.save(commit=False)
+        comment.user = request.user
+        comment.page = course
+        comment.save()
+        context_dict['cform'] = cform 
+        #Refreshes the page, removing information stored and empties the form  
+        return HttpResponseRedirect(request.path_info)
+  
+  context_dict['cform'] = cform
   context_dict['form'] = form
+
   return render(request, 'guide/chosen_course.html', context = context_dict)
 
 

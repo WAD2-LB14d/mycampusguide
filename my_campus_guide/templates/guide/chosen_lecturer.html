@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block body_block %}
-		<script type="text/javascript" src="{% static 'js/forms.js' %}"></script>		
+        <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>       
     <div class="jumbotron p-4"> 
             <div class="container">
                 {% if lecturer %}
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
                 <div class="lecturer_description_block" id="lecturer_description_right">
                 <p>{% if lecturer.picture %}
-                				<img src="{{ lecturer.picture.url }}" class="trending">
+                        <img src="{{ lecturer.picture.url }}" class="trending">
                     {% else %}
                         No picture uploaded
                 </p>
@@ -33,12 +33,11 @@
                     </br ></br >
                     <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}"> 
                             {% csrf_token %}
-							{% for field in form.visible_fields %}
+                            {% for field in form.visible_fields %}
                                 <b>{{ field.errors }}</b>
                                 <p>{{ field }} /5</p>
-                                <div class="p-2"></div>
                             {% endfor %} 
-                            <input type="submit" name="submit" value="Submit Rating"/>
+                            <input type="submit" name="submitrating" value="Submit Rating"/>
                     </form>
                     {% endif %} 
                 </div>
@@ -46,29 +45,31 @@
                 <p>{{ lecturer.description }}</p>
                 </div>
 
-
-                <div class="comment_section">
+                <div class="comment_section"> 
+                <h2>Comments</h2>
+                    {% if user.is_authenticated %}
+                        <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}">
+                            {% csrf_token %}
+                            Add a comment: <input type="text" name="comment" value="" size="100" />
+                            <input type="submit" name="submitcomment" value="Submit Comment"/> 
+                    </form>
+                    </br >
+                    {% endif %}                   
                     <div class="row">
-                            <h2>Comments</h2>
-                                {% if user.is_authenticated %}
-                                        <a href="{% url 'guide:add_lecturer' %}">
-                                        <img src="{% static 'images/add.png' %}" alt="Add lecturer" class="add"/>
-                                        </a>
-                                {% endif %}
                     </div>
-						{% if comments %}                             
-							<div class="col">
-							{% for comment in comments %}
-								<div class="row">
-								<p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
-								</div>
-							{% endfor %}
-							</div>
+                        {% if comments %}                             
+                            <div class="col">
+                            {% for comment in comments %}
+                                <div class="row">
+                                <p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
+                                </div>
+                            {% endfor %}
+                            </div>
                     </div>
                         {%else%}
                             <strong>No comments yet</strong>
         
-						{% endif %}	
+                        {% endif %} 
                 {% endif %}
             </div>
     </div>
