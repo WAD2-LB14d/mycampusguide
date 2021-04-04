@@ -176,6 +176,12 @@ footer {
 
  }
 
+ .trending {
+	max-height: 420px;
+	max-width: 650px;
+	object-fit: cover;
+}
+
  /*login and register*/
 
 
@@ -261,7 +267,8 @@ footer {
 }
 
 .comment_section{
-	margin-top: 30%;
+	margin-top: 400px;
+
 }
 
 
@@ -293,11 +300,7 @@ footer {
 
 }
 
-.trending {
-	max-height: 420px;
-	max-width: 650px;
-	object-fit: cover;
-}
+
 
 /*logout*/
 
