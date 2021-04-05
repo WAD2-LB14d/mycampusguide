@@ -9,15 +9,17 @@
     {% endif %}
 {% endblock %}
 
-{% block body_block %}
-        <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>       
-    <div class="jumbotron p-4"> 
+{% block body_block %}      
+    <div class="jumbotron p-4">        
+        <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>   
             <div class="container">
                 {% if lecturer %}
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
                 <div class="lecturer_description_block" id="lecturer_description_right">
                 <p>{% if lecturer.picture %}
-                        <img src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image">
+                        <img id="lecturerimage" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible">
+                        <input type="button" onclick="showImage()" value="Show Image">
+                        <input type="button" onclick="hideImage()" value="Hide Image">
                     {% else %}
                         No picture uploaded
                 </p>
