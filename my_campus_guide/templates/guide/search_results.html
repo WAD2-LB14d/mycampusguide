@@ -1,0 +1,70 @@
+{% extends 'guide/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Search Results
+{% endblock %}
+
+{% block body_block %}
+  <div class="jubmotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="add_course_or_lecturer_title">Search Results</h1>
+    </div>
+  </div>
+  <div class="container">
+    {% if searchlecturers%}
+    <table class = "table table-bordered" style="width:100%;" id="search_results">
+      <thead>
+      <tr>
+        <th>Lecturer Name</th>
+        <th>Course</th>
+        <th>Average Rating</th>
+        <th>Number of Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for lecturer in searchlecturers %}
+      <h4>Lecturers Matching Search Query</h4>
+        <tr>
+          <td><a class="nav-link" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></li></td>
+          <td>{{ lecturer.teaching }}</td>
+          <td>{{ lecturer.avg_rating }}/5</td>
+          <td>{{ lecturer.no_comments }}</td>
+        </tr>
+      {% endfor %}
+     </tbody>
+     </table>
+   </br ></br >
+    {% endif %}
+
+    {% if searchcourses %}
+    <table class = "table table-bordered" style="width:100%;" id="search_results">
+    <h4>Courses Matching Search Query</h4>
+    <thead>
+        <tr>
+        <th>Course Name</th>
+        <th>Taught By</th>
+        <th>Average Rating</th>
+        <th>Number of Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for course in searchcourses %}
+        <tr>
+          <td><a class="nav-link" href="{% url 'guide:show_course' course.slug %}">{{ course.name }}</a></li></td>
+          <td>{{ course.currentlecturer }}</td>
+          <td>{{ course.avg_rating }}/5</td>
+          <td>{{ course.no_comments }}</td>
+        </tr>
+      {% endfor %}
+     </tbody>
+     </table>
+    {% endif %}
+
+    {% if not searchlecturers %}
+      {% if not searchcourses %}
+        <h1> No results for your search.</h1>
+      {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
