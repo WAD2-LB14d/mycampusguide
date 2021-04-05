@@ -60,7 +60,7 @@ class LecturerForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length=30,
 						   help_text="Please enter your username.") 
-	email = forms.CharField(max_length=254,
+	email = forms.EmailField(max_length=254,
 						   help_text="Please enter your email.") 
 	password = forms.CharField(widget=forms.PasswordInput(),
 						   help_text ="Please enter your password.")

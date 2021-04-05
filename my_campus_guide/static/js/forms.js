@@ -1,3 +1,6 @@
-function showRatingForm() {
-	document.getElementById('rate').style.display="block";
+function showImage() {
+	document.getElementById('lecturerimage').style.visibility='visible';
+}
+function hideImage() {
+	document.getElementById('lecturerimage').style.visibility='hidden';
 }
