@@ -27,6 +27,7 @@
 
 
                 <p>Average Rating: {{ lecturer.avg_rating }}/5
+								{% if user.is_authenticated %}
                     {% if rating %}
                     <p >Your Rating: {{ rating.rating }}/5</p>
                     {% else %}
@@ -40,6 +41,7 @@
                             <input type="submit" name="submitrating" value="Submit Rating"/>
                     </form>
                     {% endif %} 
+								{% endif %}
                 </div>
                 <div class="lecturer_description_block">
                 <p>{{ lecturer.description }}</p>
