@@ -277,6 +277,10 @@ footer {
 
 }
 
+.lecturer_image_button{
+	display: inline;
+}
+
 .lecturer_image{
 
 	padding: 0px !important;

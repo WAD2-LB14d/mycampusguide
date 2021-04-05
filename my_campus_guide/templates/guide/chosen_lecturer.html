@@ -16,16 +16,19 @@
                 {% if lecturer %}
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
                 <div class="lecturer_description_block" id="lecturer_description_right">
-                <p>{% if lecturer.picture %}
-                        <img id="lecturerimage" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible">
-                        <input type="button" onclick="showImage()" value="Show Image">
-                        <input type="button" onclick="hideImage()" value="Hide Image">
+                {% if lecturer.picture %}
+                        <p><img id="lecturer_image" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible"></p>
+                        <p class="lecturer_image_button"><input type="button" onclick="showImage()" value="Show Image"></p>
+                        <p class="lecturer_image_button"><input type="button" onclick="hideImage()" value="Hide Image"></p>
                     {% else %}
                         No picture uploaded
-                </p>
-                <p>Currently Teaching: {{ lecturer.teaching }}</p>
+                
+               
                 
                 {% endif %}
+                <br>
+                <br>
+                <p>Currently Teaching: {{ lecturer.teaching }}</p>
 
 
                 <p>Average Rating: {{ lecturer.avg_rating }}/5
