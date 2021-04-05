@@ -12,6 +12,7 @@
 {% block body_block %}      
     <div class="jumbotron p-4">        
         <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>   
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
             <div class="container">
                 {% if lecturer %}
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
@@ -32,7 +33,7 @@
 
 
                 <p>Average Rating: {{ lecturer.avg_rating }}/5
-								{% if user.is_authenticated %}
+                                {% if user.is_authenticated %}
                     {% if rating %}
                     <p >Your Rating: {{ rating.rating }}/5</p>
                     {% else %}
@@ -46,13 +47,11 @@
                             <input type="submit" name="submitrating" value="Submit Rating"/>
                     </form>
                     {% endif %} 
-								{% endif %}
+                                {% endif %}
                 </div>
                 <div class="lecturer_description_block">
                 <p>{{ lecturer.description }}</p>
                 </div>
-
-                <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
 
                 <div class="comment_section"> 
                 <h2>Comments</h2>

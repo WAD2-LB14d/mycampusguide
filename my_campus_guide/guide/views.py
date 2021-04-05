@@ -230,6 +230,31 @@ def show_course(request, course_name_slug):
   return render(request, 'guide/chosen_course.html', context = context_dict)
 
 
+def searchResults(request):
+  context_dict = {}
+  userSearch = request.GET.get('searchResults')
+  users = UserProfile.objects.all()
+  context_dict["user_profiles"] = users
+  print(userSearch)
+  try:
+      lecturers = Lecturer.objects.filter(name__contains = userSearch)
+      context_dict["searchlecturers"] = lecturers
+      context_dict["SearchValue"] = userSearch
+      
+  except Lecturer.DoesNotExist:
+      context_dict["searchlecturers"] = None
+      context_dict["SearchValue"] = None
+  try:
+      courses = Course.objects.filter(name__contains = userSearch)
+      context_dict["searchcourses"] = courses
+      context_dict["SearchValue"] = userSearch
+      
+  except Course.DoesNotExist:
+      context_dict["searchcourses"] = None
+      context_dict["SearchValue"] = None
+
+  return render(request, 'guide/search_results.html', context=context_dict)
+
 
 def register(request):
   registered = False
