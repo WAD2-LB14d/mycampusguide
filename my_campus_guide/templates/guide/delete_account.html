@@ -6,11 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
-<style type="text/css">
-h4.pad {
-  padding-left: 20px;
-}
-</style>
+
 
     <form method="POST">
         {% csrf_token %}
@@ -19,13 +15,17 @@ h4.pad {
     <div class="container">
       <h1 class="pageTitle">Delete Account</h1>
     </div>
-                <h4 class = "pad">Are you sure you want to delete your account?  This will permanently delete your
+    <div id="confirm_account_delete_message">
+                <h4>Are you sure you want to delete your account?  This will permanently delete your
                    profile and any content you have generated.</h4>
                 {{ form }}
+    </div> 
         </fieldset>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="form-group delete_account_buttons">
             <button class="btn btn-danger"  type="submit">Delete Account</button>
-                <a class="btn btn-primary-custom" style="float:middle;" 
+            <a class="btn btn-primary-custom" style="float:middle;" 
                    href="{% url 'guide:myprofile' %}">Cancel</a>
         </div>
     </form>

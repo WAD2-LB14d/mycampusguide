@@ -348,28 +348,25 @@ footer {
 	text-align: center;
 }
 
-/*delete account and profile pages*/
+/*delete account*/
 
-#delete_account_button{
-	position: absolute;	
-	left:45%;
-	width: min-content;
-	background-color: rgba(254,127,45,0.7);
-	border-radius: 10px;
-	border: none;
-	color: white;
-	padding: 15px;
-	text-decoration: none;
-	font-size: 16px;
-	margin: 4px 4px 2px 2px;
-	transition: 0.3s;
-
-
-
+#confirm_account_delete_message{
+	
+	height: 20%;
+	margin: 30px;
+	text-align: center;
+	margin-top: 150px;
+	
 }
-#delete_account_button:hover{
-	background-color:#FF6705
-}
+
+
+.form-group{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+  }
+
 
 
 /*home/index page*/
