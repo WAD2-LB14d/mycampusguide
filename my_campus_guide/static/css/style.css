@@ -156,6 +156,11 @@ footer {
 	color: black !important;
 }
 
+.tablelink:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .table > tbody > tr:nth-child(2n) > td {
 	background-color: rgba(254, 127, 45, 0.5);	
  }

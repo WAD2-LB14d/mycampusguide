@@ -24,14 +24,12 @@
     </thead>
     <tbody>
       {% for lecturer in lecturers %}
-
         <tr>
-          <td><a class="tablelink" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></li></td>
+          <td><a class="tablelink" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></td>
           <td>{{ lecturer.teaching }}</td>
           <td>{{ lecturer.avg_rating }}/5</td>
           <td>{{ lecturer.no_comments }}</td>
         </tr>
-
       {% endfor %}
     </tbody>
     </table>
