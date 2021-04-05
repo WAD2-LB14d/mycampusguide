@@ -179,8 +179,10 @@ footer {
 
  .standard_button:hover{
 	background-color: #FF6705 !important;
+	color: white !important;
 
  }
+ 
 
  .trending {
 	max-height: 420px;
@@ -405,4 +407,13 @@ footer {
 
 .index_page_div h2:hover{
 	background-color:  rgb(254,127,45,0.9);
+}
+
+
+/*myprofile */
+
+#myprofile_buttons{
+	display: flex;
+	justify-content: center;
+	
 }
