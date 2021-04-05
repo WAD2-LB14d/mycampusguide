@@ -355,6 +355,11 @@ def edit_course(request, course_name_slug):
     if form.is_valid():
       cform = form.save(commit=False)
       course.name = cform.name
+      course.school = cform.school
+      course.credits = cform.credits
+      course.requirements = cform.requirements
+      course.descrption = cform.descrption
+      course.currentecturer = cform.currentecturer
       course.save()
           
         #Refreshes the page
@@ -376,6 +381,8 @@ def edit_lecturer(request, lecturer_name_slug):
     if form.is_valid():
       cform = form.save(commit=False)
       lecturer.name = cform.name
+      lecturer.teaching = cform.teaching
+      lecturer.descrption = cform.descrption
       lecturer.save()
         
       #Refreshes the page
