@@ -329,8 +329,8 @@ def edit_course(request, course_name_slug):
       cform = form.save(commit=False)
       course.name = cform.name
       course.save()
-        
-      #Refreshes the page
+          
+        #Refreshes the page
       return HttpResponseRedirect(request.path_info)
 
   return render(request, 'guide/edit_course.html', context=context_dict)
@@ -349,7 +349,7 @@ def edit_lecturer(request, lecturer_name_slug):
     if form.is_valid():
       cform = form.save(commit=False)
       lecturer.name = cform.name
-      course.save()
+      lecturer.save()
         
       #Refreshes the page
       return HttpResponseRedirect(request.path_info)
