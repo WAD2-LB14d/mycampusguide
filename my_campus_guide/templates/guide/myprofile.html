@@ -43,17 +43,18 @@ h4.pad {
           Email: <input type="text" name="email" value={{user.email}} size="20" /> </br >
           Major: <input type="text" name="major" value= {{profile.major}} size="20" /> </br >
           Degree Program: <input type="text" name="degreeprogram" value={{profile.degreeprogram}} size="20" /> </br >
+          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying}} size="20" /> </br >
+          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation}} size="20" /> </br >
         </h4>
         </div>
         <div class="column">
           <h4>
-          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying}} size="20" /> </br >
-          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation}} size="20" /> </br >
-           Picture:
+          
+          
     {% if profile.picture %}
-      {{ profile.picture }} 
-    {% else %}
-      No profile picture uploaded
+                        <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image">
+                    {% else %}
+                        No picture uploaded
     {% endif %}
       </h4>
         </div>
