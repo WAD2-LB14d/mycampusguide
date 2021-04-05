@@ -8,7 +8,25 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-    <h1 class="pageTitle">Edit {{course.name}} <h1>
+    <<h1 class="course_or_lecturer_title">Edit {{ course.name }}</h1>
     </div>
   </div>
+
+<form id="edit" method="post"action="{% url 'guide:edit_course' course.slug %}" enctype="multipart/form-data" >
+  {% csrf_token %}
+    <div class="row">
+        <div class="column">
+          <h4 class="pad">
+          Name: <input type="text" name="name" value={{lecturer.name}} size="20" /> </br > 
+          Teaching: <input type="text" name="school" value={{lecturer.teaching}} size="20" /> </br > 
+          Description: <input type="text" name="year" value= {{lecturer.description}} size="20" /> </br >
+        </h4>
+        </div>
+       
+
+  <input class="standard_button" type="submit" value="Save Changes"/> 
+  
+</div>
+</form>
+
 {% endblock %}
