@@ -21,7 +21,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    name = models.CharField(max_length = 128, unique = False)
+    name = models.CharField(max_length = 128, unique = True)
     school = models.CharField(max_length = 30)
     year = models.IntegerField(default=datetime.datetime.now().year)
     credits = models.IntegerField(default = 0)
