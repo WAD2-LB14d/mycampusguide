@@ -1,6 +1,6 @@
 function showImage() {
-	document.getElementsByClassName('lecturer_image').style.setProperty("visibility", "visible", "!important")
+	document.getElementById('lecturer_image').style.setProperty("visibility", "visible")
 }
 function hideImage() {
-	document.getElementsByClassName('lecturer_image').style.setProperty("visibility", "hidden", "!important");
+	document.getElementById('lecturer_image').style.setProperty("visibility", "hidden");
 }
