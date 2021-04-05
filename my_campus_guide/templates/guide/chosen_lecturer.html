@@ -52,7 +52,7 @@
                     {% if user.is_authenticated %}
                         <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}">
                             {% csrf_token %}
-                            Add a comment: <input type="text" name="comment" value="" size="100" />
+                            Add a comment: <input type="text" name="comment" value="" size="80" />
                             <input type="submit" name="submitcomment" value="Submit Comment"/> 
                     </form>
                     </br >

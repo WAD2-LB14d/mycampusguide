@@ -59,11 +59,12 @@ h4.pad {
         </div>
     </div>
   </br >
-  <input type="submit" name="submitcomment" value="Save Changes"/>  
-    </form>
-    
-  </div>
+  <input id="save_account_button" type="submit" name="submitcomment" value="Save Changes"/> 
   <a class="nav-link" id="delete_account_button" href="{% url 'guide:delete_account' %}">Delete</a></li>  
+    </form>
+  <a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a></li>
+  </div>
+   
 
 {% endblock %}
 
