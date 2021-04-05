@@ -8,11 +8,11 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
+    <h1 class="pageTitle">Welcome
     {% if user.is_authenticated %}
-      <h1 class="pageTitle">Welcome  {{ user.username }} </h1>
-    {% else %}
-     <h1 class="pageTitle">Welcome</h1>
+      <span class="username">{{ user.username }} </span>
     {% endif %}
+		</h1>
     {% if lecturer or course %}
       <h1 id="trending_h1">Trending</h1>
       <div class="row">

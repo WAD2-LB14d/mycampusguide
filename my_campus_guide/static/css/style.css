@@ -50,6 +50,11 @@
 	color: #33658A;
 }
 
+.username {
+	color: black;
+	text-transform: capitalize;
+}
+
 footer {
 
 	position: absolute;
