@@ -47,13 +47,14 @@ def myprofile(request):
         cform = form.save(commit=False)
         user.username = cform.username
         user.email = cform.email
-        user.major = cform.major
-        user.degreeprogram = cform.degreeprogram
+        profile.major = cform.major
+        profile.degreeprogram = cform.degreeprogram
         user.startedstudying = cform.startedstudying
         user.expectedgraduation = cform.expectedgraduation
         user.save()
+        profile.save()
         
-        #Refreshes the page, removing information stored
+        #Refreshes the page
         return HttpResponseRedirect(request.path_info)
 
     return render(request, 'guide/myprofile.html', context={'user': user, 'profile': profile})
