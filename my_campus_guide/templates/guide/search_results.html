@@ -14,6 +14,7 @@
   <div class="container">
     {% if searchlecturers%}
     <table class = "table table-bordered" style="width:100%;" id="search_results">
+      <h4>Lecturers Matching Search Query</h4>
       <thead>
       <tr>
         <th>Lecturer Name</th>
@@ -24,7 +25,6 @@
     </thead>
     <tbody>
       {% for lecturer in searchlecturers %}
-      <h4>Lecturers Matching Search Query</h4>
         <tr>
           <td><a class="nav-link" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></li></td>
           <td>{{ lecturer.teaching }}</td>
