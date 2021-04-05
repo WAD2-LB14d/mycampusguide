@@ -2,22 +2,30 @@
 {% load staticfiles %}
 
 {% block title_block %}
-  Courses
+  Delete Account
 {% endblock %}
 
 {% block body_block %}
+<style type="text/css">
+h4.pad {
+  padding-left: 20px;
+}
+</style>
 
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Delete User Account</legend>
-                <p>Are you sure you want to delete your account?  This will permanently delete your
-                   profile and any content you have generated.</p>
+             <div class="jubmotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="pageTitle">Delete Account</h1>
+    </div>
+                <h4 class = "pad">Are you sure you want to delete your account?  This will permanently delete your
+                   profile and any content you have generated.</h4>
                 {{ form }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-danger" type="submit">Delete Account</button>
-                <a class="btn btn-primary-custom" style="float:right;" 
+            <button class="btn btn-danger"  type="submit">Delete Account</button>
+                <a class="btn btn-primary-custom" style="float:middle;" 
                    href="{% url 'guide:myprofile' %}">Cancel</a>
         </div>
     </form>

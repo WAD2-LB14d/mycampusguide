@@ -39,12 +39,12 @@ h4.pad {
     <div class="row">
         <div class="column">
           <h4 class="pad">
-          Username: <input type="text" name="username" value={{user.username}} size="20" /> </br >
-          Email: <input type="text" name="email" value={{user.email}} size="20" /> </br >
+          Username: <input type="text" name="username" value={{user.username}} size="20" /> </br > 
+          Email: <input type="text" name="email" value={{user.email}} size="20" /> </br > 
           Major: <input type="text" name="major" value= {{profile.major}} size="20" /> </br >
           Degree Program: <input type="text" name="degreeprogram" value={{profile.degreeprogram}} size="20" /> </br >
-          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying}} size="20" /> </br >
-          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation}} size="20" /> </br >
+          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying.day}}/{{profile.startedstudying.month}}/{{profile.startedstudying.year}} size="20" /> </br >
+          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation.day}}/{{profile.expectedgraduation.month}}/{{profile.expectedgraduation.year}} size="20" /> </br >
         </h4>
         </div>
         <div class="column">
@@ -59,7 +59,12 @@ h4.pad {
       </h4>
         </div>
     </div>
+
+
   </br >
+
+
+
   <input id="save_account_button" type="submit" name="submitcomment" value="Save Changes"/> 
   <a class="nav-link" id="delete_account_button" href="{% url 'guide:delete_account' %}">Delete</a></li>  
     </form>
