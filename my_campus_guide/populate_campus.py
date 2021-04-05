@@ -7,6 +7,7 @@ django.setup()
 import datetime
 from guide.models import Category, Course, Lecturer, CourseComment, LecturerComment, CourseRating, LecturerRating
 from django.contrib.auth.models import User
+from django.core.files import File
 
 def populate():
     course_pages = [
@@ -87,50 +88,57 @@ def populate():
             'name': 'Alistair Morrison',
             'teaching': 'Web App Development 2',
             'description': 'Teaches Web App Development and Interactive Systems at Glasgow University.', 
-            'picture': 'lecturer_images/AlistairMorrison.png',
+            'picture': 'AlistairMorrison.png',
             'views': 5
         },
         {
             'name': 'Michele Sevegnani',
             'teaching': 'Algorithms and Data Structures 2',
             'description': 'Teaches Algorithms and Data Structures 2 and Programming Languages at Glasgow University.', 
-            'picture': 'lecturer_images/MicheleSevegnani.jpg',
+            'picture': 'MicheleSevegnani.jpg',
             'views': 10
         },
         {
             'name': 'Mary Ellen Foster',
             'teaching': 'Java Programming 2',
             'description': 'Teaches Java Programming 2 at Glasgow University.', 
-            'picture': 'lecturer_images/MaryEllenFoster.jpg',
+            'picture': 'MaryEllenFoster.jpg',
             'views': 15
         },
         {
             'name': 'Angelos Marnerides',
             'teaching': 'Networks and Operating Systems Essentials 2',
             'description': 'Teaches Networks and Operating Systems Essentials at Glasgow University.', 
-            'picture': 'lecturer_images/AngelosMarnerides.jpg',
+            'picture': 'AngelosMarnerides.jpg',
             'views': 4
         },
         {
             'name': 'Gethin Norman',
             'teaching': 'Algorithmic Foundations',
             'description': 'Teaches Algorithmic Foundations at Glasgow University.', 
-            'picture': 'lecturer_images/GethinNorman.jpg',
+            'picture': 'GethinNorman.jpg',
             'views': 10
         },
         {
             'name': 'Eric Yao',
             'teaching': 'Science Skills',
             'description': 'Teaches Science Skills at Glasgow University.', 
-            'picture': 'lecturer_images/EricYao.jpg',
+            'picture': 'EricYao.jpg',
             'views': 5
         },
         {
             'name': 'Martin Lavery',
             'teaching': 'Electronic Engineering 1X',
             'description': 'Teaches Electronic Engineering 1X at Glasgow University.', 
-            'picture': 'lecturer_images/MartinLavery.jpg',
+            'picture': 'MartinLavery.jpg',
             'views': 2
+        },
+        {
+            'name': 'John Williamson',
+            'teaching': 'CS1P',
+            'description': 'Teaches CS1P at Glasgow University.', 
+            'picture': 'JohnWilliamson.png',
+            'views': 30
         },
     ]
 
@@ -459,7 +467,10 @@ def add_lecturerpage(cat, name, teaching, description, picture, views):
     p = Lecturer.objects.get_or_create(category=cat, name=name)[0]
     p.teaching = teaching
     p.description = description
-    p.picture = picture
+    if (picture):
+        p.picture.save(picture, File(open("static/images/lecturer_images/"+picture, "rb")))
+    else:
+        p.picture = picture
     p.views = views
     p.save()
     return p
