@@ -26,7 +26,7 @@
     <tbody>
       {% for lecturer in searchlecturers %}
         <tr>
-          <td><a class="nav-link" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></li></td>
+          <td><a class="tablelink" href="{% url 'guide:show_lecturer' lecturer.slug %}">{{ lecturer.name }}</a></li></td>
           <td>{{ lecturer.teaching }}</td>
           <td>{{ lecturer.avg_rating }}/5</td>
           <td>{{ lecturer.no_comments }}</td>
@@ -51,7 +51,7 @@
     <tbody>
       {% for course in searchcourses %}
         <tr>
-          <td><a class="nav-link" href="{% url 'guide:show_course' course.slug %}">{{ course.name }}</a></li></td>
+          <td><a class="tablelink" href="{% url 'guide:show_course' course.slug %}">{{ course.name }}</a></li></td>
           <td>{{ course.currentlecturer }}</td>
           <td>{{ course.avg_rating }}/5</td>
           <td>{{ course.no_comments }}</td>

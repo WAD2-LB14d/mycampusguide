@@ -151,7 +151,10 @@ footer {
 
 /*lecturer and course tables*/
 
-
+.tablelink {
+  text-decoration: none !important;
+	color: black !important;
+}
 
 .table > tbody > tr:nth-child(2n) > td, .table > tbody > tr:nth-child(2n) > th {
 	background-color: rgba(254, 127, 45, 0.5);	
@@ -251,7 +254,7 @@ footer {
 
 
 }
-/*chosen lectuter*/
+/*chosen lecturer*/
 
 .comment_section .row p{
 
