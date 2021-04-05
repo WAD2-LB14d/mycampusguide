@@ -112,7 +112,6 @@ class CourseCommentForm(forms.ModelForm):
 		fields = ('comment',)
 
 class ChangeProfileForm(forms.ModelForm):
-	username = forms.CharField(max_length=30)
 	email = forms.CharField(max_length=254)
 	major = forms.CharField(max_length=30)
 	degreeprogram = forms.CharField(max_length=14)

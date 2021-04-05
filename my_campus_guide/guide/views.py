@@ -45,7 +45,6 @@ def myprofile(request):
 
       if form.is_valid():
         cform = form.save(commit=False)
-        user.username = cform.username
         user.email = cform.email
         profile.major = cform.major
         profile.degreeprogram = cform.degreeprogram
