@@ -52,24 +52,26 @@ h4.pad {
           
           
     {% if profile.picture %}
-                        <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image">
-                    {% else %}
-                        No picture uploaded
+      <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image">
+    {% else %}
+      No picture uploaded
     {% endif %}
       </h4>
         </div>
     </div>
-
-
   </br >
 
 
 
-  <input id="save_account_button" type="submit" name="submitcomment" value="Save Changes"/> 
-  <a class="nav-link" id="delete_account_button" href="{% url 'guide:delete_account' %}">Delete</a></li>  
-    </form>
-  <a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a></li>
+  <input class="standard_button" type="submit" value="Save Changes"/> 
+  
+  <a class="standard_button" href="{% url 'auth_password_change' %}">Change Password</a></li>
+
+  <a class="standard_button" href="{% url 'guide:delete_account' %}">Delete Account</a></li>  
   </div>
+</form>
+</div>
+
    
 
 {% endblock %}
