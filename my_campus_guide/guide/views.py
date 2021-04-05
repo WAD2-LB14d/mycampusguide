@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category, CourseRating
-from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm, UserDeleteForm, ChangeProfileForm
+from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm, UserDeleteForm, ChangeProfileForm, EditLecturer, EditCourse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -321,6 +321,21 @@ def edit_course(request, course_name_slug):
     context_dict['course'] = course
   except Course.DoesNotExist:
     context_dict['course'] = None
+
+  if request.method == 'POST':
+    print("post")
+    form = EditCourse(request.POST)
+
+    if form.is_valid():
+      print("form is valid")
+      cform = form.save(commit=False)
+      course.name = cform.name
+      print("saving")
+      course.save()
+        
+      #Refreshes the page
+      return HttpResponseRedirect(request.path_info)
+
   return render(request, 'guide/edit_course.html', context=context_dict)
 
 def edit_lecturer(request, lecturer_name_slug):
@@ -330,5 +345,19 @@ def edit_lecturer(request, lecturer_name_slug):
     context_dict['lecturer'] = lecturer
   except Lecturer.DoesNotExist:
     context_dict['lecturer'] = None
+
+  if request.method == 'POST':
+    print("post")
+    form = EditLecturer(request.POST)
+
+    if form.is_valid():
+      print("form is valid")
+      cform = form.save(commit=False)
+      lecturer.name = cform.name
+      print("saving")
+      course.save()
+        
+      #Refreshes the page
+      return HttpResponseRedirect(request.path_info)
   return render(request, 'guide/edit_lecturer.html', context=context_dict)
 
