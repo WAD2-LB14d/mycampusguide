@@ -10,14 +10,14 @@
     <div class="container">
     <h1 class="pageTitle">Welcome
     {% if user.is_authenticated %}
-      <span class="username">{{ user.username }} </span>
+      <span class="username" id="index_page_username">{{ user.username }} </span>
     {% endif %}
 		</h1>
     {% if lecturer or course %}
       <h1 id="trending_h1">Trending</h1>
       <div class="row">
         {% if lecturer %}
-          <div class="col">
+          <div class="col index_page_div">
             <a href="{% url 'guide:show_lecturer' lecturer.slug %}">
               <h2>{{ lecturer.name }}</h2>
               {% if lecturer.picture %}
@@ -27,7 +27,7 @@
           </div>
         {% endif %}
         {% if course %}
-          <div class="col">
+          <div class="col index_page_div">
             <a href="{% url 'guide:show_course' course.slug %}">
               <h2>{{ course.name }}</h2>
               <img src="{% static 'images/' %}{{ course_image }}" class="trending">

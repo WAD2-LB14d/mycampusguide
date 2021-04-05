@@ -372,4 +372,36 @@ footer {
 
 #trending_h1{
 	text-align: center !important;
+	color: #33658A;
+}
+
+#index_page_username{
+	color: #33658A;
+
+}
+
+.index_page_div{
+	margin: 10px;
+
+
+}
+
+.index_page_div img{
+	position: absolute;
+	width: 45%;
+
+}
+
+.index_page_div h2{
+	position: absolute;
+	z-index: 99;
+	width: 45%;
+
+	padding: 20px;
+	color: #FBF5F3;
+	background-color: rgb(254,127,45,0.6);
+}
+
+.index_page_div h2:hover{
+	background-color:  rgb(254,127,45,0.9);
 }
