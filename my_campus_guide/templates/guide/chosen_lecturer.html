@@ -16,16 +16,19 @@
                 {% if lecturer %}
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
                 <div class="lecturer_description_block" id="lecturer_description_right">
-                <p>{% if lecturer.picture %}
-                        <img id="lecturerimage" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible">
-                        <input type="button" onclick="showImage()" value="Show Image">
-                        <input type="button" onclick="hideImage()" value="Hide Image">
+                {% if lecturer.picture %}
+                        <p><img id="lecturer_image" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible"></p>
+                        <p class="lecturer_image_button"><input type="button" onclick="showImage()" value="Show Image"></p>
+                        <p class="lecturer_image_button"><input type="button" onclick="hideImage()" value="Hide Image"></p>
                     {% else %}
                         No picture uploaded
-                </p>
-                <p>Currently Teaching: {{ lecturer.teaching }}</p>
+                
+               
                 
                 {% endif %}
+                <br>
+                <br>
+                <p>Currently Teaching: {{ lecturer.teaching }}</p>
 
 
                 <p>Average Rating: {{ lecturer.avg_rating }}/5
@@ -51,6 +54,11 @@
 
                 <div class="comment_section"> 
                 <h2>Comments</h2>
+                    {% if not user.is_authenticated %}
+                    <h6>To add a comment please 
+                    <a href="{% url 'guide:login' %}">Log In</a>
+                    </h6>
+                    {% endif %}
                     {% if user.is_authenticated %}
                         <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}">
                             {% csrf_token %}
