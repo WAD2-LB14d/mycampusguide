@@ -131,6 +131,7 @@ def show_lecturer(request, lecturer_name_slug):
   try:
     lecturer = Lecturer.objects.get(slug=lecturer_name_slug)
     lecturer.calculateAverageRating()
+    lecturer.viewed()
     context_dict['lecturer'] = lecturer
     context_dict['comments'] = lecturer.lecturercomment_set.all()
     
@@ -182,6 +183,7 @@ def show_course(request, course_name_slug):
   try:
     course = Course.objects.get(slug=course_name_slug)
     course.calculateAverageRating()
+    course.viewed()
     context_dict['course'] = course
     context_dict['comments'] = course.coursecomment_set.all()
 

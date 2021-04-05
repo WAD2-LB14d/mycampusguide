@@ -52,6 +52,11 @@ class Course(models.Model):
       else:
         self.avg_rating = 2.5
 
+    def viewed(self):
+      count = self.views
+      self.views = count + 1
+      self.save()
+
     class Meta:
         verbose_name_plural = "Courses"
 
@@ -87,6 +92,11 @@ class Lecturer(models.Model):
         self.avg_rating = round(sum/count, 1)
       else:
         self.avg_rating = 2.5
+
+    def viewed(self):
+      count = self.views
+      self.views = count + 1
+      self.save()
 
     class Meta:
         verbose_name_plural = "Lecturers"
