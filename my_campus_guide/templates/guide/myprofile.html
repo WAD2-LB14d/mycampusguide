@@ -52,7 +52,9 @@ h4.pad {
           
           
     {% if profile.picture %}
-      <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image">
+      <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image"> </br >
+      <label for="files" class="standard_button">Change Image</label>
+      <input type="file" id="files" name="picture" value="Change image" style="display:none"/>
     {% else %}
       No picture uploaded
       <input type="file" name="picture" value="Upload an image" />
