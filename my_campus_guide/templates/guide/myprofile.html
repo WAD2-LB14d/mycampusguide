@@ -34,34 +34,39 @@ h4.pad {
     <div class="container">
       <h1 class="pageTitle">My Profile</h1>
     </div>
-	<form id="update_user_form"method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
-	{% csrf_token %}
-		<div class="row">
-  			<div class="column">
-  				<h4 class="pad">
-    			Username: {{ user.username }} </br >
-    			Email: {{ user.email }} </br >
-    			Major: {{ profile.major }} </br >
-    			Degree Program: {{ profile.degreeprogram }} </br > 
-    		</h4>
-  			</div>
-  			<div class="column">
-  				<h4>
-  				Started Studying: {{ profile.startedstudying }} </br >
-  				Expected Graduation: {{ profile.expectedgraduation }} </br >
-  				Picture: 
-		{% if profile.picture %}
-			{{ profile.picture }} 
-		{% else %}
-			No profile picture uploaded
-		{% endif %}
-			</h4>
-  			</div>
-		</div>
-	</br >
+  <form id="myprofile" method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
+  {% csrf_token %}
+    <div class="row">
+        <div class="column">
+          <h4 class="pad">
+          Username: <input type="text" name="username" value={{user.username}} size="20" /> </br >
+          Email: <input type="text" name="email" value={{user.email}} size="20" /> </br >
+          Major: <input type="text" name="major" value= {{profile.major}} size="20" /> </br >
+          Degree Program: <input type="text" name="degreeprogram" value={{profile.degreeprogram}} size="20" /> </br >
+        </h4>
+        </div>
+        <div class="column">
+          <h4>
+          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying}} size="20" /> </br >
+          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation}} size="20" /> </br >
+           Picture:
+    {% if profile.picture %}
+      {{ profile.picture }} 
+    {% else %}
+      No profile picture uploaded
+    {% endif %}
+      </h4>
+        </div>
+    </div>
+  </br >
+  <input type="submit" name="submitcomment" value="Save Changes"/>  
     </form>
     
   </div>
   <a class="nav-link" id="delete_account_button" href="{% url 'guide:delete_account' %}">Delete</a></li>  
 
 {% endblock %}
+
+
+
+

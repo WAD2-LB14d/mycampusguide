@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from guide.models import Lecturer, Course, UserProfile, LecturerRating, Category, CourseRating
-from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm, UserDeleteForm
+from guide.forms import LecturerForm, CourseForm, UserForm, UserProfileForm, LecturerRatingForm, CourseRatingForm, LecturerCommentForm, CourseCommentForm, UserDeleteForm, ChangeProfileForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -39,6 +39,23 @@ def index(request):
 def myprofile(request):
     user = User.objects.get(username=request.user.username)
     profile = UserProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+      form = ChangeProfileForm(request.POST)
+
+      if form.is_valid():
+        cform = form.save(commit=False)
+        user.username = cform.username
+        user.email = cform.email
+        user.major = cform.major
+        user.degreeprogram = cform.degreeprogram
+        user.startedstudying = cform.startedstudying
+        user.expectedgraduation = cform.expectedgraduation
+        user.save()
+        
+        #Refreshes the page, removing information stored
+        return HttpResponseRedirect(request.path_info)
+
     return render(request, 'guide/myprofile.html', context={'user': user, 'profile': profile})
 
 def courses(request):
