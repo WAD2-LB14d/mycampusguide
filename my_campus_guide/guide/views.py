@@ -323,14 +323,11 @@ def edit_course(request, course_name_slug):
     context_dict['course'] = None
 
   if request.method == 'POST':
-    print("post")
     form = EditCourse(request.POST)
-
+    print(form.errors)
     if form.is_valid():
-      print("form is valid")
       cform = form.save(commit=False)
       course.name = cform.name
-      print("saving")
       course.save()
         
       #Refreshes the page
@@ -347,14 +344,11 @@ def edit_lecturer(request, lecturer_name_slug):
     context_dict['lecturer'] = None
 
   if request.method == 'POST':
-    print("post")
     form = EditLecturer(request.POST)
-
+    print(form.errors)
     if form.is_valid():
-      print("form is valid")
       cform = form.save(commit=False)
       lecturer.name = cform.name
-      print("saving")
       course.save()
         
       #Refreshes the page
