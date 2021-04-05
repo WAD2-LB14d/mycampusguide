@@ -49,8 +49,10 @@ def myprofile(request):
         user.email = cform.email
         profile.major = cform.major
         profile.degreeprogram = cform.degreeprogram
-        user.startedstudying = cform.startedstudying
-        user.expectedgraduation = cform.expectedgraduation
+        profile.startedstudying = cform.startedstudying
+        profile.expectedgraduation = cform.expectedgraduation
+        if 'picture' in request.FILES:
+          profile.picture = request.FILES['picture']
         user.save()
         profile.save()
         

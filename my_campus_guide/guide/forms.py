@@ -116,9 +116,12 @@ class ChangeProfileForm(forms.ModelForm):
 	email = forms.CharField(max_length=254)
 	major = forms.CharField(max_length=30)
 	degreeprogram = forms.CharField(max_length=14)
+	startedstudying = forms.DateField()
+	expectedgraduation = forms.DateField()
+	picture = forms.ImageField(required=False)
 	class Meta:
 		model = UserProfile
-		fields = ('username', 'email', 'major', 'degreeprogram')
+		fields = ('username', 'email', 'major', 'degreeprogram', 'startedstudying', 'expectedgraduation', 'picture')
 
 class EditLecturer(forms.ModelForm):
 	name = forms.CharField(max_length=50) 

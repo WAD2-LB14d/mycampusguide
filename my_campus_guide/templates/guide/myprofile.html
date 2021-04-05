@@ -34,7 +34,7 @@ h4.pad {
     <div class="container">
       <h1 class="pageTitle">My Profile</h1>
     </div>
-  <form id="myprofile" method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
+  <form role="form" id="myprofile" method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
   {% csrf_token %}
     <div class="row">
         <div class="column">
@@ -43,8 +43,8 @@ h4.pad {
           Email: <input type="text" name="email" value={{user.email}} size="20" /> </br > 
           Major: <input type="text" name="major" value= {{profile.major}} size="20" /> </br >
           Degree Program: <input type="text" name="degreeprogram" value={{profile.degreeprogram}} size="20" /> </br >
-          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying.day}}/{{profile.startedstudying.month}}/{{profile.startedstudying.year}} size="20" /> </br >
-          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation.day}}/{{profile.expectedgraduation.month}}/{{profile.expectedgraduation.year}} size="20" /> </br >
+          Started Studying: <input type="text" name="startedstudying" value={{profile.startedstudying.month}}/{{profile.startedstudying.day}}/{{profile.startedstudying.year}} size="20" /> </br >
+          Expected Graduation: <input type="text" name="expectedgraduation" value={{profile.expectedgraduation.month}}/{{profile.expectedgraduation.day}}/{{profile.expectedgraduation.year}} size="20" /> </br >
         </h4>
         </div>
         <div class="column">
@@ -55,6 +55,7 @@ h4.pad {
       <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image">
     {% else %}
       No picture uploaded
+      <input type="file" name="picture" value="Upload an image" />
     {% endif %}
       </h4>
         </div>
