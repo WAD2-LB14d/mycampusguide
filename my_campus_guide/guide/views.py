@@ -311,3 +311,30 @@ def deleteuser(request):
     }
 
     return render(request, 'guide/delete_account.html', context)
+
+def edit_course(request, course_name_slug):
+  context_dict = {}
+  try:
+    course = Course.objects.get(slug=course_name_slug)
+    context_dict['course'] = course
+  except Course.DoesNotExist:
+    context_dict['course'] = None
+  return render(request, 'guide/edit_course.html', context=context_dict)
+
+def edit_lecturer(request, lecturer_name_slug):
+  context_dict = {}
+  try:
+    lecturer = Lecturer.objects.get(slug=lecturer_name_slug)
+    context_dict['lecturer'] = lecturer
+  except Lecturer.DoesNotExist:
+    context_dict['lecturer'] = None
+  return render(request, 'guide/edit_lecturer.html', context=context_dict)
+
+
+
+
+
+
+
+
+
