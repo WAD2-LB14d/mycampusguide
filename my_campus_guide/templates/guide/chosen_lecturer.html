@@ -51,6 +51,11 @@
 
                 <div class="comment_section"> 
                 <h2>Comments</h2>
+                    {% if not user.is_authenticated %}
+                    <h6>To add a comment please 
+                    <a href="{% url 'guide:login' %}">Log In</a>
+                    </h6>
+                    {% endif %}
                     {% if user.is_authenticated %}
                         <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}">
                             {% csrf_token %}
