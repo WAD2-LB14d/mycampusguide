@@ -86,6 +86,7 @@ def lecturers(request):
 @login_required
 def add_course(request):
   category = Category.objects.get(name="Course Pages")
+  user = User.objects.get(username=request.user.username)
 
   form = CourseForm()
   if request.method == 'POST':
@@ -95,6 +96,7 @@ def add_course(request):
         page = form.save(commit=False)
         page.category = category
         page.views = 0
+        page.page_owner = user
         page.save()
 
         return redirect(reverse('guide:courses'))
@@ -105,6 +107,7 @@ def add_course(request):
 @login_required
 def add_lecturer(request):
   category = Category.objects.get(name="Lecturer Pages")
+  user = User.objects.get(username=request.user.username)
 
   form = LecturerForm()
   if request.method == 'POST':
@@ -114,6 +117,7 @@ def add_lecturer(request):
         page = form.save(commit=False)
         page.category = category
         page.views = 0
+        page.page_owner = user
         page.save()
 
         return redirect(reverse('guide:lecturers'))

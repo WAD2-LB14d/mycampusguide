@@ -33,6 +33,7 @@ class Course(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
     avg_rating = models.FloatField(null=True)
+    page_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default = None)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -68,6 +69,7 @@ class Lecturer(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
     avg_rating = models.FloatField(null=True)
+    page_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

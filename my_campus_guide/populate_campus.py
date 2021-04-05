@@ -10,162 +10,6 @@ from django.contrib.auth.models import User
 from django.core.files import File
 
 def populate():
-    course_pages = [
-        {
-            'name': 'Web App Development 2',
-            'school': 'Computing Science',
-            'credits': 10, 
-            'year': 2021, 
-            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
-            'currentlecturer': 'Alistair Morrison',
-            'description': 'The aim of this course is to provide students with a comprehensive overview of web application development. It will provide students with the skills to design and develop distributed web applications in a disciplined manner, using a range of tools and technologies. It will also strengthen their understanding of the context and rationale of distributed systems.',
-            'views' : 10
-        },
-        {
-            'name': 'Algorithms and Data Structures 2',
-            'school': 'Computing Science',
-            'credits': 10, 
-            'year': 2021, 
-            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
-            'currentlecturer': 'Michele Sevegnani',
-            'description': 'To familiarise students with fundamental data types and data structures used in programming, with the design and analysis of algorithms for the manipulation of such structures, and to provide practice in the implementation and use of these structures and algorithms in a Java context.',
-            'views' : 15
-        },
-        {
-            'name': 'Java Programming 2',
-            'school': 'Computing Science',
-            'credits': 10, 
-            'year': 2021, 
-            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
-            'currentlecturer': 'Mary Ellen Foster',
-            'description': 'This course extends students experience in programming using a strongly typed language (Java) and strengthens their problem solving skills.',
-            'views' : 12
-        },
-        {
-            'name': 'Networks and Operating Systems Essentials 2',
-            'school': 'Computing Science',
-            'credits': 10, 
-            'year': 2021, 
-            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
-            'currentlecturer': 'Angelos Marnerides',
-            'description': 'The course will introduce students to essential topics in computer networks and operating systems.',
-            'views' : 5
-        },
-        {
-            'name': 'Algorithmic Foundations',
-            'school': 'Computing Science',
-            'credits': 10, 
-            'year': 2021, 
-            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
-            'currentlecturer': 'Gethin Norman',
-            'description': 'To introduce the foundational mathematics needed for Computing Science; To make students proficient in their use; To show how they can be applied to advantage in understanding computational phenomena.',
-            'views' : 25
-        },
-        {
-            'name': 'Science Skills',
-            'school': 'Science and Engineering',
-            'credits': 20, 
-            'year': 2021, 
-            'requirements': 'None.',
-            'currentlecturer': 'Eric Yao',
-            'description': 'This level 1 course is intended for science students. It is cross-curricular in nature, using topics within Astronomy, Chemistry, Geography & Earth Sciences, and Physics to develop students scientific problem solving skills and graduate attributes.',
-            'views' : 1
-        },
-        {
-            'name': 'Electronic Engineering 1X',
-            'school': 'Science and Engineering',
-            'credits': 20, 
-            'year': 2021, 
-            'requirements': 'None.',
-            'currentlecturer': 'Martin Lavery',
-            'description': 'You will study methods for calculating the behaviour of analogue and digital electronic circuits.',
-            'views' : 2
-        }
-    ]
-
-    lecturer_pages = [
-        {
-            'name': 'Alistair Morrison',
-            'teaching': 'Web App Development 2',
-            'description': 'Teaches Web App Development and Interactive Systems at Glasgow University.', 
-            'picture': 'AlistairMorrison.png',
-            'views': 5
-        },
-        {
-            'name': 'Michele Sevegnani',
-            'teaching': 'Algorithms and Data Structures 2',
-            'description': 'Teaches Algorithms and Data Structures 2 and Programming Languages at Glasgow University.', 
-            'picture': 'MicheleSevegnani.jpg',
-            'views': 10
-        },
-        {
-            'name': 'Mary Ellen Foster',
-            'teaching': 'Java Programming 2',
-            'description': 'Teaches Java Programming 2 at Glasgow University.', 
-            'picture': 'MaryEllenFoster.jpg',
-            'views': 15
-        },
-        {
-            'name': 'Angelos Marnerides',
-            'teaching': 'Networks and Operating Systems Essentials 2',
-            'description': 'Teaches Networks and Operating Systems Essentials at Glasgow University.', 
-            'picture': 'AngelosMarnerides.jpg',
-            'views': 4
-        },
-        {
-            'name': 'Gethin Norman',
-            'teaching': 'Algorithmic Foundations',
-            'description': 'Teaches Algorithmic Foundations at Glasgow University.', 
-            'picture': 'GethinNorman.jpg',
-            'views': 10
-        },
-        {
-            'name': 'Eric Yao',
-            'teaching': 'Science Skills',
-            'description': 'Teaches Science Skills at Glasgow University.', 
-            'picture': 'EricYao.jpg',
-            'views': 5
-        },
-        {
-            'name': 'Martin Lavery',
-            'teaching': 'Electronic Engineering 1X',
-            'description': 'Teaches Electronic Engineering 1X at Glasgow University.', 
-            'picture': 'MartinLavery.jpg',
-            'views': 2
-        },
-        {
-            'name': 'John Williamson',
-            'teaching': 'CS1P',
-            'description': 'Teaches CS1P at Glasgow University.', 
-            'picture': 'JohnWilliamson.png',
-            'views': 30
-        },
-    ]
-
-    coursecats = {
-        "Course Pages": {
-            "views": 20,
-            "pages": course_pages
-        }
-    }
-
-    lecturercats = {
-        "Lecturer Pages": {
-            "views": 25,
-            "pages": lecturer_pages
-        }
-    }
-
-    for cat, cat_data in coursecats.items():
-        c = add_cat(cat, cat_data["views"])
-        for p in cat_data["pages"]:
-            add_coursepage(c, p["name"], p["school"], p["credits"], p["year"], p["requirements"], p["currentlecturer"], p["description"], p["views"])
-
-    for cat, cat_data in lecturercats.items():
-        c = add_cat(cat, cat_data["views"])
-        for p in cat_data["pages"]:
-            add_lecturerpage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"])
-
 
     user_profiles = [
         {
@@ -212,6 +56,179 @@ def populate():
         c = add_usercat(cat)
         for p in cat_data["pages"]:
             add_userprofile(c, p["username"])
+
+
+
+    course_pages = [
+        {
+            'name': 'Web App Development 2',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Alistair Morrison',
+            'description': 'The aim of this course is to provide students with a comprehensive overview of web application development. It will provide students with the skills to design and develop distributed web applications in a disciplined manner, using a range of tools and technologies. It will also strengthen their understanding of the context and rationale of distributed systems.',
+            'views' : 10,
+            'pageOwner' : User.objects.get(username='foobar'),
+        },
+        {
+            'name': 'Algorithms and Data Structures 2',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Michele Sevegnani',
+            'description': 'To familiarise students with fundamental data types and data structures used in programming, with the design and analysis of algorithms for the manipulation of such structures, and to provide practice in the implementation and use of these structures and algorithms in a Java context.',
+            'views' : 15,
+            'pageOwner' : User.objects.get(username='foobar'),
+        },
+        {
+            'name': 'Java Programming 2',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Mary Ellen Foster',
+            'description': 'This course extends students experience in programming using a strongly typed language (Java) and strengthens their problem solving skills.',
+            'views' : 12,
+            'pageOwner' : User.objects.get(username='johndoe33'),
+        },
+        {
+            'name': 'Networks and Operating Systems Essentials 2',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Angelos Marnerides',
+            'description': 'The course will introduce students to essential topics in computer networks and operating systems.',
+            'views' : 5,
+            'pageOwner' : User.objects.get(username='johndoe33'),
+        },
+        {
+            'name': 'Algorithmic Foundations',
+            'school': 'Computing Science',
+            'credits': 10, 
+            'year': 2021, 
+            'requirements': 'GPA of B3 or better in level 1 courses at first sitting.',
+            'currentlecturer': 'Gethin Norman',
+            'description': 'To introduce the foundational mathematics needed for Computing Science; To make students proficient in their use; To show how they can be applied to advantage in understanding computational phenomena.',
+            'views' : 25,
+            'pageOwner' : User.objects.get(username='johndoe33'),
+        },
+        {
+            'name': 'Science Skills',
+            'school': 'Science and Engineering',
+            'credits': 20, 
+            'year': 2021, 
+            'requirements': 'None.',
+            'currentlecturer': 'Eric Yao',
+            'description': 'This level 1 course is intended for science students. It is cross-curricular in nature, using topics within Astronomy, Chemistry, Geography & Earth Sciences, and Physics to develop students scientific problem solving skills and graduate attributes.',
+            'views' : 1,
+            'pageOwner' : User.objects.get(username='abc'),
+        },
+        {
+            'name': 'Electronic Engineering 1X',
+            'school': 'Science and Engineering',
+            'credits': 20, 
+            'year': 2021, 
+            'requirements': 'None.',
+            'currentlecturer': 'Martin Lavery',
+            'description': 'You will study methods for calculating the behaviour of analogue and digital electronic circuits.',
+            'views' : 2,
+            'pageOwner' : User.objects.get(username='abc'),
+        }
+    ]
+
+    lecturer_pages = [
+        {
+            'name': 'Alistair Morrison',
+            'teaching': 'Web App Development 2',
+            'description': 'Teaches Web App Development and Interactive Systems at Glasgow University.', 
+            'picture': 'AlistairMorrison.png',
+            'views': 5,
+            'pageOwner' : User.objects.get(username='foobar'),
+        },
+        {
+            'name': 'Michele Sevegnani',
+            'teaching': 'Algorithms and Data Structures 2',
+            'description': 'Teaches Algorithms and Data Structures 2 and Programming Languages at Glasgow University.', 
+            'picture': 'MicheleSevegnani.jpg',
+            'views': 10,
+            'pageOwner' : User.objects.get(username='johndoe33'),
+        },
+        {
+            'name': 'Mary Ellen Foster',
+            'teaching': 'Java Programming 2',
+            'description': 'Teaches Java Programming 2 at Glasgow University.', 
+            'picture': 'MaryEllenFoster.jpg',
+            'views': 15,
+            'pageOwner' : User.objects.get(username='johndoe33'),
+        },
+        {
+            'name': 'Angelos Marnerides',
+            'teaching': 'Networks and Operating Systems Essentials 2',
+            'description': 'Teaches Networks and Operating Systems Essentials at Glasgow University.', 
+            'picture': 'AngelosMarnerides.jpg',
+            'views': 4,
+            'pageOwner' : User.objects.get(username='JohnSmith'),
+        },
+        {
+            'name': 'Gethin Norman',
+            'teaching': 'Algorithmic Foundations',
+            'description': 'Teaches Algorithmic Foundations at Glasgow University.', 
+            'picture': 'GethinNorman.jpg',
+            'views': 10,
+            'pageOwner' : User.objects.get(username='JohnSmith'),
+        },
+        {
+            'name': 'Eric Yao',
+            'teaching': 'Science Skills',
+            'description': 'Teaches Science Skills at Glasgow University.', 
+            'picture': 'EricYao.jpg',
+            'views': 5,
+            'pageOwner' : User.objects.get(username='JohnSmith'),
+        },
+        {
+            'name': 'Martin Lavery',
+            'teaching': 'Electronic Engineering 1X',
+            'description': 'Teaches Electronic Engineering 1X at Glasgow University.', 
+            'picture': 'MartinLavery.jpg',
+            'views': 2,
+            'pageOwner' : User.objects.get(username='JohnSmith'),
+        },
+        {
+            'name': 'John Williamson',
+            'teaching': 'CS1P',
+            'description': 'Teaches CS1P at Glasgow University.', 
+            'picture': 'JohnWilliamson.png',
+            'views': 30,
+            'pageOwner' : User.objects.get(username='foobar'),
+        },
+    ]
+
+    coursecats = {
+        "Course Pages": {
+            "views": 20,
+            "pages": course_pages
+        }
+    }
+
+    lecturercats = {
+        "Lecturer Pages": {
+            "views": 25,
+            "pages": lecturer_pages
+        }
+    }
+
+    for cat, cat_data in coursecats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_coursepage(c, p["name"], p["school"], p["credits"], p["year"], p["requirements"], p["currentlecturer"], p["description"], p["views"], p["pageOwner"])
+
+    for cat, cat_data in lecturercats.items():
+        c = add_cat(cat, cat_data["views"])
+        for p in cat_data["pages"]:
+            add_lecturerpage(c, p["name"], p["teaching"], p["description"], p["picture"], p["views"], p["pageOwner"])
 
 
     course_comments = [
@@ -451,7 +468,7 @@ def populate():
             print(f'- {c}: {p}')
 
 
-def add_coursepage(cat, name, school, credits, year, requirements, currentlecturer, description, views):
+def add_coursepage(cat, name, school, credits, year, requirements, currentlecturer, description, views, pageOwner):
     p = Course.objects.get_or_create(category=cat, name=name)[0]
     p.school = school
     p.credits = credits
@@ -460,10 +477,11 @@ def add_coursepage(cat, name, school, credits, year, requirements, currentlectur
     p.currentlecturer = currentlecturer
     p.description = description
     p.views = views
+    p.pageOwner = pageOwner
     p.save()
     return p
 
-def add_lecturerpage(cat, name, teaching, description, picture, views):
+def add_lecturerpage(cat, name, teaching, description, picture, views, pageOwner):
     p = Lecturer.objects.get_or_create(category=cat, name=name)[0]
     p.teaching = teaching
     p.description = description
@@ -472,6 +490,7 @@ def add_lecturerpage(cat, name, teaching, description, picture, views):
     else:
         p.picture = picture
     p.views = views
+    p.pageOwner = pageOwner
     p.save()
     return p
 
