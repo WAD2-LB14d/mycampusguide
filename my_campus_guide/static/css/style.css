@@ -400,7 +400,7 @@ footer {
 	position: absolute;
 	z-index: 99;
 	width: 45%;
-
+	transition: 0.3s;
 	padding: 20px;
 	color: #FBF5F3;
 	background-color: rgb(254,127,45,0.6);
