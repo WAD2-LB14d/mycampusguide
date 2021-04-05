@@ -133,7 +133,6 @@ class EditLecturer(forms.ModelForm):
 		fields = ('name', 'teaching', 'description')
 
 class EditCourse(forms.ModelForm):
-	name = forms.CharField( max_length=128,)
 	school = forms.CharField(max_length=30)
 	credits = forms.IntegerField()
 	requirements = forms.CharField(max_length=100)
@@ -143,6 +142,6 @@ class EditCourse(forms.ModelForm):
 
 	class Meta:
 		model = Course
-		fields = ('name', 'school', 'credits', 'requirements', 'description', 'currentlecturer')
+		fields = ('school', 'credits', 'requirements', 'description', 'currentlecturer')
 
 

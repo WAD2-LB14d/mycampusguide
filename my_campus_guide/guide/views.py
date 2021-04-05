@@ -354,7 +354,6 @@ def edit_course(request, course_name_slug):
     print(form.errors)
     if form.is_valid():
       cform = form.save(commit=False)
-      course.name = cform.name
       course.school = cform.school
       course.credits = cform.credits
       course.requirements = cform.requirements
