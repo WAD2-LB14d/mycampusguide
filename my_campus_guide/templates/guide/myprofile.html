@@ -39,7 +39,7 @@ h4.pad {
     <div class="row">
         <div class="column">
           <h4 class="pad">
-          Username: <input type="text" name="username" value={{user.username}} size="20" /> </br > 
+          Username: {{user.username}} </br > 
           Email: <input type="text" name="email" value={{user.email}} size="20" /> </br > 
           Major: <input type="text" name="major" value= {{profile.major}} size="20" /> </br >
           Degree Program: <input type="text" name="degreeprogram" value={{profile.degreeprogram}} size="20" /> </br >
@@ -57,7 +57,8 @@ h4.pad {
       <input type="file" id="files" name="picture" value="Change image" style="display:none"/>
     {% else %}
       No picture uploaded
-      <input type="file" name="picture" value="Upload an image" />
+      <label for="uploadFiles" class="standard_button">Upload Image</label>
+      <input type="file" id="uploadFiles" name="picture" value="Upload image" style="display:none"/>
     {% endif %}
       </h4>
         </div>

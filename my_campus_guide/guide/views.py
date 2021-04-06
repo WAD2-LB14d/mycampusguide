@@ -45,7 +45,6 @@ def myprofile(request):
 
       if form.is_valid():
         cform = form.save(commit=False)
-        user.username = cform.username
         user.email = cform.email
         profile.major = cform.major
         profile.degreeprogram = cform.degreeprogram
@@ -267,23 +266,26 @@ def register(request):
 
     if user_form.is_valid() and profile_form.is_valid():
       user = user_form.save()
-      user.set_password(user.password)
-      user.save()
+      if user.email.endswith("@schools.gla.ac.uk"):
+        user.set_password(user.password)
+        user.save()
+        #inactive_user = send_verification_email(request, user_form)
 
-      #inactive_user = send_verification_email(request, user_form)
+        profile = profile_form.save(commit=False)
+        profile.user = user
 
-      profile = profile_form.save(commit=False)
-      profile.user = user
+        if 'picture' in request.FILES:
+          profile.picture = request.FILES['picture']
 
-      if 'picture' in request.FILES:
-        profile.picture = request.FILES['picture']
+        profile.save()
 
-      profile.save()
+        registered = True
 
-      registered = True
+        auth_login(request, user)
+        return redirect(reverse('guide:index'))
+      else:
 
-      auth_login(request, user)
-      return redirect(reverse('guide:index'))
+        return redirect(reverse('guide:register'))
       
     else:
       print(user_form.errors, profile_form.errors)
@@ -379,7 +381,7 @@ def edit_lecturer(request, lecturer_name_slug):
     print(form.errors)
     if form.is_valid():
       cform = form.save(commit=False)
-      lecturer.name = cform.name
+      lecturer.name = lecturer.name
       lecturer.teaching = cform.teaching
       lecturer.description = cform.description
       lecturer.save()

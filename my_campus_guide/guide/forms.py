@@ -61,7 +61,7 @@ class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length=30,
 						   help_text="Please enter your username.") 
 	email = forms.EmailField(max_length=254,
-						   help_text="Please enter your email.") 
+						   help_text="Please enter you Glasgow University email.") 
 	password = forms.CharField(widget=forms.PasswordInput(),
 						   help_text ="Please enter your password.")
 	major = forms.CharField(max_length=30,
@@ -112,7 +112,6 @@ class CourseCommentForm(forms.ModelForm):
 		fields = ('comment',)
 
 class ChangeProfileForm(forms.ModelForm):
-	username = forms.CharField(max_length=30)
 	email = forms.CharField(max_length=254)
 	major = forms.CharField(max_length=30)
 	degreeprogram = forms.CharField(max_length=14)
@@ -121,16 +120,15 @@ class ChangeProfileForm(forms.ModelForm):
 	picture = forms.ImageField(required=False)
 	class Meta:
 		model = UserProfile
-		fields = ('username', 'email', 'major', 'degreeprogram', 'startedstudying', 'expectedgraduation', 'picture')
+		fields = ('email', 'major', 'degreeprogram', 'startedstudying', 'expectedgraduation', 'picture')
 
 class EditLecturer(forms.ModelForm):
-	name = forms.CharField(max_length=50) 
 	teaching = forms.CharField(max_length=100)
 	description = forms.CharField(max_length=280)
 
 	class Meta:
 		model = Lecturer
-		fields = ('name', 'teaching', 'description')
+		fields = ('teaching', 'description')
 
 class EditCourse(forms.ModelForm):
 	school = forms.CharField(max_length=30)
