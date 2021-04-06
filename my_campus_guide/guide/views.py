@@ -266,7 +266,8 @@ def register(request):
 
     if user_form.is_valid() and profile_form.is_valid():
       user = user_form.save()
-      if user.email.endswith("@schools.gla.ac.uk"):
+      if user.email.endswith("@student.gla.ac.uk"):
+        print("tes")
         user.set_password(user.password)
         user.save()
         #inactive_user = send_verification_email(request, user_form)
