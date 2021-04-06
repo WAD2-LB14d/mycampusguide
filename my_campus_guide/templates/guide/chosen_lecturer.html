@@ -51,10 +51,13 @@
                 </div>
                 <div class="lecturer_description_block">
                 <p>{{ lecturer.description }}</p>
-                </div>
 
+                {% if user.is_authenticated %}
+                </div>
                 <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
                 </div>
+                {% endif %}
+
 
                 <div class="comment_section"> 
                 <h2>Comments</h2>

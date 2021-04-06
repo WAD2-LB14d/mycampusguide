@@ -343,6 +343,7 @@ def deleteuser(request):
 
     return render(request, 'guide/delete_account.html', context)
 
+@login_required
 def edit_course(request, course_name_slug):
   context_dict = {}
   try:
@@ -368,6 +369,7 @@ def edit_course(request, course_name_slug):
 
   return render(request, 'guide/edit_course.html', context=context_dict)
 
+@login_required
 def edit_lecturer(request, lecturer_name_slug):
   context_dict = {}
   try:
