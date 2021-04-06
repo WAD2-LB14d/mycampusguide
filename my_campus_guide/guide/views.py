@@ -378,7 +378,7 @@ def edit_lecturer(request, lecturer_name_slug):
     print(form.errors)
     if form.is_valid():
       cform = form.save(commit=False)
-      lecturer.name = cform.name
+      lecturer.name = lecturer.name
       lecturer.teaching = cform.teaching
       lecturer.description = cform.description
       lecturer.save()

@@ -123,13 +123,12 @@ class ChangeProfileForm(forms.ModelForm):
 		fields = ('email', 'major', 'degreeprogram', 'startedstudying', 'expectedgraduation', 'picture')
 
 class EditLecturer(forms.ModelForm):
-	name = forms.CharField(max_length=50) 
 	teaching = forms.CharField(max_length=100)
 	description = forms.CharField(max_length=280)
 
 	class Meta:
 		model = Lecturer
-		fields = ('name', 'teaching', 'description')
+		fields = ('teaching', 'description')
 
 class EditCourse(forms.ModelForm):
 	school = forms.CharField(max_length=30)
