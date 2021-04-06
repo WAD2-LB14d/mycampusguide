@@ -6,6 +6,7 @@ import datetime
 
 
 class Category(models.Model):
+    #Category for storing the lists of courses and lecturers
     views = models.IntegerField(default=0)
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
@@ -22,6 +23,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
+    #Model used to store the courses alongside its data
     name = models.CharField(max_length = 128, unique = True)
     school = models.CharField(max_length = 50)
     year = models.IntegerField(default=datetime.datetime.now().year)
@@ -40,9 +42,11 @@ class Course(models.Model):
         self.slug = slugify(self.name)
         super(Course, self).save(*args, **kwargs)
 
+    #Updates the number of comments for the course page
     def storeNumberOfComments(self):
         self.no_comments = self.coursecomment_set.count()
 
+    #Calculates the average rating for the course page
     def calculateAverageRating(self):
       sum = 0
       count = self.courserating_set.count()
@@ -74,6 +78,7 @@ class Course(models.Model):
 
 
 class Lecturer(models.Model):
+    #Model used to store the lecturers alongside its data
     name = models.CharField(max_length = 50, unique = True)
     teaching = models.CharField(max_length = 100)
     description = models.CharField(max_length = 1000)
@@ -89,9 +94,11 @@ class Lecturer(models.Model):
         self.slug = slugify(self.name)
         super(Lecturer, self).save(*args, **kwargs)
 
+    #Updates the number of comments for the lecturer page
     def storeNumberOfComments(self):
         self.no_comments = self.lecturercomment_set.count()
     
+    #Calculates the average rating for the lecturer page
     def calculateAverageRating(self):
       sum = 0
       count = self.lecturerrating_set.count()
@@ -119,7 +126,9 @@ class Lecturer(models.Model):
    
 
 class UserProfile(models.Model):
+    #Links UserProfile to a User model instance
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    #The other attributes to include for the user
     email = models.CharField(max_length = 254)
     username = models.CharField(max_length = 30)
     major = models.CharField(max_length = 30)
@@ -136,7 +145,9 @@ class UserProfile(models.Model):
 class CourseComment(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
     comment = models.CharField(max_length=200)
+    #Foriegn key to store the user who made the comment
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #Foriegn key to store the page the comment is on
     page = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
@@ -152,7 +163,9 @@ class CourseComment(models.Model):
 class LecturerComment(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
     comment = models.CharField(max_length=200)
+    #Foriegn key to store the user who made the comment
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #Foriegn key to store the page the comment is on
     page = models.ForeignKey(Lecturer, on_delete=models.CASCADE) 
 
     class Meta:
@@ -168,7 +181,9 @@ class LecturerComment(models.Model):
 class CourseRating(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
     rating = models.IntegerField(default=0)
+    #Foriegn key to store the user who made the comment
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #Foriegn key to store the page the comment is on
     page = models.ForeignKey(Course, on_delete=models.CASCADE)   
 
     class Meta:
@@ -181,7 +196,9 @@ class CourseRating(models.Model):
 class LecturerRating(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
     rating = models.IntegerField(default=0)
+    #Foriegn key to store the user who made the comment
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #Foriegn key to store the page the comment is on
     page = models.ForeignKey(Lecturer, on_delete=models.CASCADE)
 
     class Meta:
