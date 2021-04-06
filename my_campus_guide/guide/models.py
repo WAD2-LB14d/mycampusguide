@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.template.defaultfilters import truncatechars
 import datetime
 
 
@@ -22,18 +23,18 @@ class Category(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length = 128, unique = True)
-    school = models.CharField(max_length = 30)
+    school = models.CharField(max_length = 50)
     year = models.IntegerField(default=datetime.datetime.now().year)
-    credits = models.IntegerField(default = 0)
-    requirements = models.CharField(max_length = 100)
-    currentlecturer = models.CharField(max_length = 30)
-    description = models.CharField(max_length = 200)
+    credits = models.IntegerField(default = 10)
+    requirements = models.CharField(max_length = 500)
+    currentlecturer = models.CharField(max_length = 50)
+    description = models.CharField(max_length = 500)
     views = models.IntegerField(default = 0)
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
     avg_rating = models.FloatField(null=True)
-    page_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    page_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -57,6 +58,14 @@ class Course(models.Model):
       self.views = count + 1
       self.save()
 
+    @property
+    def short_description(self):
+        return truncatechars(self.description, 20)
+
+    @property
+    def short_requirements(self):
+        return truncatechars(self.requirements, 20)
+
     class Meta:
         verbose_name_plural = "Courses"
 
@@ -67,14 +76,14 @@ class Course(models.Model):
 class Lecturer(models.Model):
     name = models.CharField(max_length = 50, unique = True)
     teaching = models.CharField(max_length = 100)
-    description = models.CharField(max_length = 280)
+    description = models.CharField(max_length = 1000)
     picture = models.ImageField(upload_to='lecturer_images', blank=True, default = None)
     views = models.IntegerField(default = 0)
     slug = models.SlugField(unique = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_comments = models.IntegerField(null=True)
     avg_rating = models.FloatField(null=True)
-    page_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    page_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -97,6 +106,10 @@ class Lecturer(models.Model):
       count = self.views
       self.views = count + 1
       self.save()
+
+    @property
+    def short_description(self):
+        return truncatechars(self.description, 40)
 
     class Meta:
         verbose_name_plural = "Lecturers"
@@ -132,6 +145,9 @@ class CourseComment(models.Model):
     def __str__(self):
         return self.comment
    
+    @property
+    def short_comment(self):
+        return truncatechars(self.comment, 40)
 
 class LecturerComment(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
@@ -145,6 +161,9 @@ class LecturerComment(models.Model):
     def __str__(self):
         return self.comment
 
+    @property
+    def short_comment(self):
+        return truncatechars(self.comment, 40)
 
 class CourseRating(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
