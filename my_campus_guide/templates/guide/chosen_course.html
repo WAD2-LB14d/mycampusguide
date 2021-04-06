@@ -45,10 +45,17 @@
                 <br>
 
                 {% if user.is_authenticated %}
-                <div>
-                <a class="standard_button" href="{% url 'guide:edit_course' course.slug %}">Edit</a>
-                </div>
-               {% endif %}
+									{% ifequal user course.user %}
+	                <div>
+  		              <a class="standard_button" href="{% url 'guide:edit_course' course.slug %}">Edit</a>
+      	          </div>
+	                {% endifequal %}								
+									{% if user.is_superuser %}
+        	        <div>
+          		      <a class="standard_button" href="{% url 'guide:edit_course' course.slug %}">Edit this page</a>
+              	  </div>
+    	            {% endif %}								
+                {% endif %}
            
                 </div>
                 <div class="comment_section"> 

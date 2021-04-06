@@ -282,7 +282,7 @@ def register(request):
         registered = True
 
         auth_login(request, user)
-        return redirect(reverse('guide:index'))
+        return redirect(reverse('guide:registered'))
       else:
 
         return redirect(reverse('guide:register'))
@@ -295,6 +295,9 @@ def register(request):
 
         
   return render(request, 'guide/register.html',context = {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})  
+
+def registered(request):
+  return render(request, 'guide/registered.html')
 
 def login(request):
     

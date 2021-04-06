@@ -53,11 +53,17 @@
                 <p>{{ lecturer.description }}</p>
 
                 {% if user.is_authenticated %}
-                </div>
-                <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
-                </div>
+									{% ifequal user course.user %}
+	                <div>
+  		              <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
+      	          </div>
+	                {% endifequal %}								
+									{% if user.is_superuser %}
+        	        <div>
+          		      <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit this page</a>
+              	  </div>
+    	            {% endif %}								
                 {% endif %}
-
 
                 <div class="comment_section"> 
                 <h2>Comments</h2>
