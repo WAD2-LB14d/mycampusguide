@@ -56,6 +56,8 @@ class LecturerForm(forms.ModelForm):
 		fields = ('name', 'teaching', 'description', 'picture')
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date' 
 
 class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length=30,
@@ -69,9 +71,9 @@ class UserForm(forms.ModelForm):
 	degreeprogram = forms.CharField(max_length=14,
 						   help_text="Please enter your degree program.")
 	startedstudying = forms.DateField(initial=datetime.date.today, 
-							help_text='Please enter when you started studying.')
+							help_text='Please enter when you started studying.', widget=DateInput)
 	expectedgraduation = forms.DateField(initial=datetime.date.today, 
-							help_text='Please enter your expected graduation date.')
+							help_text='Please enter your expected graduation date.', widget=DateInput)
 	picture = forms.ImageField(help_text="Please enter a picture", required=False)
 
 	
