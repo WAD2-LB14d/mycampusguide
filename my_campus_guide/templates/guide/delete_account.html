@@ -6,28 +6,26 @@
 {% endblock %}
 
 {% block body_block %}
-
-
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-             <div class="jubmotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="pageTitle">Delete Account</h1>
-    </div>
-    <div id="confirm_account_delete_message">
-                <h4>Are you sure you want to delete your account?  This will permanently delete your
-                   profile and any content you have generated.</h4>
-                {{ form }}
-    </div> 
-        </fieldset>
-        <br>
-        <br>
-        <div class="form-group delete_account_buttons">
-            <button class="btn btn-danger"  type="submit">Delete Account</button>
-            <a class="btn btn-primary-custom" style="float:middle;" 
-                   href="{% url 'guide:myprofile' %}">Cancel</a>
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <div class="jubmotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="pageTitle">Delete Account</h1>
         </div>
-    </form>
-
+        <div id="confirm_account_delete_message">
+          <h4>Are you sure you want to delete your account?  This will permanently delete your
+          profile and any content you have generated.</h4>
+          {{ form }}
+        </div> 
+      </div> 
+    </fieldset>
+    <br>
+    <br>
+    <div class="form-group delete_account_buttons">
+      <button class="btn btn-danger"  type="submit">Delete Account</button>
+      <a class="btn btn-primary-custom" style="float:middle;" 
+      href="{% url 'guide:myprofile' %}">Cancel</a>
+    </div>
+  </form>
 {% endblock %}

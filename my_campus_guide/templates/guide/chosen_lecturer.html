@@ -2,101 +2,94 @@
 {% load staticfiles %}
 
 {% block title_block %} 
-{% if lecturer %}
-        {{ lecturer.name }}
-    {% else %}
-        Unknown Lecturer
-    {% endif %}
+  {% if lecturer %}
+    {{ lecturer.name }}
+  {% else %}
+    Unknown Lecturer
+  {% endif %}
 {% endblock %}
 
 {% block body_block %}      
-    <div class="jumbotron p-4">        
-        <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>   
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-            <div class="container" onload="showImage()">
-                {% if lecturer %}
-                <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
-                <div class="lecturer_description_block" id="lecturer_description_right">
-                {% if lecturer.picture %}
-                        <p><img id="lecturer_image" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible"></p>
-                        <input class="standard_button" id="showimage" type="button" onClick="showImage()" value="Show Image">
-                        <input class="standard_button" id="hideimage" type="button" onClick="hideImage()" value="Hide Image">
-                    {% else %}
-                        No picture uploaded
-                
-               
-                
-                {% endif %}
-                <br>
-                <br>
-                <p>Currently Teaching: {{ lecturer.teaching }}</p>
+  <div class="jumbotron p-4">        
+    <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>   
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <div class="container" onload="showImage()">
+      {% if lecturer %}
+        <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
+        <div class="lecturer_description_block" id="lecturer_description_right">
+          {% if lecturer.picture %}
+            <p><img id="lecturer_image" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible"></p>
+            <input class="standard_button" id="showimage" type="button" onClick="showImage()" value="Show Image">
+            <input class="standard_button" id="hideimage" type="button" onClick="hideImage()" value="Hide Image">
+          {% else %}
+            No picture uploaded
+          {% endif %}
+          <br>
+          <br>
+          <p>Currently Teaching: {{ lecturer.teaching }}</p>
+          <p>Average Rating: {{ lecturer.avg_rating }}/5
+          {% if user.is_authenticated %}
+            {% if rating %}
+              <p >Your Rating: {{ rating.rating }}/5</p>
+            {% else %}
+              </br ></br >
+              <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}"> 
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                  <b>{{ field.errors }}</b>
+                  <p>{{ field }} /5</p>
+                {% endfor %} 
+                <input type="submit" name="submitrating" value="Submit Rating"/>
+              </form>
+            {% endif %} 
+          {% endif %}
+        </div>
+        <div class="lecturer_description_block">
+          <p>{{ lecturer.description }}</p>
 
-
-                <p>Average Rating: {{ lecturer.avg_rating }}/5
-                                {% if user.is_authenticated %}
-                    {% if rating %}
-                    <p >Your Rating: {{ rating.rating }}/5</p>
-                    {% else %}
-                    </br ></br >
-                    <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}"> 
-                            {% csrf_token %}
-                            {% for field in form.visible_fields %}
-                                <b>{{ field.errors }}</b>
-                                <p>{{ field }} /5</p>
-                            {% endfor %} 
-                            <input type="submit" name="submitrating" value="Submit Rating"/>
-                    </form>
-                    {% endif %} 
-                                {% endif %}
+          {% if user.is_authenticated %}
+            {% ifequal user course.user %}
+              <div>
+               <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
+              </div>
+            {% endifequal %}								
+            {% if user.is_superuser %}
+              <div>
+                <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
+              </div>
+            {% endif %}								
+          {% endif %}
+        </div>
+        <div class="comment_section"> 
+          <h2>Comments</h2>
+          {% if not user.is_authenticated %}
+            <h6>To add a comment please 
+              <a href="{% url 'guide:login' %}">Log In</a>
+            </h6>
+          {% endif %}
+          {% if user.is_authenticated %}
+            <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}">
+              {% csrf_token %}
+              Add a comment: <input type="text" name="comment" value="" size="80" />
+              <input type="submit" name="submitcomment" value="Submit Comment"/> 
+            </form>
+            </br >
+          {% endif %}                   
+          <div class="row">
+          </div>
+          {% if comments %}                             
+            <div class="col">
+              {% for comment in comments %}
+                <div class="row">
+                  <p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
                 </div>
-                <div class="lecturer_description_block">
-                <p>{{ lecturer.description }}</p>
-
-                {% if user.is_authenticated %}
-									{% ifequal user course.user %}
-	                <div>
-  		              <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
-      	          </div>
-	                {% endifequal %}								
-									{% if user.is_superuser %}
-        	        <div>
-          		      <a class="standard_button" href="{% url 'guide:edit_lecturer' lecturer.slug %}">Edit</a>
-              	  </div>
-    	            {% endif %}								
-                {% endif %}
-
-                <div class="comment_section"> 
-                <h2>Comments</h2>
-                    {% if not user.is_authenticated %}
-                    <h6>To add a comment please 
-                    <a href="{% url 'guide:login' %}">Log In</a>
-                    </h6>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                        <form role="form" id="show_lecturer" method="post" action="{% url 'guide:show_lecturer' lecturer.slug %}">
-                            {% csrf_token %}
-                            Add a comment: <input type="text" name="comment" value="" size="80" />
-                            <input type="submit" name="submitcomment" value="Submit Comment"/> 
-                    </form>
-                    </br >
-                    {% endif %}                   
-                    <div class="row">
-                    </div>
-                        {% if comments %}                             
-                            <div class="col">
-                            {% for comment in comments %}
-                                <div class="row">
-                                <p>User: {{ comment.user }}, posted on: {{ comment.date }}<br>{{ comment.comment }}</p>
-                                </div>
-                            {% endfor %}
-                            </div>
-                    </div>
-                        {%else%}
-                            <strong>No comments yet</strong>
-        
-                        {% endif %} 
-                {% endif %}
+              {% endfor %}
             </div>
+          {%else%}
+            <strong>No comments yet</strong>
+          {% endif %} 
+        </div>
+      {% endif %}
     </div>
-
+  </div>
 {% endblock %}

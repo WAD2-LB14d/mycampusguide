@@ -8,25 +8,24 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-    <h1 class="course_or_lecturer_title">Edit {{ lecturer.name }}</h1>
+      <h1 class="course_or_lecturer_title">Edit {{ lecturer.name }}</h1>
     </div>
   </div>
 
-<form id="edit" method="post"action="{% url 'guide:edit_lecturer' lecturer.slug %}" enctype="multipart/form-data" >
-  {% csrf_token %}
+  <form id="edit" method="post"action="{% url 'guide:edit_lecturer' lecturer.slug %}" enctype="multipart/form-data" >
+    {% csrf_token %}
     <div class="row">
-        <div class="column">
-          <h4 class="pad">
+      <div class="column">
+        <h4 class="pad">
           Name: {{lecturer.name}}</br> 
           Teaching: <input type="text" name="teaching" value='{{lecturer.teaching}}' size="30" /> </br > 
           Description: <textarea type="text" name="description" rows="4" cols="50" >{{lecturer.description}}</textarea> </br > 
         </h4>
-        </div>
-       
-<div id="myprofile_buttons">
-  <input class="standard_button" type="submit" value="Save Changes"/> 
-</div>
-</div>
-</form>
+      </div>
 
+      <div id="myprofile_buttons">
+        <input class="standard_button" type="submit" value="Save Changes"/> 
+      </div>
+    </div>
+  </form>
 {% endblock %}

@@ -8,77 +8,66 @@
 
 
 {% block body_block %}
-
-<style>
-
-
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
+  <style>
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+    }
 
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
-h4.pad {
-  padding-left: 10%;
-}
-</style>
+    h4.pad {
+      padding-left: 10%;
+    }
+  </style>
 
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-      <h1 class="pageTitle">My Profile</h1>
+    <h1 class="pageTitle">My Profile</h1>
     </div>
-  <form role="form" id="myprofile" method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
-  {% csrf_token %}
-    <div class="row">
+    <form role="form" id="myprofile" method="post"action="{% url 'guide:myprofile' %}" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <div class="row">
         <div class="column">
           <h4 class="pad">
-          Username: {{user.username}} </br > 
-          Email: <input type="text" name="email" value='{{user.email}}' size="20" /> </br > 
-          Major: <input type="text" name="major" value='{{profile.major}}' size="20" /> </br >
-          Degree Program: <input type="text" name="degreeprogram" value='{{profile.degreeprogram}}' size="20" /> </br >
-          Started Studying: <input type="text" name="startedstudying" value='{{profile.startedstudying.month}}/{{profile.startedstudying.day}}/{{profile.startedstudying.year}}' size="20" /> </br >
-          Expected Graduation: <input type="text" name="expectedgraduation" value='{{profile.expectedgraduation.month}}/{{profile.expectedgraduation.day}}/{{profile.expectedgraduation.year}}' size="20" /> </br >
-        </h4>
+            Username: {{user.username}} </br > 
+            Email: <input type="text" name="email" value='{{user.email}}' size="20" /> </br > 
+            Major: <input type="text" name="major" value='{{profile.major}}' size="20" /> </br >
+            Degree Program: <input type="text" name="degreeprogram" value='{{profile.degreeprogram}}' size="20" /> </br >
+            Started Studying: <input type="text" name="startedstudying" value='{{profile.startedstudying.month}}/{{profile.startedstudying.day}}/{{profile.startedstudying.year}}' size="20" /> </br >
+            Expected Graduation: <input type="text" name="expectedgraduation" value='{{profile.expectedgraduation.month}}/{{profile.expectedgraduation.day}}/{{profile.expectedgraduation.year}}' size="20" /> </br >
+          </h4>
         </div>
         <div class="column">
           <h4>
-          
-          
-    {% if profile.picture %}
-      <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image"> </br >
-      <label for="files" class="standard_button">Change Image</label>
-      <input type="file" id="files" name="picture" value="Change image" style="display:none"/>
-    {% else %}
-      No picture uploaded
-      <label for="uploadFiles" class="standard_button">Upload Image</label>
-      <input type="file" id="uploadFiles" name="picture" value="Upload image" style="display:none"/>
-    {% endif %}
-      </h4>
+            {% if profile.picture %}
+              <img src="{{ profile.picture.url }}" alt="Profile Image" class="trending lecturer_image"> </br >
+              <label for="files" class="standard_button">Change Image</label>
+              <input type="file" id="files" name="picture" value="Change image" style="display:none"/>
+            {% else %}
+              No picture uploaded
+              <label for="uploadFiles" class="standard_button">Upload Image</label>
+              <input type="file" id="uploadFiles" name="picture" value="Upload image" style="display:none"/>
+            {% endif %}
+          </h4>
         </div>
-    </div>
-  </br >
+      </div>
+      </br >
 
-<div id="myprofile_buttons">
-
-  <input class="standard_button" type="submit" value="Save Changes"/> 
-  
-  <a class="standard_button" href="{% url 'auth_password_change' %}">Change Password</a></li>
-
-  <a class="standard_button" href="{% url 'guide:delete_account' %}">Delete Account</a></li>  
-</div>
+      <div id="myprofile_buttons">
+        <input class="standard_button" type="submit" value="Save Changes"/> 
+        <a class="standard_button" href="{% url 'auth_password_change' %}">Change Password</a></li>
+        <a class="standard_button" href="{% url 'guide:delete_account' %}">Delete Account</a></li>  
+      </div>
+      </div>
+    </form>
   </div>
-</form>
-</div>
-
-   
-
 {% endblock %}
 
 

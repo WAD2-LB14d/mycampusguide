@@ -435,3 +435,20 @@ footer {
 	justify-content: center;
 	
 }
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h4.pad {
+  padding-left: 10%;
+}

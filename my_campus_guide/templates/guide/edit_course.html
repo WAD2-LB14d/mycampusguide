@@ -8,31 +8,29 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-    <h1 class="course_or_lecturer_title">Edit {{ course.name }}</h1>
+      <h1 class="course_or_lecturer_title">Edit {{ course.name }}</h1>
     </div>
   </div>
 
-<form id="edit" method="post"action="{% url 'guide:edit_course' course.slug %}" enctype="multipart/form-data" >
-  {% csrf_token %}
+  <form id="edit" method="post"action="{% url 'guide:edit_course' course.slug %}" enctype="multipart/form-data" >
+    {% csrf_token %}
     <div class="row">
-        <div class="column">
-          <h4 class="pad">
-            {% if course %}
-          <!--Name: <input type="text" name="name" value='{{course.name}}' size="20" /> </br > -->
-					Name: {{course.name}}</br>
-          School: <input type="text" name="school" value='{{course.school}}' size="20" /> </br > 
-          Credits: <input type="text" name="credits" value='{{course.credits}}' size="20" /> </br > 
-          Requirements: <textarea type="text" name="requirements" rows="4" cols="50" >{{course.requirements}}</textarea> </br > 
-          Description: <textarea type="text" name="description" rows="4" cols="50" >{{course.description}}</textarea> </br > 
-          Current Lecturer: <input type="text" name="currentlecturer" value='{{course.currentlecturer}}' size="20" /> </br > 
+      <div class="column">
+        <h4 class="pad">
+          {% if course %}
+            Name: {{course.name}}</br>
+            School: <input type="text" name="school" value='{{course.school}}' size="20" /> </br > 
+            Credits: <input type="text" name="credits" value='{{course.credits}}' size="20" /> </br > 
+            Requirements: <textarea type="text" name="requirements" rows="4" cols="50" >{{course.requirements}}</textarea> </br > 
+            Description: <textarea type="text" name="description" rows="4" cols="50" >{{course.description}}</textarea> </br > 
+            Current Lecturer: <input type="text" name="currentlecturer" value='{{course.currentlecturer}}' size="20" /> </br > 
+          {% endif %}
         </h4>
-        </div>
-        {% endif %}
-       
-<div id="myprofile_buttons">
-  <input class="standard_button" type="submit" value="Save Changes"/> 
-</div>
-</div>
-</form>
+      </div>
 
+      <div id="myprofile_buttons">
+        <input class="standard_button" type="submit" value="Save Changes"/> 
+      </div>
+    </div>
+  </form>
 {% endblock %}

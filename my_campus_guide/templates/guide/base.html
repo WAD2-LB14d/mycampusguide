@@ -12,53 +12,50 @@
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-		<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>	
-	<link rel="stylesheet" type="text/css"    href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>	
+    <link rel="stylesheet" type="text/css"    href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
   </head>
   <body>
     <div class="container-fluid">
-			<div class="row">
-				<nav class="col-md-4  d-md-block bg-light sidebar">
-
-					<div class="sidebar-sticky" id="navcolumn">
+      <div class="row">
+        <nav class="col-md-4  d-md-block bg-light sidebar">
+          <div class="sidebar-sticky" id="navcolumn">
             <a href="{% url 'guide:index' %}"><img src="{% static 'images/logo.svg' %}" alt="MyCampus Guide" height="123" width="294" /></a>
-					  <form class="search-form" method="get" action="{% url 'guide:searchResults' %}">
-							<input name="searchResults" type="search" id="search-text" placeholder="Search" aria-label="Search">
-				    	<button type="submit" id="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-							</svg></button>
-   				  </form>
+            <form class="search-form" method="get" action="{% url 'guide:searchResults' %}">
+              <input name="searchResults" type="search" id="search-text" placeholder="Search" aria-label="Search">
+              <button type="submit" id="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </button>
+            </form>
 
-  	        <ul class="list-group">
-						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:index' %}">Home</a></li>
-						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:lecturers' %}">Lecturers</a></li>
-						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:courses' %}">Courses</a></li>
-						</ul>
+            <ul class="list-group">
+              <li class="nav-item "><a class="nav-link" href="{% url 'guide:index' %}">Home</a></li>
+              <li class="nav-item "><a class="nav-link" href="{% url 'guide:lecturers' %}">Lecturers</a></li>
+              <li class="nav-item "><a class="nav-link" href="{% url 'guide:courses' %}">Courses</a></li>
+            </ul>
             <ul class="list-group bottom">
-            	{% if user.is_authenticated %}
-						<li class="nav-item "><a class="nav-link" href="{% url 'guide:logout' %}">Logout</a></li> 
-						<li class="nav-item "><a class="nav-link" href="{% url 'guide:myprofile' %}">My Profile</a></li>  
-				{% else %}
-					<li class="nav-item "><a class="nav-link" href="{% url 'guide:login' %}">Login</a></li>
-						  <li class="nav-item "><a class="nav-link" href="{% url 'guide:register' %}">Register</a></li>
-				{% endif %}
-    	      </ul>
-						<footer>&copy; WAD LB14d 2021</footer>
-					</div>
-				</nav>
-				<main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-4" id="contentWrapper">
-					<div class="contentContainer">
-  	        	{% block body_block %}
-						{% endblock %}
-          			</div>
-				</main>
-			</div>
-		</div> 
+              {% if user.is_authenticated %}
+                <li class="nav-item "><a class="nav-link" href="{% url 'guide:logout' %}">Logout</a></li> 
+                <li class="nav-item "><a class="nav-link" href="{% url 'guide:myprofile' %}">My Profile</a></li>  
+              {% else %}
+                <li class="nav-item "><a class="nav-link" href="{% url 'guide:login' %}">Login</a></li>
+                <li class="nav-item "><a class="nav-link" href="{% url 'guide:register' %}">Register</a></li>
+              {% endif %}
+            </ul>
+            <footer>&copy; WAD LB14d 2021</footer>
+          </div>
+        </nav>
+        <main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-4" id="contentWrapper">
+          <div class="contentContainer">
+            {% block body_block %}
+            {% endblock %}
+          </div>
+        </main>
+      </div>
+    </div> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> 
-<script>scr="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"</script>
-<script>scr="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.j"</script>
-  
-</script>
-	</body>
+  </body>
 </html>
 

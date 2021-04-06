@@ -8,35 +8,35 @@
 {% block body_block %}
   <div class="jubmotron jumbotron-fluid">
     <div class="container">
-      <h1 class="pageTitle">Login</h1>
+     <h1 class="pageTitle">Login</h1>
     </div>
   </div>
 
   <div id="login_content">
-  {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
       <strong> You are already logged in as {{request.user.username}}. </strong>
       <p><a href="{% url 'guide:logout' %}">Sign Out</a></p>
-  {% else %}
-  <form id="login_form" method="post" action="{% url 'guide:login' %}">
-	{% csrf_token %}
-	Username: <input type="text" name="username" value="" size="50" />
-	<br />
-	Password: <input type="password" name="password" value="" size="50" />
-	<br /> 
-	<input type="submit" value="Submit" />
-</form>
-<br />
-<br />
-<br />
-<p>
-<strong>New user?</strong>
-<br />
-<br />
-</p>
-<p>
-<a class="standard_button" href="{% url 'guide:register' %}">Register</a>
-</p>
-</div>
-{% endif %}
+    {% else %}
+      <form id="login_form" method="post" action="{% url 'guide:login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br /> 
+        <input type="submit" value="Submit" />
+      </form>
+      <br />
+      <br />
+      <br />
+      <p>
+        <strong>New user?</strong>
+        <br />
+        <br />
+      </p>
+      <p>
+        lass="standard_button" href="{% url 'guide:register' %}">Register</a>
+      </p>
+    {% endif %}
+  </div>
 {% endblock %}
 
