@@ -421,6 +421,12 @@ footer {
 	background-color:  rgb(254,127,45,0.9);
 }
 
+/* register */
+#registered_message{
+	text-align: center !important;
+	margin-top: 20%;
+}
+
 
 /*myprofile */
 

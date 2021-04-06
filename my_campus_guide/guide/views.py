@@ -266,30 +266,24 @@ def register(request):
 
     if user_form.is_valid() and profile_form.is_valid():
       user = user_form.save()
-      if user.email.endswith("@student.gla.ac.uk"):
-        print("tes")
-        user.set_password(user.password)
-        user.save()
-        #inactive_user = send_verification_email(request, user_form)
+      user.set_password(user.password)
+      user.save()
 
-        profile = profile_form.save(commit=False)
-        profile.user = user
+      profile = profile_form.save(commit=False)
+      profile.user = user
 
-        if 'picture' in request.FILES:
-          profile.picture = request.FILES['picture']
+      if 'picture' in request.FILES:
+        profile.picture = request.FILES['picture']
 
-        profile.save()
+      profile.save()
 
-        registered = True
+      registered = True
 
-        auth_login(request, user)
-        return redirect(reverse('guide:registered'))
-      else:
-
-        return redirect(reverse('guide:register'))
+      auth_login(request, user)
+      return redirect(reverse('guide:registered'))
       
     else:
-      print(user_form.errors, profile_form.errors)
+      return redirect(reverse('guide:register'))
   else:
     user_form = UserForm()
     profile_form = UserProfileForm()
