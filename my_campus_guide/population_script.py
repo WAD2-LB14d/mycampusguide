@@ -459,14 +459,6 @@ def populate():
         c = add_cat(cat, cat_data["views"])
         for p in cat_data["pages"]:
             add_courserating(c, p["date"], p["rating"], p["user"], p["page"])
-    
-
-    for c in Category.objects.all():
-        for p in Course.objects.filter(category=c):
-            print(f'- {c}: {p}')
-        for p in Lecturer.objects.filter(category=c):
-            print(f'- {c}: {p}')
-
 
 def add_coursepage(cat, name, school, credits, year, requirements, currentlecturer, description, views, pageOwner):
     p = Course.objects.get_or_create(category=cat, name=name)[0]

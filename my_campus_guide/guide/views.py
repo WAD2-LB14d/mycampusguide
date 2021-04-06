@@ -25,8 +25,12 @@ def visitor_cookie_handler(request, response):
 
 def index(request):
   response =  render(request, 'guide/index.html')
-  trending_lecturer = Lecturer.objects.order_by('-views')[0]
-  trending_course = Course.objects.order_by('-views')[0]
+  try:
+    trending_lecturer = Lecturer.objects.order_by('-views')[0]
+    trending_course = Course.objects.order_by('-views')[0]
+  except:
+    trending_lecturer = None
+    trending_course = None
   context_dict = {}
   context_dict['lecturer'] = trending_lecturer
   context_dict['course'] = trending_course
