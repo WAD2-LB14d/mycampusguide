@@ -13,14 +13,14 @@
     <div class="jumbotron p-4">        
         <script type="text/javascript" src="{% static 'js/forms.js' %}"></script>   
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-            <div class="container">
+            <div class="container" onload="showImage()">
                 {% if lecturer %}
                 <h1 class="course_or_lecturer_title">{{ lecturer.name }}</h1>
                 <div class="lecturer_description_block" id="lecturer_description_right">
                 {% if lecturer.picture %}
                         <p><img id="lecturer_image" src="{{ lecturer.picture.url }}" alt="Lecturer Image" class="trending lecturer_image" style="visibility:visible"></p>
-                        <p class="lecturer_image_button"><input type="button" onClick="showImage()" value="Show Image"></p>
-                        <p class="lecturer_image_button"><input type="button" onClick="hideImage()" value="Hide Image"></p>
+                        <input class="standard_button" id="showimage" type="button" onClick="showImage()" value="Show Image">
+                        <input class="standard_button" id="hideimage" type="button" onClick="hideImage()" value="Hide Image">
                     {% else %}
                         No picture uploaded
                 
