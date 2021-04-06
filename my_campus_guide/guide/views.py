@@ -311,8 +311,7 @@ def login(request):
                 return HttpResponse("Your Guide account is disabled.")
 
         else:          
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'guide/login.html', context={'message':"Invalid login details"})
             
     else:
         return render(request, 'guide/login.html')
