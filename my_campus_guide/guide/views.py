@@ -10,7 +10,6 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import random
-#from verify_email.email_handler import send_verification_email
 from django.contrib import messages
 
 def visitor_cookie_handler(request, response): 
@@ -26,6 +25,7 @@ def visitor_cookie_handler(request, response):
 def index(request):
   response =  render(request, 'guide/index.html')
   try:
+    #Get's the lecture and course with the most views to appear on 'trending'
     trending_lecturer = Lecturer.objects.order_by('-views')[0]
     trending_course = Course.objects.order_by('-views')[0]
   except:
@@ -34,6 +34,7 @@ def index(request):
   context_dict = {}
   context_dict['lecturer'] = trending_lecturer
   context_dict['course'] = trending_course
+  #Chooses a random picture to select on the trending page for the courses page
   context_dict['course_image'] = "course_"+str(random.randint(1,3))+".jpg"
   visitor_cookie_handler(request, response)
   return render(request, 'guide/index.html', context=context_dict)
@@ -43,11 +44,12 @@ def index(request):
 def myprofile(request):
     user = User.objects.get(username=request.user.username)
     profile = UserProfile.objects.get(user=request.user)
-
+    #If its a HTTP POST, we are interested in processing form data
     if request.method == 'POST':
       form = ChangeProfileForm(request.POST)
 
       if form.is_valid():
+        #Updates any changed information on the users profile page
         cform = form.save(commit=False)
         user.email = cform.email
         profile.major = cform.major
@@ -65,11 +67,13 @@ def myprofile(request):
     return render(request, 'guide/myprofile.html', context={'user': user, 'profile': profile})
 
 def courses(request):
+  #Initially orders the courses by name to calculate the number of comments and average ratings for each
   courses = Course.objects.order_by('name')
   for course in courses:
     course.storeNumberOfComments()
     course.calculateAverageRating()
     course.save()
+  #Whatever button the user presses to sort by, it orders it accordingly 
   order_by = request.GET.get('order_by', 'name')
   courses = Course.objects.order_by(order_by)  
   context_dict = {}
@@ -77,11 +81,13 @@ def courses(request):
   return render(request, 'guide/courses.html', context=context_dict)
 
 def lecturers(request):
+  #Initially orders the lecturers by name to calculate the number of comments and average ratings for each
   lecturers = Lecturer.objects.order_by('name')
   for lecturer in lecturers:
     lecturer.storeNumberOfComments()
     lecturer.calculateAverageRating()
     lecturer.save()
+  #Whatever button the user presses to sort by, it orders it accordingly 
   order_by = request.GET.get('order_by', 'name')
   lecturers = Lecturer.objects.order_by(order_by)  
   context_dict = {}
@@ -98,12 +104,13 @@ def add_course(request):
       form = CourseForm(request.POST)
 
       if form.is_valid():
+        #Sets the attributes entered by the user for the course page
         page = form.save(commit=False)
         page.category = category
         page.views = 0
         page.page_owner = user
         page.save()
-
+        #Redirects to courses page if successful
         return redirect(reverse('guide:courses'))
       else:
         print(form.errors)
@@ -119,12 +126,13 @@ def add_lecturer(request):
       form = LecturerForm(request.POST, request.FILES)
 
       if form.is_valid():
+        #Sets the attributes entered by the user for the course page
         page = form.save(commit=False)
         page.category = category
         page.views = 0
         page.page_owner = user
         page.save()
-
+        #Redirects to lecturers page if successful
         return redirect(reverse('guide:lecturers'))
       else:
         print(form.errors)
@@ -141,6 +149,7 @@ def show_lecturer(request, lecturer_name_slug):
     context_dict['comments'] = lecturer.lecturercomment_set.all()
     
     try:
+      #Checks if the user already has a rating for this page to display if so
       user = User.objects.get(username=request.user.username) 
       context_dict['rating'] = LecturerRating.objects.get(user=user, page=lecturer)
     except:
@@ -150,9 +159,11 @@ def show_lecturer(request, lecturer_name_slug):
     context_dict['lecturer'] = None
     context_dict['rating'] = None
 
+  #Form for each the ratings and the comments
   form = LecturerRatingForm()
   cform = LecturerCommentForm()
   if request.method == 'POST':
+    #The rating form is only processed if the data is in the request
     if 'submitrating' in request.POST:
       form = LecturerRatingForm(request.POST)
 
@@ -165,7 +176,8 @@ def show_lecturer(request, lecturer_name_slug):
         context_dict['rating'] = LecturerRating.objects.get(user=user, page=lecturer)
         #Refreshes the page, removing information stored
         return HttpResponseRedirect(request.path_info)
-  
+    
+    #The comment form is only processed if the data is in the request
     if 'submitcomment' in request.POST:
       cform = LecturerCommentForm(request.POST)
       if cform.is_valid():
@@ -193,6 +205,7 @@ def show_course(request, course_name_slug):
     context_dict['comments'] = course.coursecomment_set.all()
 
     try:
+      #Checks if the user already has a rating for this page to display if so
       user = User.objects.get(username=request.user.username)  
       context_dict['rating'] = CourseRating.objects.get(user=user, page=course)
     except:
@@ -202,9 +215,11 @@ def show_course(request, course_name_slug):
     context_dict['course'] = None
     context_dict['rating'] = None
 
+  #Form for each the ratings and the comments
   form = CourseRatingForm()
   cform = CourseCommentForm()
   if request.method == 'POST':
+    #The rating form is only processed if the data is in the request
     if 'submitrating' in request.POST:
       form = CourseRatingForm(request.POST)
 
@@ -218,6 +233,7 @@ def show_course(request, course_name_slug):
         #Refreshes the page, removing information stored
         return HttpResponseRedirect(request.path_info)
   
+    #The comment form is only processed if the data is in the request
     if 'submitcomment' in request.POST:
       cform = CourseCommentForm(request.POST)
       if cform.is_valid():
@@ -237,11 +253,12 @@ def show_course(request, course_name_slug):
 
 def searchResults(request):
   context_dict = {}
+  #Recieves search query by the user
   userSearch = request.GET.get('searchResults')
   users = UserProfile.objects.all()
   context_dict["user_profiles"] = users
-  print(userSearch)
   try:
+      #Filters lecturer objects to only show those of which the characters in the user's search is within the lecturer's name
       lecturers = Lecturer.objects.filter(name__contains = userSearch)
       context_dict["searchlecturers"] = lecturers
       context_dict["SearchValue"] = userSearch
@@ -250,6 +267,7 @@ def searchResults(request):
       context_dict["searchlecturers"] = None
       context_dict["SearchValue"] = None
   try:
+      #Filters course objects to only show those of which the characters in the user's search is within the course's name
       courses = Course.objects.filter(name__contains = userSearch)
       context_dict["searchcourses"] = courses
       context_dict["SearchValue"] = userSearch
@@ -262,9 +280,10 @@ def searchResults(request):
 
 
 def register(request):
+  #Boolean value to indiacate to the template if registration was successful
   registered = False
 
-  if request.method == 'POST':
+  if request.method == 'POST': 
     user_form = UserForm(request.POST)
     profile_form = UserProfileForm(request.POST)
 
@@ -276,6 +295,7 @@ def register(request):
       profile = profile_form.save(commit=False)
       profile.user = user
 
+      #If the user provides a picture it has to be out in the UserProfile model
       if 'picture' in request.FILES:
         profile.picture = request.FILES['picture']
 
@@ -292,7 +312,6 @@ def register(request):
     user_form = UserForm()
     profile_form = UserProfileForm()
 
-        
   return render(request, 'guide/register.html',context = {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})  
 
 def registered(request):
@@ -308,7 +327,8 @@ def login(request):
         
         if user:          
 
-            if user.is_active:                
+            if user.is_active:   
+                #Signs the user in with the details supllied once they create an account             
                 auth_login(request, user)
                 return redirect(reverse('guide:index'))
             else:             
@@ -357,6 +377,7 @@ def edit_course(request, course_name_slug):
     form = EditCourse(request.POST)
     print(form.errors)
     if form.is_valid():
+      #Sets the course's data to any information changed in the form
       cform = form.save(commit=False)
       course.school = cform.school
       course.credits = cform.credits
@@ -383,6 +404,7 @@ def edit_lecturer(request, lecturer_name_slug):
     form = EditLecturer(request.POST)
     print(form.errors)
     if form.is_valid():
+      #Sets the lecturer's data to any information changed in the form
       cform = form.save(commit=False)
       lecturer.name = lecturer.name
       lecturer.teaching = cform.teaching
