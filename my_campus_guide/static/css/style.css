@@ -3,6 +3,7 @@
 	padding: 0;
 }
 
+/*base*/
 
 .sidebar-sticky {
 	overflow:hidden ;
@@ -148,6 +149,24 @@ footer {
 	margin: 4px 2px;
 }
 
+.standard_button{
+	background-color: rgba(254,127,45,0.7);
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition: 0.3s
+ }
+
+ .standard_button:hover{
+	background-color: #FF6705 !important;
+	color: white !important;
+
+ }
 
 /*lecturer and course tables*/
 
@@ -176,24 +195,7 @@ footer {
 
 
 
- .standard_button{
-	background-color: rgba(254,127,45,0.7);
-	border-radius: 10px;
-	border: none;
-	color: white;
-	padding: 15px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 16px;
-	margin: 4px 2px;
-	transition: 0.3s
- }
 
- .standard_button:hover{
-	background-color: #FF6705 !important;
-	color: white !important;
-
- }
  
 
  .trending {
